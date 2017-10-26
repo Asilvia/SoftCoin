@@ -10,6 +10,11 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        buildConfigField "int", "LIMIT", "100"
+        buildConfigField "String", "MAINBASEURL", "\"https://www.cryptocompare.com/api/data/\""
+        buildConfigField "String", "DETAILBASEURL", "\"https://min-api.cryptocompare.com/data/\""
+        buildConfigField "int", "CACHETIME", "432000" // 5days
     }
     buildTypes {
         release {
@@ -47,6 +52,7 @@ dependencies {
     //retrofit2
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
     implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+    implementation "com.squareup.retrofit2:adapter-rxjava:$retrofit_version"
 
     //Image loading
     implementation "com.github.bumptech.glide:glide:$glide_version"
@@ -58,6 +64,9 @@ dependencies {
     implementation "com.google.dagger:dagger:$dagger_version"
     implementation "com.google.dagger:dagger-android:$dagger_version"
     implementation "com.google.dagger:dagger-android-support:$dagger_version"
+
+    //RxJava
+    implementation "io.reactivex:rxandroid:$rxJava_version"
 
     //annotations
     annotationProcessor "com.google.dagger:dagger-android-processor:$dagger_version"
