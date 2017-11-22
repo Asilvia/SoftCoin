@@ -1,4 +1,4 @@
-package com.android.asilvia.softcoin.db;
+package com.android.asilvia.softcoin.vo;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
@@ -7,7 +7,7 @@ import android.arch.persistence.room.PrimaryKey;
 /**
  * Created by asilvia on 30-10-2017.
  */
-@Entity
+@Entity(tableName = "LocalCoin")
 public class LocalCoin {
 
     @PrimaryKey

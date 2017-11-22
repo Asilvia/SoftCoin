@@ -1,8 +1,11 @@
 package com.android.asilvia.softcoin.di.module;
 
 import android.app.Application;
+import android.arch.persistence.room.Room;
 import android.content.Context;
 
+import com.android.asilvia.softcoin.db.LocalCoinDao;
+import com.android.asilvia.softcoin.db.SoftcoinDb;
 import com.android.asilvia.softcoin.di.preferences.AppPreferencesHelper;
 import com.android.asilvia.softcoin.di.preferences.PreferencesHelper;
 import com.android.asilvia.softcoin.di.preferences.PreferencesInfo;
@@ -53,6 +56,16 @@ public class AppModule {
         return new AppSchedulerProvider();
     }
 
+    //Database declaration
+
+    @Singleton @Provides
+    SoftcoinDb provideDb(Application app) {
+        return Room.databaseBuilder(app, SoftcoinDb.class,"softcoin.db").build();
+    }
+    @Singleton @Provides
+    LocalCoinDao provideUserDao(SoftcoinDb db) {
+        return db.localCoinDao();
+    }
 
 
 
