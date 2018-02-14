@@ -15,7 +15,7 @@ import retrofit2.http.GET;
 
 public interface MainApiHelper {
 
-    @GET("coinlist")
+    @GET("all/coinlist")
     LiveData<ApiResponse<Coins>> getCoinList();
 
 }

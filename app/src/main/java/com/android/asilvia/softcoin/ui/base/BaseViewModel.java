@@ -3,6 +3,7 @@ package com.android.asilvia.softcoin.ui.base;
 import android.arch.lifecycle.ViewModel;
 import android.databinding.ObservableBoolean;
 
+import com.android.asilvia.softcoin.BR;
 import com.android.asilvia.softcoin.repository.DataManager;
 import com.android.asilvia.softcoin.util.rx.SchedulerProvider;
 

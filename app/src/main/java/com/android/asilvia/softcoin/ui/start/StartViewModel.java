@@ -2,7 +2,9 @@ package com.android.asilvia.softcoin.ui.start;
 
 
 import android.arch.lifecycle.LiveData;
+import android.databinding.Bindable;
 
+import com.android.asilvia.softcoin.BR;
 import com.android.asilvia.softcoin.api.ApiResponse;
 import com.android.asilvia.softcoin.repository.DataManager;
 import com.android.asilvia.softcoin.ui.base.BaseViewModel;
@@ -18,6 +20,7 @@ public class StartViewModel extends BaseViewModel<StartNavigator> {
 
     private LiveData<ApiResponse<Coins>> mObservableCoinsList;
 
+
     public StartViewModel(DataManager dataManager, SchedulerProvider schedulerProvider) {
         super(dataManager, schedulerProvider);
         mObservableCoinsList = AbsentLiveData.create();
@@ -32,6 +35,8 @@ public class StartViewModel extends BaseViewModel<StartNavigator> {
     {
         return mObservableCoinsList;
     }
+
+    
 
 
 

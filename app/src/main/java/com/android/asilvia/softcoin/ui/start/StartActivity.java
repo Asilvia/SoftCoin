@@ -17,6 +17,10 @@ import com.android.asilvia.softcoin.api.ApiResponse;
 import com.android.asilvia.softcoin.databinding.ActivityStartBinding;
 import com.android.asilvia.softcoin.ui.base.BaseActivity;
 import com.android.asilvia.softcoin.vo.Coins;
+import com.android.asilvia.softcoin.vo.CoinsDetails;
+
+import java.util.ArrayList;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -43,6 +47,7 @@ public class StartActivity extends BaseActivity<ActivityStartBinding, StartViewM
     }
 
     private void renderView() {
+        mStartViewModel.setIsLoading(true);
         mStartViewModel.RetrieveCoinList();
         mActivityStartBinding.coinsList.setHasFixedSize(true);
         mActivityStartBinding.coinsList.setLayoutManager(new GridLayoutManager(this, 2));
@@ -66,9 +71,18 @@ public class StartActivity extends BaseActivity<ActivityStartBinding, StartViewM
             @Override
             public void onChanged(@Nullable ApiResponse<Coins> coinsApiResponse) {
                 Timber.d("OnChange");
+                mStartViewModel.setIsLoading(false);
+
                 if (coinsApiResponse != null) {
                     if (coinsApiResponse.isSuccessful()) {
-                        Timber.d("isSuccessful" + coinsApiResponse.body.getResponse());
+                        Timber.d("isSuccessful" + coinsApiResponse.body.getMessage());
+                        Map<String, CoinsDetails> temporaryList = coinsApiResponse.body.getData();
+                        for (Map.Entry<String, CoinsDetails> entry : temporaryList.entrySet())
+                        {
+                            System.out.println(entry.getKey() + "/" + entry.getValue().getCoinName());
+                        }
+
+                       // coinsApiResponse.body.getData()
                     } else {
                         Timber.e(coinsApiResponse.errorMessage);
                     }
