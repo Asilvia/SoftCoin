@@ -1,5 +1,7 @@
 package com.android.asilvia.softcoin.di.builder;
 
+import com.android.asilvia.softcoin.ui.add.CoinListActivity;
+import com.android.asilvia.softcoin.ui.add.CoinListActivityModule;
 import com.android.asilvia.softcoin.ui.start.StartActivity;
 import com.android.asilvia.softcoin.ui.start.StartActivityModule;
 
@@ -14,5 +16,8 @@ public abstract class ActivityBuilder {
 
     @ContributesAndroidInjector(modules = {StartActivityModule.class})
     abstract StartActivity bindStartActivity();
+
+    @ContributesAndroidInjector(modules = {CoinListActivityModule.class})
+    abstract CoinListActivity bindCoinListActivity();
 
 }

@@ -1,8 +1,10 @@
 package com.android.asilvia.softcoin.ui.start;
 
+import android.app.Activity;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Intent;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -15,11 +17,16 @@ import com.android.asilvia.softcoin.BR;
 import com.android.asilvia.softcoin.R;
 import com.android.asilvia.softcoin.api.ApiResponse;
 import com.android.asilvia.softcoin.databinding.ActivityStartBinding;
+import com.android.asilvia.softcoin.ui.add.CoinListActivity;
 import com.android.asilvia.softcoin.ui.base.BaseActivity;
+import com.android.asilvia.softcoin.ui.base.navigation.AppNavigation;
 import com.android.asilvia.softcoin.vo.Coins;
 import com.android.asilvia.softcoin.vo.CoinsDetails;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
@@ -64,6 +71,9 @@ public class StartActivity extends BaseActivity<ActivityStartBinding, StartViewM
             @Override
             public void onClick(View v) {
                 Timber.d("Go to next activity");
+                AppNavigation.goToCoinListActivity((Activity)v.getContext());
+
+
             }
         });
 
@@ -73,22 +83,7 @@ public class StartActivity extends BaseActivity<ActivityStartBinding, StartViewM
                 Timber.d("OnChange");
                 mStartViewModel.setIsLoading(false);
 
-                if (coinsApiResponse != null) {
-                    if (coinsApiResponse.isSuccessful()) {
-                        Timber.d("isSuccessful" + coinsApiResponse.body.getMessage());
-                        Map<String, CoinsDetails> temporaryList = coinsApiResponse.body.getData();
-                        for (Map.Entry<String, CoinsDetails> entry : temporaryList.entrySet())
-                        {
-                            System.out.println(entry.getKey() + "/" + entry.getValue().getCoinName());
-                        }
 
-                       // coinsApiResponse.body.getData()
-                    } else {
-                        Timber.e(coinsApiResponse.errorMessage);
-                    }
-                } else {
-                    Timber.d("Api response is null");
-                }
             }
         });
     }
