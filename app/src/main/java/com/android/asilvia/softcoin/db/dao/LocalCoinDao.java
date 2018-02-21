@@ -1,4 +1,4 @@
-package com.android.asilvia.softcoin.db;
+package com.android.asilvia.softcoin.db.dao;
 
 import android.arch.lifecycle.LiveData;
 import android.arch.persistence.room.Dao;
@@ -7,7 +7,10 @@ import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.OnConflictStrategy;
 import android.arch.persistence.room.Query;
 
-import com.android.asilvia.softcoin.vo.LocalCoin;
+import com.android.asilvia.softcoin.db.LocalCoin;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by asilvia on 30-10-2017.
@@ -26,7 +29,7 @@ public interface LocalCoinDao {
     LiveData<LocalCoin> findCoinById(String id);
 
     @Query("SELECT * FROM LocalCoin")
-    LiveData<LocalCoin> findAllCoins();
+    LiveData<List<LocalCoin>> findAllCoins();
 
     @Delete
     public void deleteCoin (LocalCoin localCoin);

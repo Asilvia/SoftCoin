@@ -2,9 +2,11 @@ package com.android.asilvia.softcoin;
 
 import android.app.Activity;
 import android.app.Application;
+import android.arch.persistence.room.Room;
 
 
 import com.android.asilvia.softcoin.di.component.DaggerMainComponent;
+import com.android.asilvia.softcoin.di.db.AppDatabase;
 
 import javax.inject.Inject;
 
@@ -22,6 +24,8 @@ public class SoftCoinApp extends Application implements HasActivityInjector {
     @Inject
     DispatchingAndroidInjector<Activity> activityDispatchingAndroidInjector;
 
+    private AppDatabase mDatabase;
+
 
     @Override
     public AndroidInjector<Activity> activityInjector() {
@@ -38,5 +42,6 @@ public class SoftCoinApp extends Application implements HasActivityInjector {
         if (BuildConfig.DEBUG) {
             Timber.plant(new Timber.DebugTree());
         }
+
     }
 }

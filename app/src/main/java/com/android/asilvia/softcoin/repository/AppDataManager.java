@@ -8,14 +8,18 @@ import android.content.Context;
 import com.android.asilvia.softcoin.api.ApiResponse;
 import com.android.asilvia.softcoin.api.DetailsApiHelper;
 import com.android.asilvia.softcoin.api.MainApiHelper;
+import com.android.asilvia.softcoin.di.db.AppDbHelper;
 import com.android.asilvia.softcoin.di.preferences.PreferencesHelper;
 import com.android.asilvia.softcoin.vo.Coins;
+import com.android.asilvia.softcoin.db.LocalCoin;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
+import rx.Completable;
 import timber.log.Timber;
 
 /**
@@ -32,12 +36,15 @@ public class AppDataManager implements DataManager {
 
     private DetailsApiHelper mDetailsApiHelper;
 
+    private AppDbHelper mAppDbHelper;
+
     @Inject
-    public AppDataManager(Context context, PreferencesHelper preferencesHelper, MainApiHelper mainApiHelper, DetailsApiHelper detailsApiHelper) {
+    public AppDataManager(Context context, PreferencesHelper preferencesHelper, MainApiHelper mainApiHelper, DetailsApiHelper detailsApiHelper, AppDbHelper appDbHelper) {
         mContext = context;
         mPreferencesHelper = preferencesHelper;
         mMainApiHelper = mainApiHelper;
         mDetailsApiHelper = detailsApiHelper;
+        mAppDbHelper = appDbHelper;
     }
 
 
@@ -53,6 +60,12 @@ public class AppDataManager implements DataManager {
     }
 
     @Override
+    public Completable saveCoin(LocalCoin coin)
+    {
+        return Completable.fromAction(() -> mAppDbHelper.saveCoin(coin));
+    }
+
+    @Override
     public String getValueExample() {
         return mPreferencesHelper.getValueExample();
     }
@@ -60,5 +73,10 @@ public class AppDataManager implements DataManager {
     @Override
     public void setValueExample(String valueExample) {
         mPreferencesHelper.setValueExample(valueExample);
+    }
+
+    @Override
+    public LiveData<List<LocalCoin>> getSavedCoinList() {
+        return mAppDbHelper.getSavedCoins();
     }
 }

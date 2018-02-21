@@ -6,17 +6,17 @@ import android.arch.lifecycle.LiveData;
 import com.android.asilvia.softcoin.api.ApiResponse;
 import com.android.asilvia.softcoin.repository.DataManager;
 import com.android.asilvia.softcoin.ui.base.BaseViewModel;
-import com.android.asilvia.softcoin.ui.start.StartNavigator;
 import com.android.asilvia.softcoin.util.AbsentLiveData;
 import com.android.asilvia.softcoin.util.rx.SchedulerProvider;
 import com.android.asilvia.softcoin.vo.Coins;
 import com.android.asilvia.softcoin.vo.CoinsDetails;
+import com.android.asilvia.softcoin.db.LocalCoin;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.List;
 
+import rx.Completable;
 import timber.log.Timber;
 
 /**
@@ -26,6 +26,7 @@ import timber.log.Timber;
 public class CoinListViewModel extends BaseViewModel<CoinListNavigator> {
 
     private LiveData<ApiResponse<Coins>> mObservableCoinsList;
+
 
 
     public CoinListViewModel(DataManager dataManager, SchedulerProvider schedulerProvider) {
@@ -75,6 +76,14 @@ public class CoinListViewModel extends BaseViewModel<CoinListNavigator> {
         });
     }
 
+    public Completable saveItem(CoinsDetails coin, String realCoin)
+    {
+
+        LocalCoin localCoin = new LocalCoin(coin.getId(), coin.getCoinName(), coin.getName(), coin.getImageUrl(), coin.getUrl(),0d, 0d, realCoin, 0);
+        return getDataManager().saveCoin(localCoin);
+
+    }
+
 
     private void completeImageUrl(ArrayList<CoinsDetails> list, String baseImageUrl) {
         for(CoinsDetails coin: list)
@@ -83,5 +92,8 @@ public class CoinListViewModel extends BaseViewModel<CoinListNavigator> {
         }
     }
 
-
+/*
+    public LiveData<Boolean> getmObservableSave() {
+        return mObservableSave;
+    }*/
 }

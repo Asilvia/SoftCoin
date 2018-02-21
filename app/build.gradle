@@ -116,6 +116,8 @@ dependencies {
     androidTestImplementation "org.mockito:mockito-core:$mockito_version", {
         exclude group: 'net.bytebuddy'
     }
+
+    debugImplementation 'com.amitshekhar.android:debug-db:1.0.3'
 }
 
 

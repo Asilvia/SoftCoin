@@ -25,6 +25,7 @@ public interface MainComponent
         @BindsInstance
         Builder application(Application application);
 
+
         MainComponent build();
     }
     void inject(SoftCoinApp app);

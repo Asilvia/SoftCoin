@@ -28,10 +28,33 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:visibility="@{viewModel.isLoading ? View.VISIBLE : View.GONE}"/>
+    <RelativeLayout
+        android:id="@+id/search_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:padding="@dimen/padding_small"
+        android:background="@color/colorPrimary">
+
+        <android.support.v7.widget.SearchView
+            android:id="@+id/search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:gravity="right"
+            app:iconifiedByDefault="false"
+            app:defaultQueryHint="@string/hint_search"
+            app:queryHint="@string/hint_search"
+            android:background="@android:color/white"
+            />
+    </RelativeLayout>
+
     <ListView
         android:id="@+id/coinList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@+id/search_layout"
         />
 
 

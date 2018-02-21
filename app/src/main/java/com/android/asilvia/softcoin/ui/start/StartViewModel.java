@@ -6,11 +6,15 @@ import android.databinding.Bindable;
 
 import com.android.asilvia.softcoin.BR;
 import com.android.asilvia.softcoin.api.ApiResponse;
+import com.android.asilvia.softcoin.db.LocalCoin;
 import com.android.asilvia.softcoin.repository.DataManager;
 import com.android.asilvia.softcoin.ui.base.BaseViewModel;
 import com.android.asilvia.softcoin.util.AbsentLiveData;
 import com.android.asilvia.softcoin.util.rx.SchedulerProvider;
 import com.android.asilvia.softcoin.vo.Coins;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by asilvia on 26-10-2017.
@@ -18,7 +22,7 @@ import com.android.asilvia.softcoin.vo.Coins;
 
 public class StartViewModel extends BaseViewModel<StartNavigator> {
 
-    private LiveData<ApiResponse<Coins>> mObservableCoinsList;
+    private LiveData<List<LocalCoin>> mObservableCoinsList;
 
 
     public StartViewModel(DataManager dataManager, SchedulerProvider schedulerProvider) {
@@ -26,12 +30,13 @@ public class StartViewModel extends BaseViewModel<StartNavigator> {
         mObservableCoinsList = AbsentLiveData.create();
     }
 
-    void RetrieveCoinList()
+    void getCoinList()
     {
-        mObservableCoinsList = getDataManager().getCoinList();
+
+        mObservableCoinsList = getDataManager().getSavedCoinList();
     }
 
-    LiveData<ApiResponse<Coins>> getObservableCoinsList()
+    LiveData<List<LocalCoin>> getObservableCoinsList()
     {
         return mObservableCoinsList;
     }

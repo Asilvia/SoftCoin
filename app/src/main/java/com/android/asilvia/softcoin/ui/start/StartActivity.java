@@ -1,6 +1,7 @@
 package com.android.asilvia.softcoin.ui.start;
 
 import android.app.Activity;
+import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
@@ -17,22 +18,19 @@ import com.android.asilvia.softcoin.BR;
 import com.android.asilvia.softcoin.R;
 import com.android.asilvia.softcoin.api.ApiResponse;
 import com.android.asilvia.softcoin.databinding.ActivityStartBinding;
-import com.android.asilvia.softcoin.ui.add.CoinListActivity;
+
+import com.android.asilvia.softcoin.db.LocalCoin;
 import com.android.asilvia.softcoin.ui.base.BaseActivity;
 import com.android.asilvia.softcoin.ui.base.navigation.AppNavigation;
 import com.android.asilvia.softcoin.vo.Coins;
 import com.android.asilvia.softcoin.vo.CoinsDetails;
 
+
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
-import java.util.Map;
 
 import javax.inject.Inject;
 
-import dagger.android.AndroidInjector;
-import dagger.android.support.HasSupportFragmentInjector;
 import timber.log.Timber;
 
 import static android.os.Build.VERSION_CODES.O;
@@ -55,17 +53,21 @@ public class StartActivity extends BaseActivity<ActivityStartBinding, StartViewM
 
     private void renderView() {
         mStartViewModel.setIsLoading(true);
-        mStartViewModel.RetrieveCoinList();
+      //  mStartViewModel.RetrieveCoinList();
+        mStartViewModel.getCoinList();
         mActivityStartBinding.coinsList.setHasFixedSize(true);
         mActivityStartBinding.coinsList.setLayoutManager(new GridLayoutManager(this, 2));
         mActivityStartBinding.swiperefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 Timber.d("Refresh");
-                mStartViewModel.RetrieveCoinList();
-                mActivityStartBinding.swiperefresh.setRefreshing(false);
+               // mStartViewModel.RetrieveCoinList();
+                //mActivityStartBinding.swiperefresh.setRefreshing(false);
             }
         });
+
+
+
 
         mActivityStartBinding.addNew.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,8 +78,14 @@ public class StartActivity extends BaseActivity<ActivityStartBinding, StartViewM
 
             }
         });
-
-        mStartViewModel.getObservableCoinsList().observe(this, new Observer<ApiResponse<Coins>>() {
+        mStartViewModel.getObservableCoinsList().observe(this, new Observer<List<LocalCoin>>() {
+                    @Override
+                    public void onChanged(@Nullable List<LocalCoin> localCoins) {
+                        Timber.d("OnChange: " + "localCoins.size: " + localCoins.size());
+                        mStartViewModel.setIsLoading(false);
+                    }
+                });
+    /*    mStartViewModel.getObservableCoinsList().observe(this, new Observer<ApiResponse<Coins>>() {
             @Override
             public void onChanged(@Nullable ApiResponse<Coins> coinsApiResponse) {
                 Timber.d("OnChange");
@@ -85,7 +93,7 @@ public class StartActivity extends BaseActivity<ActivityStartBinding, StartViewM
 
 
             }
-        });
+        });*/
     }
 
 

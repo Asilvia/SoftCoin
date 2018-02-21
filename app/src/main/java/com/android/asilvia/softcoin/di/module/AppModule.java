@@ -4,8 +4,11 @@ import android.app.Application;
 import android.arch.persistence.room.Room;
 import android.content.Context;
 
-import com.android.asilvia.softcoin.db.LocalCoinDao;
-import com.android.asilvia.softcoin.db.SoftcoinDb;
+import com.android.asilvia.softcoin.db.dao.LocalCoinDao;
+import com.android.asilvia.softcoin.di.db.AppDatabase;
+import com.android.asilvia.softcoin.di.db.AppDbHelper;
+import com.android.asilvia.softcoin.di.db.DbHelper;
+import com.android.asilvia.softcoin.di.db.DbsInfo;
 import com.android.asilvia.softcoin.di.preferences.AppPreferencesHelper;
 import com.android.asilvia.softcoin.di.preferences.PreferencesHelper;
 import com.android.asilvia.softcoin.di.preferences.PreferencesInfo;
@@ -57,14 +60,22 @@ public class AppModule {
     }
 
     //Database declaration
-
-    @Singleton @Provides
-    SoftcoinDb provideDb(Application app) {
-        return Room.databaseBuilder(app, SoftcoinDb.class,"softcoin.db").build();
+    @Provides
+    @Singleton
+    @DbsInfo.DbInfo
+    AppDatabase provideAppDatabase(Application app) {
+        return Room.databaseBuilder(app, AppDatabase.class,"cryptoo.db").build();
     }
-    @Singleton @Provides
-    LocalCoinDao provideUserDao(SoftcoinDb db) {
+    @Singleton
+    @Provides
+    LocalCoinDao provideLocalCoinDao(AppDatabase db) {
         return db.localCoinDao();
+    }
+
+    @Provides
+    @Singleton
+    DbHelper provideDbHelper(AppDbHelper appDbHelper) {
+        return appDbHelper;
     }
 
 

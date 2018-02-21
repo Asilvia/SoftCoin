@@ -1,4 +1,4 @@
-package com.android.asilvia.softcoin.vo;
+package com.android.asilvia.softcoin.db;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
@@ -45,6 +45,9 @@ public class LocalCoin {
         this.realCoinConverter = realCoinConverter;
         this.amount = amount;
     }
+
+  /*  public LocalCoin() {
+    }*/
 
     public String getId() {
         return id;

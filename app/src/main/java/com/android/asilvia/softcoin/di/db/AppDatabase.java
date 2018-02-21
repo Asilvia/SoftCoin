@@ -1,9 +1,10 @@
-package com.android.asilvia.softcoin.db;
+package com.android.asilvia.softcoin.di.db;
 
 import android.arch.persistence.room.Database;
 import android.arch.persistence.room.RoomDatabase;
 
-import com.android.asilvia.softcoin.vo.LocalCoin;
+import com.android.asilvia.softcoin.db.dao.LocalCoinDao;
+import com.android.asilvia.softcoin.db.LocalCoin;
 
 /**
  * Created by asilvia on 30-10-2017.
@@ -12,7 +13,7 @@ import com.android.asilvia.softcoin.vo.LocalCoin;
 //Main description of the database
 
 @Database(entities = {LocalCoin.class}, version = 1)
-public abstract class SoftcoinDb extends RoomDatabase {
+public abstract class AppDatabase extends RoomDatabase {
     abstract public LocalCoinDao localCoinDao();
 }
 
