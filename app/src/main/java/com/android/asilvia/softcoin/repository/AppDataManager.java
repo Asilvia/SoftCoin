@@ -6,7 +6,6 @@ import android.content.Context;
 
 
 import com.android.asilvia.softcoin.api.ApiResponse;
-import com.android.asilvia.softcoin.api.DetailsApiHelper;
 import com.android.asilvia.softcoin.api.MainApiHelper;
 import com.android.asilvia.softcoin.di.db.AppDbHelper;
 import com.android.asilvia.softcoin.di.preferences.PreferencesHelper;
@@ -34,16 +33,14 @@ public class AppDataManager implements DataManager {
 
     private MainApiHelper mMainApiHelper;
 
-    private DetailsApiHelper mDetailsApiHelper;
 
     private AppDbHelper mAppDbHelper;
 
     @Inject
-    public AppDataManager(Context context, PreferencesHelper preferencesHelper, MainApiHelper mainApiHelper, DetailsApiHelper detailsApiHelper, AppDbHelper appDbHelper) {
+    public AppDataManager(Context context, PreferencesHelper preferencesHelper, MainApiHelper mainApiHelper, AppDbHelper appDbHelper) {
         mContext = context;
         mPreferencesHelper = preferencesHelper;
         mMainApiHelper = mainApiHelper;
-        mDetailsApiHelper = detailsApiHelper;
         mAppDbHelper = appDbHelper;
     }
 
@@ -56,7 +53,7 @@ public class AppDataManager implements DataManager {
 
     @Override
     public LiveData<ApiResponse<Map<String, Map<String, String>>>> getCoinPrices(String from, String to) {
-        return mDetailsApiHelper.getCoinPrices(from, to);
+        return mMainApiHelper.getCoinPrices(from, to);
     }
 
     @Override

@@ -6,12 +6,14 @@ import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
+import android.util.Log;
 import android.view.View;
 
 import com.android.asilvia.softcoin.BR;
@@ -82,6 +84,9 @@ public class StartActivity extends BaseActivity<ActivityStartBinding, StartViewM
                     @Override
                     public void onChanged(@Nullable List<LocalCoin> localCoins) {
                         Timber.d("OnChange: " + "localCoins.size: " + localCoins.size());
+                        String coinsList = getCoinsName(localCoins);
+
+
                         mStartViewModel.setIsLoading(false);
                     }
                 });
@@ -111,6 +116,19 @@ public class StartActivity extends BaseActivity<ActivityStartBinding, StartViewM
     @Override
     public int getLayoutId() {
         return R.layout.activity_start;
+    }
+
+    @NonNull
+    private String getCoinsName(List<LocalCoin> localCoins) {
+        String coinsList = "";
+        for (LocalCoin item : localCoins) {
+            Timber.d("--> item: " + item.getKey());
+            coinsList = coinsList + item.getKey() + ",";
+        }
+        coinsList = coinsList.substring(0, coinsList.length() - 1);
+        Timber.d("-->" +coinsList);
+
+        return coinsList;
     }
 
 

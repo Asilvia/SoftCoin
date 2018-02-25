@@ -5,8 +5,10 @@ import android.arch.lifecycle.LiveData;
 
 import com.android.asilvia.softcoin.vo.Coins;
 
-import retrofit2.http.GET;
+import java.util.Map;
 
+import retrofit2.http.GET;
+import retrofit2.http.Query;
 
 
 /**
@@ -17,5 +19,8 @@ public interface MainApiHelper {
 
     @GET("all/coinlist")
     LiveData<ApiResponse<Coins>> getCoinList();
+    @GET("pricemulti")
+    LiveData<ApiResponse<Map<String,Map<String,String>>>> getCoinPrices(@Query("fsyms") String from,
+                                                                        @Query("tsyms") String to);
 
 }

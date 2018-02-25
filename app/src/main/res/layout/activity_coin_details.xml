@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_coin_details"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.details.CoinDetailsActivity">
+
+    <TextView
+        android:id="@+id/tvPercentage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="48sp"
+        android:gravity="right"
+        android:text="0000"
+        android:background="@android:color/white"
+        android:paddingTop="24dp"
+        android:paddingBottom="24dp"
+        android:paddingRight="8dp"
+        />
+    <TextView
+        android:id="@+id/tvPriceNow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:text="12452 EUR"
+        android:background="#F5F5F5"
+        android:gravity="right|center_vertical"
+        android:padding="8dp"
+
+        android:layout_marginBottom="16dp"/>
+
+    <EditText
+        android:id="@+id/tvPrice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="your price"
+        android:inputType="numberDecimal"
+        android:background="@drawable/edit_text"
+        android:padding="12dp"
+        android:gravity="right"
+        android:layout_margin="12dp"/>
+
+    <EditText
+        android:id="@+id/etAmount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/edit_text"
+        android:padding="12dp"
+        android:gravity="right"
+        android:hint="your amount"
+        android:layout_margin="12dp"
+        android:inputType="number"/>
+
+
+
+</LinearLayout>

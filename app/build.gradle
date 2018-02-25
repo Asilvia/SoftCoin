@@ -12,9 +12,7 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
         buildConfigField "int", "LIMIT", "100"
-        //  buildConfigField "String", "MAINBASEURL", "\"https://www.cryptocompare.com/api/data/\""
         buildConfigField "String", "MAINBASEURL", "\"https://min-api.cryptocompare.com/data/\""
-        buildConfigField "String", "DETAILBASEURL", "\"https://min-api.cryptocompare.com/data/\""
         buildConfigField "int", "CACHETIME", "432000" // 5days
     }
     buildTypes {
