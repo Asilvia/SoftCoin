@@ -64,7 +64,7 @@ public class AppModule {
     @Singleton
     @DbsInfo.DbInfo
     AppDatabase provideAppDatabase(Application app) {
-        return Room.databaseBuilder(app, AppDatabase.class,"cryptoo.db").build();
+        return Room.databaseBuilder(app, AppDatabase.class,"cryptoo.db").allowMainThreadQueries().build();
     }
     @Singleton
     @Provides

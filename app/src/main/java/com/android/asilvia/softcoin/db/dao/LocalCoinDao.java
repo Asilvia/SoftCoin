@@ -29,7 +29,7 @@ public interface LocalCoinDao {
     LiveData<LocalCoin> findCoinById(String id);
 
     @Query("SELECT * FROM LocalCoin")
-    LiveData<List<LocalCoin>> findAllCoins();
+    List<LocalCoin> findAllCoins();
 
     @Delete
     public void deleteCoin (LocalCoin localCoin);

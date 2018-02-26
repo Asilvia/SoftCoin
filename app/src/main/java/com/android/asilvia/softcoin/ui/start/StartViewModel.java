@@ -2,7 +2,10 @@ package com.android.asilvia.softcoin.ui.start;
 
 
 import android.arch.lifecycle.LiveData;
+import android.arch.lifecycle.MutableLiveData;
+import android.arch.lifecycle.Transformations;
 import android.databinding.Bindable;
+import android.support.annotation.NonNull;
 
 import com.android.asilvia.softcoin.BR;
 import com.android.asilvia.softcoin.api.ApiResponse;
@@ -15,6 +18,9 @@ import com.android.asilvia.softcoin.vo.Coins;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Observable;
+
+import timber.log.Timber;
 
 /**
  * Created by asilvia on 26-10-2017.
@@ -32,8 +38,25 @@ public class StartViewModel extends BaseViewModel<StartNavigator> {
 
     void getCoinList()
     {
+        ArrayList<LocalCoin> savedCoins = new ArrayList<>();
+        savedCoins.addAll(getDataManager().getSavedCoinList());
+        String from = getCoinsName(savedCoins);
+        String to = getDataManager().getMainCoin();
+        mObservableCoinsList =  Transformations.switchMap(getDataManager().getCoinPrices(from, to), coinList ->{
+            MutableLiveData<List<LocalCoin>> completeCoinList = new MutableLiveData<>();
+            for(LocalCoin coin: savedCoins)
+            {
+                String result = coinList.body.get(coin.getKey()).get(to);
+               coin.setPrice(Double.parseDouble(result));
+                Timber.d("-->" + result);
+              //coin.setAmount(coi);
+            }
+            completeCoinList.postValue(savedCoins);
+            return completeCoinList;
+        });
 
-        mObservableCoinsList = getDataManager().getSavedCoinList();
+
+
     }
 
     LiveData<List<LocalCoin>> getObservableCoinsList()
@@ -41,8 +64,19 @@ public class StartViewModel extends BaseViewModel<StartNavigator> {
         return mObservableCoinsList;
     }
 
-    
 
+    @NonNull
+    private String getCoinsName(List<LocalCoin> localCoins) {
+        String coinsList = "";
+        for (LocalCoin item : localCoins) {
+            Timber.d("--> item: " + item.getKey());
+            coinsList = coinsList + item.getKey() + ",";
+        }
+        coinsList = coinsList.substring(0, coinsList.length() - 1);
+        Timber.d("-->" +coinsList);
+
+        return coinsList;
+    }
 
 
 }

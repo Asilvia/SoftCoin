@@ -5,6 +5,7 @@ import android.arch.lifecycle.LiveData;
 import android.content.Context;
 
 
+import com.android.asilvia.softcoin.BuildConfig;
 import com.android.asilvia.softcoin.api.ApiResponse;
 import com.android.asilvia.softcoin.api.MainApiHelper;
 import com.android.asilvia.softcoin.di.db.AppDbHelper;
@@ -63,17 +64,19 @@ public class AppDataManager implements DataManager {
     }
 
     @Override
-    public String getValueExample() {
-        return mPreferencesHelper.getValueExample();
+    public String getMainCoin() {
+        return mPreferencesHelper.getMainCoin();
+
     }
 
     @Override
-    public void setValueExample(String valueExample) {
-        mPreferencesHelper.setValueExample(valueExample);
+    public void setMainCoin(String coin) {
+        mPreferencesHelper.setMainCoin(coin);
     }
 
+
     @Override
-    public LiveData<List<LocalCoin>> getSavedCoinList() {
+    public List<LocalCoin> getSavedCoinList() {
         return mAppDbHelper.getSavedCoins();
     }
 }

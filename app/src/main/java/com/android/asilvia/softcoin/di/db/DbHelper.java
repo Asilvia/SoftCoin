@@ -15,5 +15,5 @@ public interface  DbHelper {
 
     void saveCoin(LocalCoin localCoin);
 
-    LiveData<List<LocalCoin>> getSavedCoins();
+    List<LocalCoin> getSavedCoins();
 }

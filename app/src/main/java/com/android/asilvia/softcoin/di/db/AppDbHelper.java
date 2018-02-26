@@ -34,7 +34,7 @@ public class AppDbHelper implements DbHelper {
     }
 
     @Override
-    public LiveData<List<LocalCoin>> getSavedCoins() {
+    public List<LocalCoin> getSavedCoins() {
         return mlocalCoinDao.findAllCoins();
     }
 }

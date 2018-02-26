@@ -5,8 +5,8 @@ package com.android.asilvia.softcoin.di.preferences;
  */
 
 public interface PreferencesHelper {
-    String getValueExample();
-    void setValueExample(String valueExample);
+    String getMainCoin();
+    void setMainCoin(String valueExample);
 
 
 

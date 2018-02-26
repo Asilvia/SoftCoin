@@ -19,9 +19,9 @@ public interface DataManager{
     LiveData<ApiResponse<Coins>> getCoinList();
     LiveData<ApiResponse<Map<String,Map<String,String>>>> getCoinPrices(String from, String to);
     Completable saveCoin(LocalCoin coin);
-    String getValueExample();
-    void setValueExample(String valueExample);
-    LiveData<List<LocalCoin>> getSavedCoinList();
+    String getMainCoin();
+    void setMainCoin(String coin);
+    List<LocalCoin> getSavedCoinList();
 
 
 }

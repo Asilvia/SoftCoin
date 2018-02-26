@@ -84,7 +84,7 @@ public class StartActivity extends BaseActivity<ActivityStartBinding, StartViewM
                     @Override
                     public void onChanged(@Nullable List<LocalCoin> localCoins) {
                         Timber.d("OnChange: " + "localCoins.size: " + localCoins.size());
-                        String coinsList = getCoinsName(localCoins);
+                     //   String coinsList = getCoinsName(localCoins);
 
 
                         mStartViewModel.setIsLoading(false);
@@ -118,18 +118,7 @@ public class StartActivity extends BaseActivity<ActivityStartBinding, StartViewM
         return R.layout.activity_start;
     }
 
-    @NonNull
-    private String getCoinsName(List<LocalCoin> localCoins) {
-        String coinsList = "";
-        for (LocalCoin item : localCoins) {
-            Timber.d("--> item: " + item.getKey());
-            coinsList = coinsList + item.getKey() + ",";
-        }
-        coinsList = coinsList.substring(0, coinsList.length() - 1);
-        Timber.d("-->" +coinsList);
 
-        return coinsList;
-    }
 
 
 }

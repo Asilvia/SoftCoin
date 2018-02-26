@@ -3,6 +3,8 @@ package com.android.asilvia.softcoin.di.preferences;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.android.asilvia.softcoin.BuildConfig;
+
 import javax.inject.Inject;
 
 /**
@@ -23,12 +25,13 @@ public class AppPreferencesHelper implements PreferencesHelper {
 
 
     @Override
-    public String getValueExample() {
-        return  mPrefs.getString("someValue", null);
+    public String getMainCoin() {
+        return mPrefs.getString("MainCoin", BuildConfig.MAINDEFAULTCOIN);
+
     }
 
     @Override
-    public void setValueExample(String valueExample) {
-        mPrefs.edit().putString("someValue", valueExample).apply();
+    public void setMainCoin(String coin) {
+        mPrefs.edit().putString("MainCoin", coin).apply();
     }
 }
