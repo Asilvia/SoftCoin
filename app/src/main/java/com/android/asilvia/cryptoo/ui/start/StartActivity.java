@@ -41,6 +41,7 @@ public class StartActivity extends BaseActivity<ActivityStartBinding, StartViewM
 
     ActivityStartBinding mActivityStartBinding;
     private StartViewModel mStartViewModel;
+    StartAdapter adapter;
 
     @Inject
     ViewModelProvider.Factory mViewModelFactory;
@@ -68,7 +69,8 @@ public class StartActivity extends BaseActivity<ActivityStartBinding, StartViewM
             }
         });
 
-
+        adapter = new StartAdapter(getApplicationContext(), new ArrayList<LocalCoin>());
+        mActivityStartBinding.coinsList.setAdapter(adapter);
 
 
         mActivityStartBinding.addNew.setOnClickListener(new View.OnClickListener() {
@@ -84,7 +86,7 @@ public class StartActivity extends BaseActivity<ActivityStartBinding, StartViewM
                     @Override
                     public void onChanged(@Nullable List<LocalCoin> localCoins) {
                         Timber.d("OnChange: " + "localCoins.size: " + localCoins.size());
-                     //   String coinsList = getCoinsName(localCoins);
+                        adapter.setCoin(localCoins);
 
 
                         mStartViewModel.setIsLoading(false);

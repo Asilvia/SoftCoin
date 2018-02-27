@@ -79,4 +79,9 @@ public class AppDataManager implements DataManager {
     public List<LocalCoin> getSavedCoinList() {
         return mAppDbHelper.getSavedCoins();
     }
+
+    @Override
+    public Completable saveCoinList(List<LocalCoin> list) {
+        return Completable.fromAction(() -> mAppDbHelper.saveCoinList(list));
+    }
 }

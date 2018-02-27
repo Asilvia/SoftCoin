@@ -14,6 +14,6 @@ import java.util.List;
 public interface  DbHelper {
 
     void saveCoin(LocalCoin localCoin);
-
     List<LocalCoin> getSavedCoins();
+    void  saveCoinList(List<LocalCoin> list);
 }

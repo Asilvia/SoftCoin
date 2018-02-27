@@ -47,9 +47,8 @@ public class StartViewModel extends BaseViewModel<StartNavigator> {
             for(LocalCoin coin: savedCoins)
             {
                 String result = coinList.body.get(coin.getKey()).get(to);
-               coin.setPrice(Double.parseDouble(result));
+                coin.setPrice(Double.parseDouble(result));
                 Timber.d("-->" + result);
-              //coin.setAmount(coi);
             }
             completeCoinList.postValue(savedCoins);
             return completeCoinList;
@@ -72,9 +71,10 @@ public class StartViewModel extends BaseViewModel<StartNavigator> {
             Timber.d("--> item: " + item.getKey());
             coinsList = coinsList + item.getKey() + ",";
         }
-        coinsList = coinsList.substring(0, coinsList.length() - 1);
-        Timber.d("-->" +coinsList);
-
+        if(coinsList.length() != 0) {
+            coinsList = coinsList.substring(0, coinsList.length() - 1);
+            Timber.d("-->" + coinsList);
+        }
         return coinsList;
     }
 

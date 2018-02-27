@@ -22,6 +22,7 @@ public interface DataManager{
     String getMainCoin();
     void setMainCoin(String coin);
     List<LocalCoin> getSavedCoinList();
+    Completable saveCoinList(List<LocalCoin> list);
 
 
 }

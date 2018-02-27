@@ -36,4 +36,7 @@ public interface LocalCoinDao {
 
     @Delete
     public void deleteAllCoins(LocalCoin... localCoins);
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    void saveCoinList(List<LocalCoin> list);
 }

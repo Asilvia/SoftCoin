@@ -37,4 +37,9 @@ public class AppDbHelper implements DbHelper {
     public List<LocalCoin> getSavedCoins() {
         return mlocalCoinDao.findAllCoins();
     }
+
+    @Override
+    public void saveCoinList(List<LocalCoin> list) {
+        mlocalCoinDao.saveCoinList(list);
+    }
 }
