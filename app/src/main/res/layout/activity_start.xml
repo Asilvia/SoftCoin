@@ -30,10 +30,24 @@
             android:layout_height="wrap_content"
             android:visibility="@{viewModel.isLoading ? View.VISIBLE : View.GONE}"/>
 
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/my_currency"
+            android:textSize="@dimen/title"
+            android:textColor="@color/title"
+            android:fontFamily="@font/akkuratproregular"/>
+
         <android.support.v4.widget.SwipeRefreshLayout
             android:id="@+id/swiperefresh"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            app:layout_anchor="@id/title"
+            app:layout_anchorGravity="bottom|end"
+            android:layout_gravity="bottom|end"
+            android:layout_marginTop="43dp"
+            >
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/coins_list"
