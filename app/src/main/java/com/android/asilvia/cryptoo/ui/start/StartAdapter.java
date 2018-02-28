@@ -1,4 +1,4 @@
-package com.android.asilvia.softcoin.ui.start;
+package com.android.asilvia.cryptoo.ui.start;
 
 import android.content.Context;
 import android.content.Intent;
@@ -10,9 +10,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 
-import com.android.asilvia.softcoin.R;
-import com.android.asilvia.softcoin.db.LocalCoin;
-import com.android.asilvia.softcoin.ui.base.navigation.AppNavigation;
+import com.android.asilvia.cryptoo.R;
+import com.android.asilvia.cryptoo.db.LocalCoin;
+import com.android.asilvia.cryptoo.ui.base.navigation.AppNavigation;
 
 import java.util.ArrayList;
 import java.util.List;

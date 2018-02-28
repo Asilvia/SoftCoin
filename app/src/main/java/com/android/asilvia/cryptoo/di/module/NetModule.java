@@ -1,8 +1,8 @@
-package com.android.asilvia.softcoin.di.module;
+package com.android.asilvia.cryptoo.di.module;
 
-import com.android.asilvia.softcoin.BuildConfig;
-import com.android.asilvia.softcoin.api.MainApiHelper;
-import com.android.asilvia.softcoin.di.adapter.LiveDataCallAdapterFactory;
+import com.android.asilvia.cryptoo.BuildConfig;
+import com.android.asilvia.cryptoo.api.MainApiHelper;
+import com.android.asilvia.cryptoo.di.adapter.LiveDataCallAdapterFactory;
 
 import java.io.IOException;
 

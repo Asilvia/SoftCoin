@@ -1,9 +1,9 @@
-package com.android.asilvia.softcoin.di.builder;
+package com.android.asilvia.cryptoo.di.builder;
 
-import com.android.asilvia.softcoin.ui.add.CoinListActivity;
-import com.android.asilvia.softcoin.ui.add.CoinListActivityModule;
-import com.android.asilvia.softcoin.ui.start.StartActivity;
-import com.android.asilvia.softcoin.ui.start.StartActivityModule;
+import com.android.asilvia.cryptoo.ui.add.CoinListActivity;
+import com.android.asilvia.cryptoo.ui.add.CoinListActivityModule;
+import com.android.asilvia.cryptoo.ui.start.StartActivity;
+import com.android.asilvia.cryptoo.ui.start.StartActivityModule;
 
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;

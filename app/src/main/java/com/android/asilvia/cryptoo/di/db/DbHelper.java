@@ -1,8 +1,8 @@
-package com.android.asilvia.softcoin.di.db;
+package com.android.asilvia.cryptoo.di.db;
 
 import android.arch.lifecycle.LiveData;
 
-import com.android.asilvia.softcoin.db.LocalCoin;
+import com.android.asilvia.cryptoo.db.LocalCoin;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,9 +1,9 @@
-package com.android.asilvia.softcoin.api;
+package com.android.asilvia.cryptoo.api;
 
 
 import android.arch.lifecycle.LiveData;
 
-import com.android.asilvia.softcoin.vo.Coins;
+import com.android.asilvia.cryptoo.vo.Coins;
 
 import java.util.Map;
 

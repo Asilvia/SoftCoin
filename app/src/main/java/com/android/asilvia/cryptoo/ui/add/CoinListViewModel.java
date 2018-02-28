@@ -1,16 +1,16 @@
-package com.android.asilvia.softcoin.ui.add;
+package com.android.asilvia.cryptoo.ui.add;
 
 
 import android.arch.lifecycle.LiveData;
 
-import com.android.asilvia.softcoin.api.ApiResponse;
-import com.android.asilvia.softcoin.repository.DataManager;
-import com.android.asilvia.softcoin.ui.base.BaseViewModel;
-import com.android.asilvia.softcoin.util.AbsentLiveData;
-import com.android.asilvia.softcoin.util.rx.SchedulerProvider;
-import com.android.asilvia.softcoin.vo.Coins;
-import com.android.asilvia.softcoin.vo.CoinsDetails;
-import com.android.asilvia.softcoin.db.LocalCoin;
+import com.android.asilvia.cryptoo.api.ApiResponse;
+import com.android.asilvia.cryptoo.repository.DataManager;
+import com.android.asilvia.cryptoo.ui.base.BaseViewModel;
+import com.android.asilvia.cryptoo.util.AbsentLiveData;
+import com.android.asilvia.cryptoo.util.rx.SchedulerProvider;
+import com.android.asilvia.cryptoo.vo.Coins;
+import com.android.asilvia.cryptoo.vo.CoinsDetails;
+import com.android.asilvia.cryptoo.db.LocalCoin;
 
 import java.util.ArrayList;
 import java.util.Collections;

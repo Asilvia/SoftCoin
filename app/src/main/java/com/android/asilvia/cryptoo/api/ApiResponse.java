@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.asilvia.softcoin.api;
+package com.android.asilvia.cryptoo.api;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;

@@ -2,7 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.android.asilvia.softcoin.ui.start.StartActivity">
+    tools:context="com.android.asilvia.cryptoo.ui.start.StartActivity">
 
     <data>
 
@@ -10,7 +10,7 @@
 
         <variable
             name="viewModel"
-            type="com.android.asilvia.softcoin.ui.start.StartViewModel" />
+            type="com.android.asilvia.cryptoo.ui.start.StartViewModel" />
 
     </data>
 

@@ -1,10 +1,10 @@
-package com.android.asilvia.softcoin.ui.add;
+package com.android.asilvia.cryptoo.ui.add;
 
 import android.arch.lifecycle.ViewModelProvider;
 
-import com.android.asilvia.softcoin.repository.DataManager;
-import com.android.asilvia.softcoin.ui.base.ViewModelProviderFactory;
-import com.android.asilvia.softcoin.util.rx.SchedulerProvider;
+import com.android.asilvia.cryptoo.repository.DataManager;
+import com.android.asilvia.cryptoo.ui.base.ViewModelProviderFactory;
+import com.android.asilvia.cryptoo.util.rx.SchedulerProvider;
 
 import dagger.Module;
 import dagger.Provides;

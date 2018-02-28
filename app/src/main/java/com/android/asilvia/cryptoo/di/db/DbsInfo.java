@@ -1,4 +1,4 @@
-package com.android.asilvia.softcoin.di.db;
+package com.android.asilvia.cryptoo.di.db;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

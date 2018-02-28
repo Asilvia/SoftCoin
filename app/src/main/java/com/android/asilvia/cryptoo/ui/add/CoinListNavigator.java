@@ -1,4 +1,4 @@
-package com.android.asilvia.softcoin.ui.add;
+package com.android.asilvia.cryptoo.ui.add;
 
 /**
  * Created by asilvia on 26-10-2017.

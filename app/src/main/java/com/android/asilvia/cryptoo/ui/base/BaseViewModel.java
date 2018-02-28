@@ -1,11 +1,11 @@
-package com.android.asilvia.softcoin.ui.base;
+package com.android.asilvia.cryptoo.ui.base;
 
 import android.arch.lifecycle.ViewModel;
 import android.databinding.ObservableBoolean;
 
-import com.android.asilvia.softcoin.BR;
-import com.android.asilvia.softcoin.repository.DataManager;
-import com.android.asilvia.softcoin.util.rx.SchedulerProvider;
+import com.android.asilvia.cryptoo.BR;
+import com.android.asilvia.cryptoo.repository.DataManager;
+import com.android.asilvia.cryptoo.util.rx.SchedulerProvider;
 
 
 /**

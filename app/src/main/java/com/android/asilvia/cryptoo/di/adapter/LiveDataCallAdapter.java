@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.asilvia.softcoin.di.adapter;
+package com.android.asilvia.cryptoo.di.adapter;
 
 
 
@@ -22,7 +22,7 @@ package com.android.asilvia.softcoin.di.adapter;
 import android.arch.lifecycle.LiveData;
 
 
-import com.android.asilvia.softcoin.api.ApiResponse;
+import com.android.asilvia.cryptoo.api.ApiResponse;
 
 import java.lang.reflect.Type;
 import java.util.concurrent.atomic.AtomicBoolean;

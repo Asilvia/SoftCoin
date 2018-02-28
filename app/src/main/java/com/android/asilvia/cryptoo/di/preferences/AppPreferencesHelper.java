@@ -1,9 +1,9 @@
-package com.android.asilvia.softcoin.di.preferences;
+package com.android.asilvia.cryptoo.di.preferences;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.android.asilvia.softcoin.BuildConfig;
+import com.android.asilvia.cryptoo.BuildConfig;
 
 import javax.inject.Inject;
 

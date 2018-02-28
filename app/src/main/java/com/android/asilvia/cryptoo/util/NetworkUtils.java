@@ -1,4 +1,4 @@
-package com.android.asilvia.softcoin.util;
+package com.android.asilvia.cryptoo.util;
 
 import android.content.Context;
 import android.net.ConnectivityManager;

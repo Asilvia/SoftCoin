@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.asilvia.softcoin.util;
+package com.android.asilvia.cryptoo.util;
 
 import android.arch.lifecycle.LiveData;
 

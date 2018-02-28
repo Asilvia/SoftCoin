@@ -1,4 +1,4 @@
-package com.android.asilvia.softcoin.ui.base;
+package com.android.asilvia.cryptoo.ui.base;
 
 import android.annotation.TargetApi;
 import android.app.ProgressDialog;
@@ -14,7 +14,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
-import com.android.asilvia.softcoin.util.NetworkUtils;
+import com.android.asilvia.cryptoo.util.NetworkUtils;
 
 import dagger.android.AndroidInjection;
 

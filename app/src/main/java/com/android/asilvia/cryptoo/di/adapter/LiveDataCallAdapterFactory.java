@@ -14,13 +14,13 @@
  * limitations under the License.
  */
 
-package com.android.asilvia.softcoin.di.adapter;
+package com.android.asilvia.cryptoo.di.adapter;
 
 
 
 import android.arch.lifecycle.LiveData;
 
-import com.android.asilvia.softcoin.api.ApiResponse;
+import com.android.asilvia.cryptoo.api.ApiResponse;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.ParameterizedType;

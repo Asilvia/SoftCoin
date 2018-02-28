@@ -1,4 +1,4 @@
-package com.android.asilvia.softcoin;
+package com.android.asilvia.cryptoo;
 
 import org.junit.Test;
 

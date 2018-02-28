@@ -1,4 +1,4 @@
-package com.android.asilvia.softcoin.ui.start;
+package com.android.asilvia.cryptoo.ui.start;
 
 
 import android.arch.lifecycle.LiveData;
@@ -7,14 +7,14 @@ import android.arch.lifecycle.Transformations;
 import android.databinding.Bindable;
 import android.support.annotation.NonNull;
 
-import com.android.asilvia.softcoin.BR;
-import com.android.asilvia.softcoin.api.ApiResponse;
-import com.android.asilvia.softcoin.db.LocalCoin;
-import com.android.asilvia.softcoin.repository.DataManager;
-import com.android.asilvia.softcoin.ui.base.BaseViewModel;
-import com.android.asilvia.softcoin.util.AbsentLiveData;
-import com.android.asilvia.softcoin.util.rx.SchedulerProvider;
-import com.android.asilvia.softcoin.vo.Coins;
+import com.android.asilvia.cryptoo.BR;
+import com.android.asilvia.cryptoo.api.ApiResponse;
+import com.android.asilvia.cryptoo.db.LocalCoin;
+import com.android.asilvia.cryptoo.repository.DataManager;
+import com.android.asilvia.cryptoo.ui.base.BaseViewModel;
+import com.android.asilvia.cryptoo.util.AbsentLiveData;
+import com.android.asilvia.cryptoo.util.rx.SchedulerProvider;
+import com.android.asilvia.cryptoo.vo.Coins;
 
 import java.util.ArrayList;
 import java.util.List;
