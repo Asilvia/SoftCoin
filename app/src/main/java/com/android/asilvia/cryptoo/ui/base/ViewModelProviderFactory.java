@@ -1,4 +1,4 @@
-package com.android.asilvia.softcoin.ui.base;
+package com.android.asilvia.cryptoo.ui.base;
 
 import android.arch.lifecycle.ViewModel;
 import android.arch.lifecycle.ViewModelProvider;

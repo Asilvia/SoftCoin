@@ -1,4 +1,4 @@
-package com.android.asilvia.softcoin.util;
+package com.android.asilvia.cryptoo.util;
 
 /**
  * Created by asilvia on 26-10-2017.

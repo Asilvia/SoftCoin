@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Cryptoweather</string>
+    <string name="app_name">Cryptoo</string>
     <string name="hint_search">search for your coin</string>
     <string name="ok">OK</string>
     <string name="cancel">CANCEL</string>

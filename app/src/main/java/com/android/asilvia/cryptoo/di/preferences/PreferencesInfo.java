@@ -1,4 +1,4 @@
-package com.android.asilvia.softcoin.di.preferences;
+package com.android.asilvia.cryptoo.di.preferences;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

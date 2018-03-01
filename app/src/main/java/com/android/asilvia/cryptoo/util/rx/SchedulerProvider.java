@@ -1,4 +1,4 @@
-package com.android.asilvia.softcoin.util.rx;
+package com.android.asilvia.cryptoo.util.rx;
 
 import rx.Scheduler;
 

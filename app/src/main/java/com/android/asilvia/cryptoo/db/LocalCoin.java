@@ -1,4 +1,4 @@
-package com.android.asilvia.softcoin.db;
+package com.android.asilvia.cryptoo.db;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;

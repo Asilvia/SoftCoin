@@ -1,31 +1,22 @@
-package com.android.asilvia.softcoin.ui.start;
+package com.android.asilvia.cryptoo.ui.start;
 
 import android.app.Activity;
-import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
-import android.content.Intent;
-import android.support.annotation.NonNull;
+import android.os.Build;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
-import android.util.Log;
 import android.view.View;
 
-import com.android.asilvia.softcoin.BR;
-import com.android.asilvia.softcoin.R;
-import com.android.asilvia.softcoin.api.ApiResponse;
-import com.android.asilvia.softcoin.databinding.ActivityStartBinding;
-
-import com.android.asilvia.softcoin.db.LocalCoin;
-import com.android.asilvia.softcoin.ui.base.BaseActivity;
-import com.android.asilvia.softcoin.ui.base.navigation.AppNavigation;
-import com.android.asilvia.softcoin.vo.Coins;
-import com.android.asilvia.softcoin.vo.CoinsDetails;
+import com.android.asilvia.cryptoo.db.LocalCoin;
+import com.android.asilvia.cryptoo.ui.base.BaseActivity;
+import com.android.asilvia.cryptoo.ui.base.navigation.AppNavigation;
+import com.android.asilvia.cryptoo.BR;
+import com.android.asilvia.cryptoo.R;
+import com.android.asilvia.cryptoo.databinding.ActivityStartBinding;
 
 
 import java.util.ArrayList;
@@ -34,8 +25,6 @@ import java.util.List;
 import javax.inject.Inject;
 
 import timber.log.Timber;
-
-import static android.os.Build.VERSION_CODES.O;
 
 public class StartActivity extends BaseActivity<ActivityStartBinding, StartViewModel> implements StartNavigator{
 
@@ -51,6 +40,7 @@ public class StartActivity extends BaseActivity<ActivityStartBinding, StartViewM
         super.onCreate(savedInstanceState);
         mActivityStartBinding = getViewDataBinding();
         mStartViewModel.setNavigator(this);
+        getSupportActionBar().setElevation(0);
         renderView();
     }
 

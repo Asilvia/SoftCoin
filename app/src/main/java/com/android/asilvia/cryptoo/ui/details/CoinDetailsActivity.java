@@ -1,4 +1,4 @@
-package com.android.asilvia.softcoin.ui.details;
+package com.android.asilvia.cryptoo.ui.details;
 
 import android.content.Intent;
 import android.os.Bundle;

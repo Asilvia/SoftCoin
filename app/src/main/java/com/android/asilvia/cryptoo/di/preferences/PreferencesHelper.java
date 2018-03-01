@@ -1,4 +1,4 @@
-package com.android.asilvia.softcoin.di.preferences;
+package com.android.asilvia.cryptoo.di.preferences;
 
 /**
  * Created by asilvia on 26-10-2017.

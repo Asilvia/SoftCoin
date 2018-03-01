@@ -1,12 +1,11 @@
-package com.android.asilvia.softcoin;
+package com.android.asilvia.cryptoo;
 
 import android.app.Activity;
 import android.app.Application;
-import android.arch.persistence.room.Room;
 
 
-import com.android.asilvia.softcoin.di.component.DaggerMainComponent;
-import com.android.asilvia.softcoin.di.db.AppDatabase;
+import com.android.asilvia.cryptoo.di.db.AppDatabase;
+import com.android.asilvia.cryptoo.di.component.DaggerMainComponent;
 
 import javax.inject.Inject;
 

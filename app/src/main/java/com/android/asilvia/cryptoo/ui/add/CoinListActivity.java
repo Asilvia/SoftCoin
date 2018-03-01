@@ -1,10 +1,9 @@
-package com.android.asilvia.softcoin.ui.add;
+package com.android.asilvia.cryptoo.ui.add;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
@@ -14,18 +13,14 @@ import android.widget.AdapterView;
 import android.widget.Toast;
 
 
-import com.android.asilvia.softcoin.BR;
-import com.android.asilvia.softcoin.R;
-import com.android.asilvia.softcoin.api.ApiResponse;
-import com.android.asilvia.softcoin.databinding.ActivityCoinListBinding;
-import com.android.asilvia.softcoin.ui.base.BaseActivity;
-import com.android.asilvia.softcoin.ui.base.navigation.AppNavigation;
-import com.android.asilvia.softcoin.ui.start.StartActivity;
-import com.android.asilvia.softcoin.util.rx.AppSchedulerProvider;
-import com.android.asilvia.softcoin.util.rx.SchedulerProvider;
-import com.android.asilvia.softcoin.vo.Coins;
-import com.android.asilvia.softcoin.vo.CoinsDetails;
-import com.android.asilvia.softcoin.db.LocalCoin;
+import com.android.asilvia.cryptoo.api.ApiResponse;
+import com.android.asilvia.cryptoo.ui.base.BaseActivity;
+import com.android.asilvia.cryptoo.ui.base.navigation.AppNavigation;
+import com.android.asilvia.cryptoo.vo.Coins;
+import com.android.asilvia.cryptoo.vo.CoinsDetails;
+import com.android.asilvia.cryptoo.BR;
+import com.android.asilvia.cryptoo.R;
+import com.android.asilvia.cryptoo.databinding.ActivityCoinListBinding;
 
 
 import java.util.ArrayList;
@@ -33,7 +28,6 @@ import java.util.ArrayList;
 
 import javax.inject.Inject;
 
-import rx.Scheduler;
 import rx.schedulers.Schedulers;
 import timber.log.Timber;
 

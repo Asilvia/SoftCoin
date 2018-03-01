@@ -1,22 +1,22 @@
-package com.android.asilvia.softcoin.di.module;
+package com.android.asilvia.cryptoo.di.module;
 
 import android.app.Application;
 import android.arch.persistence.room.Room;
 import android.content.Context;
 
-import com.android.asilvia.softcoin.db.dao.LocalCoinDao;
-import com.android.asilvia.softcoin.di.db.AppDatabase;
-import com.android.asilvia.softcoin.di.db.AppDbHelper;
-import com.android.asilvia.softcoin.di.db.DbHelper;
-import com.android.asilvia.softcoin.di.db.DbsInfo;
-import com.android.asilvia.softcoin.di.preferences.AppPreferencesHelper;
-import com.android.asilvia.softcoin.di.preferences.PreferencesHelper;
-import com.android.asilvia.softcoin.di.preferences.PreferencesInfo;
-import com.android.asilvia.softcoin.repository.AppDataManager;
-import com.android.asilvia.softcoin.repository.DataManager;
-import com.android.asilvia.softcoin.util.AppConstants;
-import com.android.asilvia.softcoin.util.rx.AppSchedulerProvider;
-import com.android.asilvia.softcoin.util.rx.SchedulerProvider;
+import com.android.asilvia.cryptoo.db.dao.LocalCoinDao;
+import com.android.asilvia.cryptoo.di.db.AppDatabase;
+import com.android.asilvia.cryptoo.di.db.AppDbHelper;
+import com.android.asilvia.cryptoo.di.db.DbHelper;
+import com.android.asilvia.cryptoo.di.db.DbsInfo;
+import com.android.asilvia.cryptoo.di.preferences.AppPreferencesHelper;
+import com.android.asilvia.cryptoo.di.preferences.PreferencesHelper;
+import com.android.asilvia.cryptoo.repository.AppDataManager;
+import com.android.asilvia.cryptoo.repository.DataManager;
+import com.android.asilvia.cryptoo.util.rx.AppSchedulerProvider;
+import com.android.asilvia.cryptoo.di.preferences.PreferencesInfo;
+import com.android.asilvia.cryptoo.util.AppConstants;
+import com.android.asilvia.cryptoo.util.rx.SchedulerProvider;
 
 import javax.inject.Singleton;
 

@@ -1,12 +1,8 @@
-package com.android.asilvia.softcoin.di.db;
+package com.android.asilvia.cryptoo.di.db;
 
-import android.arch.lifecycle.LiveData;
-import android.arch.lifecycle.MediatorLiveData;
+import com.android.asilvia.cryptoo.db.LocalCoin;
+import com.android.asilvia.cryptoo.db.dao.LocalCoinDao;
 
-import com.android.asilvia.softcoin.db.LocalCoin;
-import com.android.asilvia.softcoin.db.dao.LocalCoinDao;
-
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;

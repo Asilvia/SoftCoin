@@ -1,4 +1,4 @@
-package com.android.asilvia.softcoin.vo;
+package com.android.asilvia.cryptoo.vo;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

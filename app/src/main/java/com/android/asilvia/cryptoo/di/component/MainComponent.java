@@ -1,11 +1,11 @@
-package com.android.asilvia.softcoin.di.component;
+package com.android.asilvia.cryptoo.di.component;
 
 import android.app.Application;
 
-import com.android.asilvia.softcoin.SoftCoinApp;
-import com.android.asilvia.softcoin.di.builder.ActivityBuilder;
-import com.android.asilvia.softcoin.di.module.AppModule;
-import com.android.asilvia.softcoin.di.module.NetModule;
+import com.android.asilvia.cryptoo.SoftCoinApp;
+import com.android.asilvia.cryptoo.di.builder.ActivityBuilder;
+import com.android.asilvia.cryptoo.di.module.AppModule;
+import com.android.asilvia.cryptoo.di.module.NetModule;
 
 import javax.inject.Singleton;
 

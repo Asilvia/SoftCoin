@@ -2,7 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.android.asilvia.softcoin.ui.add.CoinListActivity">
+    tools:context=".ui.add.CoinListActivity">
 
 
 <data>
@@ -11,7 +11,7 @@
 
     <variable
         name="viewModel"
-        type="com.android.asilvia.softcoin.ui.add.CoinListViewModel" />
+        type="com.android.asilvia.cryptoo.ui.add.CoinListViewModel" />
 
 </data>
 
@@ -47,6 +47,7 @@
             app:defaultQueryHint="@string/hint_search"
             app:queryHint="@string/hint_search"
             android:background="@android:color/white"
+            android:elevation="2dp"
             />
     </RelativeLayout>
 

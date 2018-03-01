@@ -1,13 +1,13 @@
-package com.android.asilvia.softcoin.ui.base.navigation;
+package com.android.asilvia.cryptoo.ui.base.navigation;
 
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 
-import com.android.asilvia.softcoin.ui.add.CoinListActivity;
-import com.android.asilvia.softcoin.ui.details.CoinDetailsActivity;
-import com.android.asilvia.softcoin.ui.start.StartActivity;
+import com.android.asilvia.cryptoo.ui.add.CoinListActivity;
+import com.android.asilvia.cryptoo.ui.details.CoinDetailsActivity;
+import com.android.asilvia.cryptoo.ui.start.StartActivity;
 
 /**
  * This class will contain all the navigation in the app

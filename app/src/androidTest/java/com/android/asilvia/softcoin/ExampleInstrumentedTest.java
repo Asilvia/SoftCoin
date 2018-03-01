@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.android.asilvia.softcoin", appContext.getPackageName());
+        assertEquals("com.android.asilvia.cryptoo", appContext.getPackageName());
     }
 }

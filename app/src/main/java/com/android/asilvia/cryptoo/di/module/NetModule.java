@@ -1,17 +1,15 @@
-package com.android.asilvia.softcoin.di.module;
+package com.android.asilvia.cryptoo.di.module;
 
-import com.android.asilvia.softcoin.BuildConfig;
-import com.android.asilvia.softcoin.api.MainApiHelper;
-import com.android.asilvia.softcoin.di.adapter.LiveDataCallAdapterFactory;
+import com.android.asilvia.cryptoo.api.MainApiHelper;
+import com.android.asilvia.cryptoo.BuildConfig;
+import com.android.asilvia.cryptoo.di.adapter.LiveDataCallAdapterFactory;
 
 import java.io.IOException;
 
-import javax.inject.Named;
 import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
-import okhttp3.Cache;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;

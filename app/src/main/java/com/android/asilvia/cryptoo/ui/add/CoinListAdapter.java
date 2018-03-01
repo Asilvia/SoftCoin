@@ -1,4 +1,4 @@
-package com.android.asilvia.softcoin.ui.add;
+package com.android.asilvia.cryptoo.ui.add;
 
 import android.content.Context;
 
@@ -13,13 +13,11 @@ import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.android.asilvia.softcoin.R;
-import com.android.asilvia.softcoin.vo.CoinsDetails;
+import com.android.asilvia.cryptoo.R;
+import com.android.asilvia.cryptoo.vo.CoinsDetails;
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 
 import timber.log.Timber;
 

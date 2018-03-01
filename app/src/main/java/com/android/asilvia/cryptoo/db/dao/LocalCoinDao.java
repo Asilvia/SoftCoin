@@ -1,4 +1,4 @@
-package com.android.asilvia.softcoin.db.dao;
+package com.android.asilvia.cryptoo.db.dao;
 
 import android.arch.lifecycle.LiveData;
 import android.arch.persistence.room.Dao;
@@ -7,9 +7,8 @@ import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.OnConflictStrategy;
 import android.arch.persistence.room.Query;
 
-import com.android.asilvia.softcoin.db.LocalCoin;
+import com.android.asilvia.cryptoo.db.LocalCoin;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
