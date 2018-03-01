@@ -2,4 +2,6 @@
 <resources>
     <dimen name="padding_small">5dp</dimen>
     <dimen name="title">20sp</dimen>
+    <dimen name="home_horizontal_padding">24dp</dimen>
+    <dimen name="empty">0dp</dimen>
 </resources>
