@@ -2,6 +2,7 @@ package com.android.asilvia.cryptoo.ui.start;
 
 
 import android.arch.lifecycle.LiveData;
+import android.arch.lifecycle.MediatorLiveData;
 import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.Transformations;
 import android.support.annotation.NonNull;
@@ -26,6 +27,7 @@ import timber.log.Timber;
 public class StartViewModel extends BaseViewModel<StartNavigator> {
 
     private LiveData<List<LocalCoin>> mObservableCoinsList;
+    private MediatorLiveData<List<LocalCoin>> completeCoinList;
 
 
     public StartViewModel(DataManager dataManager, SchedulerProvider schedulerProvider) {
@@ -35,17 +37,22 @@ public class StartViewModel extends BaseViewModel<StartNavigator> {
 
     void getCoinList()
     {
+        Timber.d("Refresh -->" + "teste");
+        mObservableCoinsList = AbsentLiveData.create();
+        setCompleteCoinList();
+
         ArrayList<LocalCoin> savedCoins = new ArrayList<>();
         savedCoins.addAll(getDataManager().getSavedCoinList());
         String from = getCoinsName(savedCoins);
         String to = getDataManager().getMainCoin();
+        Timber.d("Refresh -->" + "teste111");
         mObservableCoinsList =  Transformations.switchMap(getDataManager().getCoinPrices(from, to), coinList ->{
-            MutableLiveData<List<LocalCoin>> completeCoinList = new MutableLiveData<>();
+
             for(LocalCoin coin: savedCoins)
             {
                 String result = coinList.body.get(coin.getKey()).get(to);
                 coin.setPrice(Double.parseDouble(result));
-                Timber.d("-->" + result);
+                Timber.d("Refresh -->" + result);
             }
             completeCoinList.postValue(savedCoins);
             return completeCoinList;
@@ -60,6 +67,9 @@ public class StartViewModel extends BaseViewModel<StartNavigator> {
         return mObservableCoinsList;
     }
 
+    public void setCompleteCoinList() {
+        completeCoinList =  new MediatorLiveData<>();
+    }
 
     @NonNull
     private String getCoinsName(List<LocalCoin> localCoins) {

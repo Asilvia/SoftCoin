@@ -58,8 +58,14 @@ public class StartActivity extends BaseActivity<ActivityStartBinding, StartViewM
             @Override
             public void onRefresh() {
                 Timber.d("Refresh");
-               // mStartViewModel.RetrieveCoinList();
-                //mActivityStartBinding.swiperefresh.setRefreshing(false);
+                mStartViewModel.getCoinList();
+                mStartViewModel.getObservableCoinsList().observe(StartActivity.this, new Observer<List<LocalCoin>>() {
+                    @Override
+                    public void onChanged(@Nullable List<LocalCoin> localCoins) {
+                        adapter.setCoin(localCoins);
+                        mActivityStartBinding.swiperefresh.setRefreshing(false);
+                    }
+                });
             }
         });
 
@@ -81,8 +87,6 @@ public class StartActivity extends BaseActivity<ActivityStartBinding, StartViewM
                     public void onChanged(@Nullable List<LocalCoin> localCoins) {
                         Timber.d("OnChange: " + "localCoins.size: " + localCoins.size());
                         adapter.setCoin(localCoins);
-
-
                         mStartViewModel.setIsLoading(false);
                     }
                 });
