@@ -3,7 +3,7 @@
     <color name="colorPrimary">#FFFFFFFF</color>
     <color name="colorPrimaryDark">#FFFFFFFF</color>
     <color name="colorAccent">#00BFA5</color>
-    <color name="background">#FFFFFFFF</color>
+    <color name="background">#FFFFFF</color>
     <color name="widgetBackground">#56009688</color>
     <color name="widgetCardBackground">#3200bfa5</color>
     <color name="title">#FF202029</color>

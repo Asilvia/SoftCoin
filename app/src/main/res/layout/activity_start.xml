@@ -54,13 +54,15 @@
             app:layout_anchorGravity="bottom|end"
             android:layout_gravity="bottom|end"
             android:layout_marginTop="70dp"
+            android:background="@color/background"
             >
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/coins_list"
                 android:scrollbars="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:background="@color/background"/>
         </android.support.v4.widget.SwipeRefreshLayout>
 
         <ImageView

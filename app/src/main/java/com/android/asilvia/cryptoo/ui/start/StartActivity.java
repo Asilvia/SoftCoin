@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 
 import com.android.asilvia.cryptoo.BR;
@@ -53,7 +54,7 @@ public class StartActivity extends BaseActivity<ActivityStartBinding, StartViewM
       //  mStartViewModel.RetrieveCoinList();
         mStartViewModel.getCoinList();
         mActivityStartBinding.coinsList.setHasFixedSize(true);
-        mActivityStartBinding.coinsList.setLayoutManager(new GridLayoutManager(this, 2));
+        mActivityStartBinding.coinsList.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         mActivityStartBinding.swiperefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {

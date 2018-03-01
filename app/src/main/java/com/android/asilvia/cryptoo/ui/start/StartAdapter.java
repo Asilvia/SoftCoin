@@ -102,7 +102,7 @@ public class StartAdapter extends RecyclerView.Adapter<StartAdapter.ViewHolder>
     }
 
     public void setBackgroundColor(CardView card, LocalCoin coin)
-    {
+    {/*
         Double actualPrice = coin.getPrice();
         Double userPrice = coin.getUserPrice();
         Long amount = coin.getAmount();
@@ -127,6 +127,6 @@ public class StartAdapter extends RecyclerView.Adapter<StartAdapter.ViewHolder>
             card.setBackgroundResource(R.drawable.card_view_null);
         }
 
-
+*/
     }
 }
