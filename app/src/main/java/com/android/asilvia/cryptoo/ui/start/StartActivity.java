@@ -4,20 +4,18 @@ import android.app.Activity;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
-import android.os.Build;
+import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.view.View;
 
-import com.android.asilvia.cryptoo.db.LocalCoin;
-import com.android.asilvia.cryptoo.ui.base.BaseActivity;
-import com.android.asilvia.cryptoo.ui.base.navigation.AppNavigation;
 import com.android.asilvia.cryptoo.BR;
 import com.android.asilvia.cryptoo.R;
 import com.android.asilvia.cryptoo.databinding.ActivityStartBinding;
-
+import com.android.asilvia.cryptoo.db.LocalCoin;
+import com.android.asilvia.cryptoo.ui.base.BaseActivity;
+import com.android.asilvia.cryptoo.ui.base.navigation.AppNavigation;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,6 +43,12 @@ public class StartActivity extends BaseActivity<ActivityStartBinding, StartViewM
     }
 
     private void renderView() {
+
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setLogo(R.drawable.ic_logo_cryptoo);
+        getSupportActionBar().setDisplayUseLogoEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+
         mStartViewModel.setIsLoading(true);
       //  mStartViewModel.RetrieveCoinList();
         mStartViewModel.getCoinList();

@@ -4,8 +4,10 @@ import android.app.Activity;
 import android.app.Application;
 
 
+
 import com.android.asilvia.cryptoo.di.db.AppDatabase;
 import com.android.asilvia.cryptoo.di.component.DaggerMainComponent;
+
 
 import javax.inject.Inject;
 
@@ -18,7 +20,7 @@ import timber.log.Timber;
  * Created by asilvia on 26-10-2017.
  */
 
-public class SoftCoinApp extends Application implements HasActivityInjector {
+public class CryptooApp extends Application implements HasActivityInjector {
 
     @Inject
     DispatchingAndroidInjector<Activity> activityDispatchingAndroidInjector;

@@ -4,6 +4,8 @@ import com.android.asilvia.cryptoo.db.LocalCoin;
 
 import java.util.List;
 
+
+
 /**
  * Created by ana.medeira on 20-2-2018.
  */

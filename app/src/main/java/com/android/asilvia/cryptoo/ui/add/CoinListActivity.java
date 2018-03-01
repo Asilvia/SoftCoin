@@ -12,24 +12,23 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Toast;
 
-
+import com.android.asilvia.cryptoo.BR;
+import com.android.asilvia.cryptoo.R;
 import com.android.asilvia.cryptoo.api.ApiResponse;
+import com.android.asilvia.cryptoo.databinding.ActivityCoinListBinding;
 import com.android.asilvia.cryptoo.ui.base.BaseActivity;
 import com.android.asilvia.cryptoo.ui.base.navigation.AppNavigation;
 import com.android.asilvia.cryptoo.vo.Coins;
 import com.android.asilvia.cryptoo.vo.CoinsDetails;
-import com.android.asilvia.cryptoo.BR;
-import com.android.asilvia.cryptoo.R;
-import com.android.asilvia.cryptoo.databinding.ActivityCoinListBinding;
-
 
 import java.util.ArrayList;
-
 
 import javax.inject.Inject;
 
 import rx.schedulers.Schedulers;
 import timber.log.Timber;
+
+
 
 public class CoinListActivity extends BaseActivity<ActivityCoinListBinding, CoinListViewModel> implements CoinListNavigator {
 

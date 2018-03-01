@@ -1,4 +1,4 @@
-package com.android.asilvia.softcoin;
+package com.android.asilvia.cryptoo;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

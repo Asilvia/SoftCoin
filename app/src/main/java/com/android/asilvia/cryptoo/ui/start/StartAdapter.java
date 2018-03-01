@@ -8,13 +8,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-
-import com.android.asilvia.cryptoo.ui.base.navigation.AppNavigation;
 import com.android.asilvia.cryptoo.R;
 import com.android.asilvia.cryptoo.db.LocalCoin;
+import com.android.asilvia.cryptoo.ui.base.navigation.AppNavigation;
 
 import java.util.ArrayList;
 import java.util.List;
+
+
 
 /**
  * Created by ana.medeira on 25-7-2017.

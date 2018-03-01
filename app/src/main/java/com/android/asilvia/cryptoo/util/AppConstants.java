@@ -6,7 +6,7 @@ package com.android.asilvia.cryptoo.util;
 
 public class AppConstants {
 
-    public static final String PREF_NAME = "softcoin_pref";
+    public static final String PREF_NAME = "cryptoo_pref";
 
 
 }

@@ -11,17 +11,18 @@ import com.android.asilvia.cryptoo.di.db.DbHelper;
 import com.android.asilvia.cryptoo.di.db.DbsInfo;
 import com.android.asilvia.cryptoo.di.preferences.AppPreferencesHelper;
 import com.android.asilvia.cryptoo.di.preferences.PreferencesHelper;
+import com.android.asilvia.cryptoo.di.preferences.PreferencesInfo;
 import com.android.asilvia.cryptoo.repository.AppDataManager;
 import com.android.asilvia.cryptoo.repository.DataManager;
-import com.android.asilvia.cryptoo.util.rx.AppSchedulerProvider;
-import com.android.asilvia.cryptoo.di.preferences.PreferencesInfo;
 import com.android.asilvia.cryptoo.util.AppConstants;
+import com.android.asilvia.cryptoo.util.rx.AppSchedulerProvider;
 import com.android.asilvia.cryptoo.util.rx.SchedulerProvider;
 
 import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+
 
 /**
  * Created by asilvia on 26-10-2017.

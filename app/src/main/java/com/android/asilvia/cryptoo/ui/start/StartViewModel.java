@@ -6,17 +6,18 @@ import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.Transformations;
 import android.support.annotation.NonNull;
 
-import com.android.asilvia.cryptoo.util.AbsentLiveData;
-import com.android.asilvia.cryptoo.BR;
 import com.android.asilvia.cryptoo.db.LocalCoin;
 import com.android.asilvia.cryptoo.repository.DataManager;
 import com.android.asilvia.cryptoo.ui.base.BaseViewModel;
+import com.android.asilvia.cryptoo.util.AbsentLiveData;
 import com.android.asilvia.cryptoo.util.rx.SchedulerProvider;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import timber.log.Timber;
+
+
 
 /**
  * Created by asilvia on 26-10-2017.

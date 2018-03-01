@@ -3,4 +3,5 @@
     <string name="hint_search">search for your coin</string>
     <string name="ok">OK</string>
     <string name="cancel">CANCEL</string>
+    <string name="my_currency">My currency</string>
 </resources>

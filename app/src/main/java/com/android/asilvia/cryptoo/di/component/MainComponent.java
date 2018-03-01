@@ -2,7 +2,9 @@ package com.android.asilvia.cryptoo.di.component;
 
 import android.app.Application;
 
-import com.android.asilvia.cryptoo.SoftCoinApp;
+
+import com.android.asilvia.cryptoo.CryptooApp;
+
 import com.android.asilvia.cryptoo.di.builder.ActivityBuilder;
 import com.android.asilvia.cryptoo.di.module.AppModule;
 import com.android.asilvia.cryptoo.di.module.NetModule;
@@ -28,5 +30,5 @@ public interface MainComponent
 
         MainComponent build();
     }
-    void inject(SoftCoinApp app);
+    void inject(CryptooApp app);
 }
