@@ -11,6 +11,7 @@ import android.support.v7.widget.SearchView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.android.asilvia.cryptoo.BR;
@@ -111,6 +112,18 @@ public class CoinListActivity extends BaseActivity<ActivityCoinListBinding, Coin
                         .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
+
+                                String strPrice = ((EditText)((AlertDialog) dialog).findViewById(R.id.much)).getText().toString();
+                                String strAmount = ((EditText)((AlertDialog) dialog).findViewById(R.id.many)).getText().toString();
+                                mCoinListViewModel.saveItem(item,Double.parseDouble(strPrice),Long.parseLong(strAmount))
+                                        .subscribeOn(Schedulers.io())
+                                        .subscribe(() -> {
+
+                                    Timber.d("localcoin success");
+                                    AppNavigation.goToStartActivity(CoinListActivity.this);
+                                }, throwable -> {
+                                    Timber.d("localcoin failed" + throwable.getMessage());
+                                });
                            /*     int selectedPosition = ((AlertDialog)dialog).getListView().getCheckedItemPosition();
                                 //todo change for my scheduler
                                 ((AlertDialog) dialog).findViewById(R.id.much).get

@@ -94,8 +94,5 @@ public class CoinListViewModel extends BaseViewModel<CoinListNavigator> {
         }
     }
 
-/*
-    public LiveData<Boolean> getmObservableSave() {
-        return mObservableSave;
-    }*/
+
 }
