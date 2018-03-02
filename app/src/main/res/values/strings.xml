@@ -1,7 +1,8 @@
 <resources>
     <string name="app_name">Cryptoo</string>
-    <string name="hint_search">search for your coin</string>
+    <string name="hint_search">Search</string>
     <string name="ok">OK</string>
     <string name="cancel">CANCEL</string>
     <string name="my_currency">My currency</string>
+    <string name="add_currency">Add currency</string>
 </resources>

@@ -28,7 +28,7 @@
         <View
             android:layout_width="fill_parent"
             android:layout_height="1dp"
-            android:background="#FFF2F2F2" />
+            android:background="@color/cards_background" />
         <ProgressBar
             android:id="@+id/loading"
             android:layout_width="wrap_content"

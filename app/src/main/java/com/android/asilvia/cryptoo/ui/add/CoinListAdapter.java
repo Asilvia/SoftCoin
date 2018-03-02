@@ -70,7 +70,7 @@ public class CoinListAdapter extends ArrayAdapter<CoinsDetails>  implements Filt
         ;
 
 
-        TextView name = (TextView) listItem.findViewById(R.id.Itemname);
+        TextView name = (TextView) listItem.findViewById(R.id.name);
         name.setText(currentCoin.getCoinName());
 
 

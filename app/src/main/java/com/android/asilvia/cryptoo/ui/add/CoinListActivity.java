@@ -52,12 +52,25 @@ public class CoinListActivity extends BaseActivity<ActivityCoinListBinding, Coin
 
     private void renderView()
     {
+        getSupportActionBar().setElevation(0);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setTitle(R.string.add_currency);
+        getSupportActionBar().setDisplayShowTitleEnabled(true);
+
+
         mCoinListViewModel.setIsLoading(true);
         mCoinListViewModel.retrieveCoinList();
         list = new ArrayList<> ();
 
         mAdapter = new CoinListAdapter(this, list);
         mActivityCoinListBinding.coinList.setAdapter(mAdapter);
+
+        mActivityCoinListBinding.searchLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mActivityCoinListBinding.search.setIconified(false);
+            }
+        });
 
         mCoinListViewModel.getObservableCoinsList().observe(this, new Observer<ApiResponse<Coins>>() {
             @Override

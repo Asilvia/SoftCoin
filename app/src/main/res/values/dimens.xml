@@ -5,4 +5,6 @@
     <dimen name="home_horizontal_padding">24dp</dimen>
     <dimen name="actionbar_right_padding">12dp</dimen>
     <dimen name="empty">0dp</dimen>
+    <dimen name="coin_icon">32dp</dimen>
+    <dimen name="cards_text">16sp</dimen>
 </resources>
