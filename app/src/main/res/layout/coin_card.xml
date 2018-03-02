@@ -10,10 +10,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        card_view:cardElevation="1dp"
+        card_view:cardElevation="0dp"
         card_view:cardCornerRadius="4dp"
         card_view:cardUseCompatPadding="true"
-        android:background="#FFF2F2F2"
        >
 
         <LinearLayout
@@ -25,8 +24,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
-                android:layout_weight="0.05"
-                android:padding="16dp">
+                android:layout_weight="0.06"
+                android:padding="16dp"
+                android:background="#FFF2F2F2">
 
                 <ImageView
                     android:id="@+id/icon"
@@ -67,7 +67,7 @@
                     android:layout_marginLeft="8dp"
                     android:adjustViewBounds="true"
                     android:paddingStart="0dp"
-                    android:src="@drawable/ic_arrow_up" />
+                    android:src="@drawable/ic_arrow_down" />
 
                 <TextView
                     android:id="@+id/value"
@@ -86,8 +86,13 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="0.95"
-                android:background="@color/green">
+                android:layout_weight="0.94"
+                android:background="@color/pink">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_dot"
+                    android:layout_centerInParent="true"/>
 
             </RelativeLayout>
 

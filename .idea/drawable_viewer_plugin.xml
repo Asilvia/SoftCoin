@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AndroidDrawableViewer">
+    <option name="drawableHdpi" value="true" />
+    <option name="drawableMdpi" value="true" />
+    <option name="drawableXhdpi" value="true" />
+    <option name="drawableXxhdpi" value="true" />
+    <option name="drawableXxxhdpi" value="true" />
+    <option name="resDir" value="$PROJECT_DIR$/app/src/main/res" />
+  </component>
+</project>
