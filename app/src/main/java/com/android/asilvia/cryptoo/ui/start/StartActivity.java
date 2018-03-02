@@ -9,6 +9,8 @@ import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.android.asilvia.cryptoo.BR;
@@ -39,16 +41,18 @@ public class StartActivity extends BaseActivity<ActivityStartBinding, StartViewM
         super.onCreate(savedInstanceState);
         mActivityStartBinding = getViewDataBinding();
         mStartViewModel.setNavigator(this);
-        getSupportActionBar().setElevation(0);
+
         renderView();
     }
 
-    private void renderView() {
 
+    private void renderView() {
+        getSupportActionBar().setElevation(0);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setLogo(R.drawable.ic_logo_cryptoo);
         getSupportActionBar().setDisplayUseLogoEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
+
 
         mStartViewModel.setIsLoading(true);
       //  mStartViewModel.RetrieveCoinList();
@@ -120,6 +124,21 @@ public class StartActivity extends BaseActivity<ActivityStartBinding, StartViewM
     }
 
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.activity_start, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if(id == R.id.action_settings)
+        {
+            Timber.d("Go to settings Activity");
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
 
 }

@@ -8,7 +8,12 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:windowActionBarOverlay">@null</item>
-
+        <item name="actionBarWidgetTheme">@style/CryptooActionBar</item>
+        <item name="actionBarStyle">@style/CryptooActionBar</item>
     </style>
-
+    <style name="CryptooActionBar" parent="Widget.AppCompat.Toolbar">
+        <item name="contentInsetStart">@dimen/home_horizontal_padding</item>
+        <item name="contentInsetEnd">@dimen/home_horizontal_padding</item>
+        <item name="android:paddingRight">@dimen/actionbar_right_padding</item>
+    </style>
 </resources>
