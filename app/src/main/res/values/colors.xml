@@ -2,7 +2,7 @@
 <resources>
     <color name="colorPrimary">#FFFFFFFF</color>
     <color name="colorPrimaryDark">#FFFFFFFF</color>
-    <color name="colorAccent">#00BFA5</color>
+    <color name="colorAccent">#579FFB</color>
     <color name="background">#FFFFFF</color>
     <color name="widgetBackground">#56009688</color>
     <color name="widgetCardBackground">#3200bfa5</color>
@@ -10,4 +10,6 @@
     <color name="cardBackground">#FFF2F2F2</color>
     <color name="green">#FF30C971</color>
     <color name="pink">#FFFE3767</color>
+    <color name="alert_input">#61000000</color>
+
 </resources>

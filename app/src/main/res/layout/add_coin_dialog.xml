@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/padding_medium">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:textColor="@color/pink"
+        android:paddingLeft="@dimen/padding_xs"
+        android:text="@string/add_coin_alert_first"/>
+    <EditText
+        android:id="@+id/much"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Initial price (piece)"
+        android:inputType="numberDecimal"
+        android:textColor="@color/alert_input"
+        android:textSize="@dimen/cards_text"
+        android:layout_marginBottom="@dimen/padding_medium"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:textColor="@color/pink"
+        android:text="@string/alert_text_second"
+        android:paddingLeft="@dimen/padding_xs"/>
+    <EditText
+        android:id="@+id/many"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Initial price (piece)"
+        android:textColor="@color/alert_input"
+        android:inputType="numberDecimal"
+        android:textSize="@dimen/cards_text"
+        />
+
+</LinearLayout>

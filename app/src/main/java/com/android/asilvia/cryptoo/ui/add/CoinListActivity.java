@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.SearchView;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Toast;
@@ -99,26 +100,26 @@ public class CoinListActivity extends BaseActivity<ActivityCoinListBinding, Coin
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 final CoinsDetails item = (CoinsDetails) mAdapter.getItem(position);
+
                 final String[] realCoinsArray = getResources().getStringArray(R.array.realmoney_coins);
                 AlertDialog.Builder builder = new AlertDialog.Builder(CoinListActivity.this);
-                builder.setTitle(item.getFullName())
-                        .setSingleChoiceItems(R.array.realmoney_coins, 0, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
+                LayoutInflater inflater = getLayoutInflater();
+                View dialogView = inflater.inflate(R.layout.add_coin_dialog, null);
 
-                            }
-                        })
+                builder.setTitle(item.getFullName()).setView(dialogView)
+
                         .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                int selectedPosition = ((AlertDialog)dialog).getListView().getCheckedItemPosition();
+                           /*     int selectedPosition = ((AlertDialog)dialog).getListView().getCheckedItemPosition();
                                 //todo change for my scheduler
+                                ((AlertDialog) dialog).findViewById(R.id.much).get
                                 mCoinListViewModel.saveItem(item,realCoinsArray[selectedPosition]).subscribeOn(Schedulers.io()).subscribe(() -> {
                                     Timber.d("localcoin success");
                                     AppNavigation.goToStartActivity(CoinListActivity.this);
                                 }, throwable -> {
                                             Timber.d("localcoin failed" + throwable.getMessage());
-                                });
+                                });*/
 
                             }
                         })

@@ -77,11 +77,11 @@ public class CoinListViewModel extends BaseViewModel<CoinListNavigator> {
             }
         });
     }
-
-    public Completable saveItem(CoinsDetails coin, String realCoin)
+//todo change long to double
+    public Completable saveItem(CoinsDetails coin, Double userprice, long amount)
     {
 
-        LocalCoin localCoin = new LocalCoin(coin.getId(), coin.getCoinName(), coin.getName(), coin.getImageUrl(), coin.getUrl(),0d, 0d, realCoin, 0);
+        LocalCoin localCoin = new LocalCoin(coin.getId(), coin.getCoinName(), coin.getName(), coin.getImageUrl(), coin.getUrl(),0d, userprice, getDataManager().getMainCoin(), amount);
         return getDataManager().saveCoin(localCoin);
 
     }
