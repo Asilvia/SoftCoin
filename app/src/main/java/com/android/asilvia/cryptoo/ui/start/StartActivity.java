@@ -95,15 +95,7 @@ public class StartActivity extends BaseActivity<ActivityStartBinding, StartViewM
                         mStartViewModel.setIsLoading(false);
                     }
                 });
-    /*    mStartViewModel.getObservableCoinsList().observe(this, new Observer<ApiResponse<Coins>>() {
-            @Override
-            public void onChanged(@Nullable ApiResponse<Coins> coinsApiResponse) {
-                Timber.d("OnChange");
-                mStartViewModel.setIsLoading(false);
 
-
-            }
-        });*/
     }
 
 

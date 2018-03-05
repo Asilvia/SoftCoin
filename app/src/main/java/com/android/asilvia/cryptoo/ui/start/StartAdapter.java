@@ -73,7 +73,8 @@ public class StartAdapter extends RecyclerView.Adapter<StartAdapter.ViewHolder>
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         final LocalCoin item = (LocalCoin) getItem(position);
-        holder.name.setText(item.getName() + " (" +item.getKey() + ")");
+        String tvText = item.getName() + " (" +item.getKey() + ")";
+        holder.name.setText(tvText);
 
         if(item.getRealCoinConverter().equals("EUR")) {
             holder.value.setText("€ " + String.format("%.2f", item.getPrice()));
@@ -87,7 +88,7 @@ public class StartAdapter extends RecyclerView.Adapter<StartAdapter.ViewHolder>
             @Override
             public void onClick(View v) {
 
-                AppNavigation.goToDetailsActivity(context, item.getId());
+                AppNavigation.goToDetailsActivity(context, item.getId(), tvText);
             }
         });
         Glide.with(context)

@@ -3,6 +3,8 @@ package com.android.asilvia.cryptoo.di.builder;
 
 import com.android.asilvia.cryptoo.ui.add.CoinListActivity;
 import com.android.asilvia.cryptoo.ui.add.CoinListActivityModule;
+import com.android.asilvia.cryptoo.ui.details.CoinDetailsActivity;
+import com.android.asilvia.cryptoo.ui.details.CoinDetailsActivityModule;
 import com.android.asilvia.cryptoo.ui.start.StartActivity;
 import com.android.asilvia.cryptoo.ui.start.StartActivityModule;
 
@@ -20,5 +22,8 @@ public abstract class ActivityBuilder {
 
     @ContributesAndroidInjector(modules = {CoinListActivityModule.class})
     abstract CoinListActivity bindCoinListActivity();
+
+    @ContributesAndroidInjector(modules = {CoinDetailsActivityModule.class})
+    abstract CoinDetailsActivity bindCoinDetailsActivity();
 
 }

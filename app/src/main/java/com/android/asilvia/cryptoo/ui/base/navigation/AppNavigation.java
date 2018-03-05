@@ -29,10 +29,11 @@ public class AppNavigation {
         activity.finish();
     }
 
-    public static void goToDetailsActivity(Context context, String id) {
+    public static void goToDetailsActivity(Context context, String id, String title) {
 
         Intent intent = new Intent(context, CoinDetailsActivity.class);
         intent.putExtra("id", id);
+        intent.putExtra("title", title);
         context.startActivity(intent);
     }
 

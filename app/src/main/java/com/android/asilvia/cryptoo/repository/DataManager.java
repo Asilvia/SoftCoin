@@ -23,6 +23,7 @@ public interface DataManager{
     void setMainCoin(String coin);
     List<LocalCoin> getSavedCoinList();
     Completable saveCoinList(List<LocalCoin> list);
+    LocalCoin findCoindById(String id);
 
 
 }

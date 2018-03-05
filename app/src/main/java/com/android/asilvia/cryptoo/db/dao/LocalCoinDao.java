@@ -25,7 +25,7 @@ public interface LocalCoinDao {
     LiveData<LocalCoin> findCoinByName(String name);
 
     @Query("SELECT * FROM LocalCoin WHERE id = :id")
-    LiveData<LocalCoin> findCoinById(String id);
+    LocalCoin findCoinById(String id);
 
     @Query("SELECT * FROM LocalCoin")
     List<LocalCoin> findAllCoins();

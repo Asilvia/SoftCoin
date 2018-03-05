@@ -11,5 +11,8 @@
     <color name="green">#FF30C971</color>
     <color name="pink">#FFFE3767</color>
     <color name="alert_input">#61000000</color>
+    <color name="details_cards_text">#000000</color>
+    <color name="total_card">#EEF5FE</color>
+
 
 </resources>

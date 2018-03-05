@@ -24,6 +24,7 @@ public abstract class BaseViewModel<N> extends ViewModel {
         this.mSchedulerProvider = schedulerProvider;
     }
 
+
     public void onViewCreated() {
 
     }

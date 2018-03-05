@@ -15,4 +15,5 @@ public interface  DbHelper {
     void saveCoin(LocalCoin localCoin);
     List<LocalCoin> getSavedCoins();
     void  saveCoinList(List<LocalCoin> list);
+    LocalCoin findCoinById(String id);
 }
