@@ -21,6 +21,42 @@
     <!-- Example General settings -->
     <string name="pref_header_general">General</string>
 
+    <string name="pref_title_default_currency">Default Currency</string>
+    <string-array name="pref_default_currency_titles">
+        <item>Euros</item>
+        <item>Dollars</item>
+    </string-array>
+    <string-array name="pref_default_currency_values">
+        <item>EUR</item>
+        <item>USD</item>
+    </string-array>
+
+    <string name="pref_title_percentage">Percentage Change Period</string>
+    <string-array name="pref_percentage_titles">
+        <item>1h</item>
+        <item>24h</item>
+        <item>7d</item>
+    </string-array>
+    <string-array name="pref_percentage_values">
+        <item>1</item>
+        <item>24</item>
+        <item>7</item>
+    </string-array>
+
+    <string name="pref_header_home_card">Home - Card Layout</string>
+    <string name="pref_title_profit_percentage">Profit/Loss(%)</string>
+    <string name="pref_title_profit_amount">Profit/Loss(amount)</string>
+    <string name="pref_title_index">Index(%)</string>
+    <string name="pref_title_market">Market Price(amount)</string>
+    <string name="pref_header_about">About Us</string>
+    <string name="pref_rate">Rate Us</string>
+    <string name="pref_privacy">Privacy &amp; Disclaimer</string>
+    <string name="pref_invite">Invite Friends</string>
+    <string name="pref_feedback">Send Feedback</string>
+
+
+
+
     <string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact
         based on your message history

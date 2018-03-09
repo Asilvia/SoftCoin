@@ -1,6 +1,8 @@
 package com.android.asilvia.cryptoo.ui.settings;
 
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
+import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -130,9 +132,13 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
         setupActionBar();
         getListView().setBackgroundColor(getResources().getColor(R.color.colorPrimary));
         View v = getLayoutInflater().inflate(R.layout.layout_line, null);
-
-
         getListView().addHeaderView(v);
+        getFragmentManager().beginTransaction()
+                .replace(android.R.id.content, new SettingsFragment())
+                .commit();
+        getListView().setDivider(null);
+        getListView().setPadding(0, 0, 0, 0);
+
     }
 
     /**
@@ -168,14 +174,6 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
         return isXLargeTablet(this);
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-    public void onBuildHeaders(List<Header> target) {
-        loadHeadersFromResource(R.xml.pref_headers, target);
-    }
 
     /**
      * This method stops fragment injection in malicious applications.
@@ -276,6 +274,15 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                 return true;
             }
             return super.onOptionsItemSelected(item);
+        }
+    }
+
+
+    public static class SettingsFragment extends PreferenceFragment {
+        @Override
+        public void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            addPreferencesFromResource(R.xml.settings);
         }
     }
 }

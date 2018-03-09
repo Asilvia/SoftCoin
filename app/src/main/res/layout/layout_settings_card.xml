@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingTop="@dimen/home_horizontal_padding"
+    android:paddingBottom="@dimen/padding_small">
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_card"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Max. 2 due to card size"
+        android:layout_marginTop="@dimen/padding_small"
+        android:paddingLeft="@dimen/home_horizontal_padding"/>
+
+</LinearLayout>
