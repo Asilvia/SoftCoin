@@ -17,6 +17,18 @@ android {
         buildConfigField "int", "CACHETIME", "432000" // 5days
         buildConfigField "String","MAINDEFAULTCOIN","\"EUR\""
     }
+
+    android.applicationVariants.all { variant ->
+        variant.outputs.all {
+            outputFileName = applicationId;
+            outputFileName += "-v" + android.defaultConfig.versionName;
+            if (variant.buildType.name == "release") {
+                outputFileName += ".apk";
+            } else {
+                outputFileName += "-SNAPSHOT.apk";
+            }
+        }
+    }
     buildTypes {
         release {
             minifyEnabled false
