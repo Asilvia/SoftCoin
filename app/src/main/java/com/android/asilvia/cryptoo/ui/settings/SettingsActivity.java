@@ -4,6 +4,7 @@ import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.graphics.Color;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
@@ -19,6 +20,10 @@ import android.preference.RingtonePreference;
 import android.text.TextUtils;
 import android.view.MenuItem;
 import android.support.v4.app.NavUtils;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.ListView;
 
 import com.android.asilvia.cryptoo.R;
 
@@ -123,6 +128,11 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setupActionBar();
+        getListView().setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+        View v = getLayoutInflater().inflate(R.layout.layout_line, null);
+
+
+        getListView().addHeaderView(v);
     }
 
     /**
@@ -133,6 +143,8 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
         if (actionBar != null) {
             // Show the Up button in the action bar.
             actionBar.setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setTitle(R.string.title_activity_settings);
+            getSupportActionBar().setDisplayShowTitleEnabled(true);
         }
     }
 
