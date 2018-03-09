@@ -128,6 +128,7 @@ public class StartActivity extends BaseActivity<ActivityStartBinding, StartViewM
         if(id == R.id.action_settings)
         {
             Timber.d("Go to settings Activity");
+            AppNavigation.goToSettingsActivity(this);
         }
         return super.onOptionsItemSelected(item);
     }

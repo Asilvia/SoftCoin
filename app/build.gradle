@@ -15,7 +15,19 @@ android {
         buildConfigField "int", "LIMIT", "100"
         buildConfigField "String", "MAINBASEURL", "\"https://min-api.cryptocompare.com/data/\""
         buildConfigField "int", "CACHETIME", "432000" // 5days
-        buildConfigField "String","MAINDEFAULTCOIN","\"EUR\""
+        buildConfigField "String", "MAINDEFAULTCOIN", "\"EUR\""
+    }
+
+    android.applicationVariants.all { variant ->
+        variant.outputs.all {
+            outputFileName = applicationId;
+            outputFileName += "-v" + android.defaultConfig.versionName;
+            if (variant.buildType.name == "release") {
+                outputFileName += ".apk";
+            } else {
+                outputFileName += "-SNAPSHOT.apk";
+            }
+        }
     }
     buildTypes {
         release {
@@ -77,11 +89,11 @@ dependencies {
 
     //annotations
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    implementation 'com.android.support:support-v4:26.1.0'
     annotationProcessor "com.google.dagger:dagger-android-processor:$dagger_version"
     annotationProcessor "com.google.dagger:dagger-compiler:$dagger_version"
     annotationProcessor "android.arch.persistence.room:compiler:$arch_version"
     annotationProcessor "android.arch.lifecycle:compiler:$arch_version"
-
 
     //testing
 
@@ -120,6 +132,7 @@ dependencies {
 
     debugImplementation 'com.amitshekhar.android:debug-db:1.0.3'
 }
+
 
 
 
