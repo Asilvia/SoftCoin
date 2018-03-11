@@ -9,6 +9,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.SearchView;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
@@ -161,4 +162,6 @@ public class CoinListActivity extends BaseActivity<ActivityCoinListBinding, Coin
     public int getLayoutId() {
         return R.layout.activity_coin_list;
     }
+
+
 }
