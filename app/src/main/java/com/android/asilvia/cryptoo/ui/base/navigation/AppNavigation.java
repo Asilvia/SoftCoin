@@ -21,13 +21,11 @@ public class AppNavigation {
     public static void goToCoinListActivity(Activity activity) {
         Intent intent = new Intent(activity, CoinListActivity.class);
         activity.startActivity(intent);
-        activity.finish();
     }
 
     public static void goToStartActivity(Activity activity) {
         Intent intent = new Intent(activity, StartActivity.class);
         activity.startActivity(intent);
-        activity.finish();
     }
 
     public static void goToDetailsActivity(Context context, String id, String title) {
@@ -42,7 +40,6 @@ public class AppNavigation {
     {
         Intent intent = new Intent(activity, SettingsActivity.class);
         activity.startActivity(intent);
-        activity.finish();
     }
 
 

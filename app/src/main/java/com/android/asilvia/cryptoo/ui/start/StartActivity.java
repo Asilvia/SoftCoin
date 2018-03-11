@@ -41,22 +41,54 @@ public class StartActivity extends BaseActivity<ActivityStartBinding, StartViewM
         super.onCreate(savedInstanceState);
         mActivityStartBinding = getViewDataBinding();
         mStartViewModel.setNavigator(this);
-
         renderView();
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getCoins();
+
+    }
+
+    private void getCoins() {
+        mStartViewModel.getCoinList();
+        mStartViewModel.getObservableCoinsList().observe(this, new Observer<List<LocalCoin>>() {
+            @Override
+            public void onChanged(@Nullable List<LocalCoin> localCoins) {
+                Timber.d("OnChange: " + "localCoins.size: " + localCoins.size());
+                adapter.setCoin(localCoins);
+                mStartViewModel.setIsLoading(false);
+            }
+        });
     }
 
 
     private void renderView() {
-        getSupportActionBar().setElevation(0);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setLogo(R.drawable.ic_logo_cryptoo);
-        getSupportActionBar().setDisplayUseLogoEnabled(true);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        renderActionBar();
 
 
         mStartViewModel.setIsLoading(true);
       //  mStartViewModel.RetrieveCoinList();
-        mStartViewModel.getCoinList();
+
+        renderCardList();
+
+
+        mActivityStartBinding.addNew.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Timber.d("Go to next activity");
+                AppNavigation.goToCoinListActivity((Activity)v.getContext());
+
+
+            }
+        });
+
+
+    }
+
+    private void renderCardList() {
         mActivityStartBinding.coinsList.setHasFixedSize(true);
         mActivityStartBinding.coinsList.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         mActivityStartBinding.swiperefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -76,26 +108,14 @@ public class StartActivity extends BaseActivity<ActivityStartBinding, StartViewM
 
         adapter = new StartAdapter(getApplicationContext(), new ArrayList<LocalCoin>());
         mActivityStartBinding.coinsList.setAdapter(adapter);
+    }
 
-
-        mActivityStartBinding.addNew.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Timber.d("Go to next activity");
-                AppNavigation.goToCoinListActivity((Activity)v.getContext());
-
-
-            }
-        });
-        mStartViewModel.getObservableCoinsList().observe(this, new Observer<List<LocalCoin>>() {
-                    @Override
-                    public void onChanged(@Nullable List<LocalCoin> localCoins) {
-                        Timber.d("OnChange: " + "localCoins.size: " + localCoins.size());
-                        adapter.setCoin(localCoins);
-                        mStartViewModel.setIsLoading(false);
-                    }
-                });
-
+    private void renderActionBar() {
+        getSupportActionBar().setElevation(0);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setLogo(R.drawable.ic_logo_cryptoo);
+        getSupportActionBar().setDisplayUseLogoEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
     }
 
 

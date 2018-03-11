@@ -120,19 +120,12 @@ public class CoinListActivity extends BaseActivity<ActivityCoinListBinding, Coin
                                         .subscribe(() -> {
 
                                     Timber.d("localcoin success");
-                                    AppNavigation.goToStartActivity(CoinListActivity.this);
+                                    finish();
+                                 //   AppNavigation.goToStartActivity(CoinListActivity.this);
                                 }, throwable -> {
                                     Timber.d("localcoin failed" + throwable.getMessage());
                                 });
-                           /*     int selectedPosition = ((AlertDialog)dialog).getListView().getCheckedItemPosition();
-                                //todo change for my scheduler
-                                ((AlertDialog) dialog).findViewById(R.id.much).get
-                                mCoinListViewModel.saveItem(item,realCoinsArray[selectedPosition]).subscribeOn(Schedulers.io()).subscribe(() -> {
-                                    Timber.d("localcoin success");
-                                    AppNavigation.goToStartActivity(CoinListActivity.this);
-                                }, throwable -> {
-                                            Timber.d("localcoin failed" + throwable.getMessage());
-                                });*/
+
 
                             }
                         })
