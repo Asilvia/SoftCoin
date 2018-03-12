@@ -27,7 +27,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui.start.StartActivity" />
         </activity>
-        <activity android:name=".ui.details.CoinDetailsActivity" />
+        <activity android:name=".ui.details.CoinDetailsActivity" android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".ui.settings.SettingsActivity"
             android:label="@string/title_activity_settings"

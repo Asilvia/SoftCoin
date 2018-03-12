@@ -57,7 +57,7 @@ public class CoinDetailsViewModel extends BaseViewModel<CoinDetailsNavigator> {
 
     public String getIndex()
     {
-        return "23%";
+        return String.format("%.2f", mCoin.getIndex()) + "%";
     }
     public String getAmount()
     {
@@ -69,25 +69,40 @@ public class CoinDetailsViewModel extends BaseViewModel<CoinDetailsNavigator> {
         return String.valueOf(mCoin.getUserPrice());
     }
 
-    public String getIndicator()
-    {
-
-        double finalPrice = mCoin.getPrice();
-        double userPrice = mCoin.getUserPrice();
-        return String.valueOf((finalPrice - userPrice)/finalPrice *100);
-    }
-
     public String getProfit()
     {
 
         double finalPrice = mCoin.getPrice();
         double userPrice = mCoin.getUserPrice();
-        return String.valueOf(finalPrice - userPrice);
+        return String.format("%.2f",(finalPrice - userPrice));
     }
 
 
 
+    public String getProfitIndex()
+    {
 
+        double finalPrice = mCoin.getPrice();
+        double userPrice = mCoin.getUserPrice();
+        return String.format("%.2f", ((finalPrice - userPrice)/finalPrice * 100)) + "%";
+    }
+
+
+
+    @BindingAdapter("android:src")
+    public static void setImageViewResource(ImageView view, String profit) {
+
+        double result = Double.valueOf(profit.substring(0, profit.lastIndexOf("%")));
+        if(result> 0)
+        {
+            view.setBackgroundResource(R.drawable.ic_arrow_up);
+        }
+        else
+        {
+            view.setBackgroundResource(R.drawable.ic_arrow_down);
+        }
+
+    }
 
 
     @BindingAdapter({"imageUrl"})
