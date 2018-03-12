@@ -32,9 +32,11 @@ public class LocalCoin {
     private String realCoinConverter;
     @ColumnInfo (name = "amount")
     private long amount;
+    @ColumnInfo (name = "index")
+    private double index;
 
 
-    public LocalCoin(String id, String name, String key, String imageUrl, String url, double price, double userPrice, String realCoinConverter, long amount) {
+    public LocalCoin(String id, String name, String key, String imageUrl, String url, double price, double userPrice, String realCoinConverter, long amount, double index) {
         this.id = id;
         this.name = name;
         this.key = key;
@@ -44,6 +46,7 @@ public class LocalCoin {
         this.userPrice = userPrice;
         this.realCoinConverter = realCoinConverter;
         this.amount = amount;
+        this.index = index;
     }
 
   /*  public LocalCoin() {
@@ -120,4 +123,11 @@ public class LocalCoin {
     public void setAmount(long amount) {
         this.amount = amount;
     }
+
+    public double getIndex() {
+        return index;
+    }
+     public void setIndex(double index) {
+        this.index = index;
+     }
 }

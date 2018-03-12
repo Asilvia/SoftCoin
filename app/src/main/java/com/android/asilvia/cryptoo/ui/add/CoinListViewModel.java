@@ -81,7 +81,7 @@ public class CoinListViewModel extends BaseViewModel<CoinListNavigator> {
     public Completable saveItem(CoinsDetails coin, Double userprice, long amount)
     {
 
-        LocalCoin localCoin = new LocalCoin(coin.getId(), coin.getCoinName(), coin.getName(), coin.getImageUrl(), coin.getUrl(),0d, userprice, getDataManager().getMainCoin(), amount);
+        LocalCoin localCoin = new LocalCoin(coin.getId(), coin.getCoinName(), coin.getName(), coin.getImageUrl(), coin.getUrl(),0d, userprice, getDataManager().getMainCoin(), amount,0);
         return getDataManager().saveCoin(localCoin);
 
     }

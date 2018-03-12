@@ -45,4 +45,10 @@ public class AppDbHelper implements DbHelper {
     public LocalCoin findCoinById(String id) {
         return mlocalCoinDao.findCoinById(id);
     }
+
+    @Override
+    public void updateCoins(List<LocalCoin> list) {
+        mlocalCoinDao.update(list);
+    }
+
 }

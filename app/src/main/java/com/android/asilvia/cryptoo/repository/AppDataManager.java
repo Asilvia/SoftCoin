@@ -12,7 +12,9 @@ import com.android.asilvia.cryptoo.di.db.AppDbHelper;
 import com.android.asilvia.cryptoo.di.preferences.PreferencesHelper;
 import com.android.asilvia.cryptoo.vo.Coins;
 import com.android.asilvia.cryptoo.db.LocalCoin;
+import com.android.asilvia.cryptoo.vo.CoinsPrice;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -53,7 +55,7 @@ public class AppDataManager implements DataManager {
     }
 
     @Override
-    public LiveData<ApiResponse<Map<String, Map<String, String>>>> getCoinPrices(String from, String to) {
+    public LiveData<ApiResponse<CoinsPrice>> getCoinPrices(String from, String to) {
         return mMainApiHelper.getCoinPrices(from, to);
     }
 
@@ -61,6 +63,12 @@ public class AppDataManager implements DataManager {
     public Completable saveCoin(LocalCoin coin)
     {
         return Completable.fromAction(() -> mAppDbHelper.saveCoin(coin));
+    }
+
+    @Override
+    public Completable updatesCoins(List<LocalCoin> coins)
+    {
+        return Completable.fromAction(() -> mAppDbHelper.updateCoins(coins));
     }
 
     @Override

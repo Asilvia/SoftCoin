@@ -16,6 +16,7 @@ import com.android.asilvia.cryptoo.util.rx.SchedulerProvider;
 import java.util.ArrayList;
 import java.util.List;
 
+import rx.schedulers.Schedulers;
 import timber.log.Timber;
 
 
@@ -50,10 +51,20 @@ public class StartViewModel extends BaseViewModel<StartNavigator> {
 
             for(LocalCoin coin: savedCoins)
             {
-                String result = coinList.body.get(coin.getKey()).get(to);
-                coin.setPrice(Double.parseDouble(result));
-                Timber.d("Refresh -->" + result);
+
+                String price = String.valueOf(coinList.body.getRAW().get(coin.getKey()).get(to).getPRICE());
+                coin.setPrice(Double.parseDouble(price));
+                double index = coinList.body.getRAW().get(coin.getKey()).get(to).getCHANGEPCT24HOUR();
+                coin.setIndex(index);
             }
+            getDataManager().updatesCoins(savedCoins).subscribeOn(Schedulers.io()).subscribe(() -> {
+
+                Timber.d("--> localcoin success");
+
+                //   AppNavigation.goToStartActivity(CoinListActivity.this);
+            }, throwable -> {
+                Timber.d("--> localcoin failed" + throwable.getMessage());
+            });
             completeCoinList.postValue(savedCoins);
             return completeCoinList;
         });

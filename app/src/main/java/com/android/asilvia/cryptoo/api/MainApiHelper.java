@@ -4,6 +4,7 @@ package com.android.asilvia.cryptoo.api;
 import android.arch.lifecycle.LiveData;
 
 import com.android.asilvia.cryptoo.vo.Coins;
+import com.android.asilvia.cryptoo.vo.CoinsPrice;
 
 import java.util.Map;
 
@@ -19,8 +20,8 @@ public interface MainApiHelper {
 
     @GET("all/coinlist")
     LiveData<ApiResponse<Coins>> getCoinList();
-    @GET("pricemulti")
-    LiveData<ApiResponse<Map<String,Map<String,String>>>> getCoinPrices(@Query("fsyms") String from,
-                                                                        @Query("tsyms") String to);
+    @GET("pricemultifull")
+    LiveData<ApiResponse<CoinsPrice>> getCoinPrices(@Query("fsyms") String from,
+                                                    @Query("tsyms") String to);
 
 }

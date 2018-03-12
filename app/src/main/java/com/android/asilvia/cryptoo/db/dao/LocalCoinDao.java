@@ -6,9 +6,11 @@ import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.OnConflictStrategy;
 import android.arch.persistence.room.Query;
+import android.arch.persistence.room.Update;
 
 import com.android.asilvia.cryptoo.db.LocalCoin;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,6 +22,9 @@ public interface LocalCoinDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(LocalCoin localCoin);
+
+    @Update(onConflict = OnConflictStrategy.REPLACE)
+    void update(List<LocalCoin> list);
 
     @Query("SELECT * FROM LocalCoin WHERE name = :name")
     LiveData<LocalCoin> findCoinByName(String name);
