@@ -10,6 +10,7 @@
         <item name="android:windowActionBarOverlay">@null</item>
         <item name="actionBarWidgetTheme">@style/CryptooActionBar</item>
         <item name="actionBarStyle">@style/CryptooActionBar</item>
+        <item name="android:windowBackground">@color/colorPrimary</item>
     </style>
     <style name="CryptooActionBar" parent="Widget.AppCompat.Toolbar">
         <item name="contentInsetStart">@dimen/home_horizontal_padding</item>
