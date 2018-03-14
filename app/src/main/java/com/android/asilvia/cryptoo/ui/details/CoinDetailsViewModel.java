@@ -19,6 +19,7 @@ import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 import java.util.List;
 
+import rx.Completable;
 import timber.log.Timber;
 
 
@@ -112,6 +113,10 @@ public class CoinDetailsViewModel extends BaseViewModel<CoinDetailsNavigator> {
                 .placeholder(R.mipmap.ic_launcher)
                 .into(view)
         ;
+    }
+
+    public Completable deleteCoin() {
+        return getDataManager().deleteCoin(mCoin);
     }
 
 

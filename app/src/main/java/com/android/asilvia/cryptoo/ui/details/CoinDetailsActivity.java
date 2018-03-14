@@ -10,6 +10,7 @@ import android.support.design.widget.Snackbar;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -22,6 +23,7 @@ import com.android.asilvia.cryptoo.ui.start.StartViewModel;
 
 import javax.inject.Inject;
 
+import rx.schedulers.Schedulers;
 import timber.log.Timber;
 
 public class CoinDetailsActivity extends BaseActivity<ActivityCoinDetailsBinding, CoinDetailsViewModel> implements CoinDetailsNavigator {
@@ -51,6 +53,21 @@ public class CoinDetailsActivity extends BaseActivity<ActivityCoinDetailsBinding
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(title);
         getSupportActionBar().setDisplayShowTitleEnabled(true);
+
+
+        mActivityCoinDetailsBinding.btnDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mCoinDetailsViewModel.deleteCoin().subscribeOn(Schedulers.io()).subscribe(() -> {
+
+                    Timber.d("localcoin delete success");
+                    finish();
+                    //   AppNavigation.goToStartActivity(CoinListActivity.this);
+                }, throwable -> {
+                    Timber.d("localcoin failed" + throwable.getMessage());
+                });
+            }
+        });
     }
 
 

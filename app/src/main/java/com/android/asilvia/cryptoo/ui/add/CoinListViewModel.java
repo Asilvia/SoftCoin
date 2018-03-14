@@ -95,4 +95,7 @@ public class CoinListViewModel extends BaseViewModel<CoinListNavigator> {
     }
 
 
+
+
+
 }

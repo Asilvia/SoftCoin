@@ -51,4 +51,9 @@ public class AppDbHelper implements DbHelper {
         mlocalCoinDao.update(list);
     }
 
+    @Override
+    public void deleteCoin(LocalCoin localCoin) {
+        mlocalCoinDao.deleteCoin(localCoin);
+    }
+
 }
