@@ -123,4 +123,6 @@
     <string name="pref_ringtone_silent">Silent</string>
 
     <string name="pref_title_vibrate">Vibrate</string>
+    <string name="initial_price_piece">Initial price (piece)</string>
+    <string name="hint_number">Number</string>
 </resources>
