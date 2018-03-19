@@ -1,6 +1,6 @@
 <GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     android:background="@color/colorPrimary"
     android:columnCount="3"
     android:padding="@dimen/grid_margin"
@@ -10,15 +10,64 @@
         android:id="@+id/llFirst"
         android:layout_column="0"
         android:layout_columnWeight="1"
+        android:layout_margin="@dimen/grid_margin"
         android:layout_row="0"
         android:layout_rowWeight="0.7"
         android:background="@drawable/widget_top"
         android:orientation="vertical"
-        android:layout_margin="@dimen/grid_margin">
+        android:padding="@dimen/widget_card_padding">
 
         <ImageView
+            android:id="@+id/coin_icon1"
             android:layout_width="24dp"
-            android:layout_height="24dp" />
+            android:layout_height="24dp"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/fab" />
+
+        <TextView
+            android:id="@+id/coin_name1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/akkuratproregular"
+            android:gravity="left|center_vertical"
+            android:text="ETH"
+            android:textColor="@color/title"
+            android:textSize="@dimen/widget_title_text" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/coin_percentage1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/akkuratprobold"
+                android:gravity="left"
+                android:text="23.5%"
+                android:textColor="@color/title"
+                android:textSize="@dimen/widget_indice_text" />
+
+            <ImageView
+                android:id="@+id/coin_indicator1"
+                android:layout_width="@dimen/widget_card_padding"
+                android:layout_height="@dimen/widget_card_padding"
+                android:layout_marginLeft="8dp"
+                android:adjustViewBounds="true"
+                android:paddingStart="0dp"
+                android:src="@drawable/ic_arrow_up" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/coin_value1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/akkuratproregular"
+            android:gravity="left"
+            android:text="€ 0.01"
+            android:textColor="@color/title"
+            android:textSize="@dimen/widget_title_text" />
 
     </LinearLayout>
 
@@ -26,85 +75,270 @@
         android:id="@+id/llSecond"
         android:layout_column="1"
         android:layout_columnWeight="1"
+        android:layout_margin="@dimen/grid_margin"
         android:layout_row="0"
         android:layout_rowWeight="0.7"
         android:background="@drawable/widget_top"
         android:orientation="vertical"
-        android:layout_margin="@dimen/grid_margin">
+        android:padding="@dimen/widget_card_padding">
+
+        <ImageView
+            android:id="@+id/coin_icon2"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/fab" />
 
         <TextView
+            android:id="@+id/coin_name2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="lalal" />
+            android:fontFamily="@font/akkuratproregular"
+            android:gravity="left|center_vertical"
+            android:text="ETH"
+            android:textColor="@color/title"
+            android:textSize="@dimen/widget_title_text" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/coin_percentage2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/akkuratprobold"
+                android:gravity="left"
+                android:text="23.5%"
+                android:textColor="@color/title"
+                android:textSize="@dimen/widget_indice_text" />
+
+            <ImageView
+                android:id="@+id/coin_indicator2"
+                android:layout_width="@dimen/widget_card_padding"
+                android:layout_height="@dimen/widget_card_padding"
+                android:layout_marginLeft="8dp"
+                android:adjustViewBounds="true"
+                android:paddingStart="0dp"
+                android:src="@drawable/ic_arrow_up" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/coin_value2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/akkuratproregular"
+            android:gravity="left"
+            android:text="€ 0.01"
+            android:textColor="@color/title"
+            android:textSize="@dimen/widget_title_text" />
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/llThird"
         android:layout_column="2"
         android:layout_columnWeight="1"
+        android:layout_margin="@dimen/grid_margin"
         android:layout_row="0"
         android:layout_rowWeight="0.7"
         android:background="@drawable/widget_top"
         android:orientation="vertical"
-        android:layout_margin="@dimen/grid_margin"
+        android:padding="@dimen/widget_card_padding">
 
-        >
+        <ImageView
+            android:id="@+id/coin_icon3"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/fab" />
 
         <TextView
+            android:id="@+id/coin_name3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="oooo" />
+            android:fontFamily="@font/akkuratproregular"
+            android:gravity="left|center_vertical"
+            android:text="ETH"
+            android:textColor="@color/title"
+            android:textSize="@dimen/widget_title_text" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/coin_percentage3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/akkuratprobold"
+                android:gravity="left"
+                android:text="23.5%"
+                android:textColor="@color/title"
+                android:textSize="@dimen/widget_indice_text" />
+
+            <ImageView
+                android:id="@+id/coin_indicator3"
+                android:layout_width="@dimen/widget_card_padding"
+                android:layout_height="@dimen/widget_card_padding"
+                android:layout_marginLeft="8dp"
+                android:adjustViewBounds="true"
+                android:paddingStart="0dp"
+                android:src="@drawable/ic_arrow_up" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/coin_value3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/akkuratproregular"
+            android:gravity="left"
+            android:text="€ 0.01"
+            android:textColor="@color/title"
+            android:textSize="@dimen/widget_title_text" />
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/llFirstrow"
         android:layout_column="0"
         android:layout_columnWeight="1"
+        android:layout_margin="@dimen/grid_margin"
         android:layout_row="1"
         android:layout_rowWeight="0.3"
         android:background="@drawable/widget_bottom"
         android:orientation="vertical"
-        android:layout_margin="@dimen/grid_margin">
+        android:padding="@dimen/widget_card_padding">
 
         <TextView
+            android:id="@+id/coin_user_profit1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="ana" />
+            android:fontFamily="@font/akkuratprobold"
+            android:gravity="left|center_vertical"
+            android:text="ETH"
+            android:textColor="@color/title"
+            android:textSize="@dimen/widget_title_text" />
 
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/coin_user_profit_indicator1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/akkuratproregular"
+                android:gravity="left|center_vertical"
+                android:text="ETH"
+                android:layout_gravity="center_vertical"
+                android:textColor="@color/title"
+                android:textSize="@dimen/widget_title_text" />
+
+            <ImageView
+                android:id="@+id/coin_user_profit_indicator_icon1"
+                android:layout_width="@dimen/widget_card_padding"
+                android:layout_height="@dimen/widget_card_padding"
+                android:adjustViewBounds="true"
+                android:paddingStart="0dp"
+                android:src="@drawable/ic_arrow_up" />
+        </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/llSecondrow"
         android:layout_column="1"
         android:layout_columnWeight="1"
+        android:layout_margin="@dimen/grid_margin"
         android:layout_row="1"
         android:layout_rowWeight="0.3"
         android:background="@drawable/widget_bottom"
         android:orientation="vertical"
-        android:layout_margin="@dimen/grid_margin">
+        android:padding="@dimen/widget_card_padding">
 
         <TextView
+            android:id="@+id/coin_user_profit2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="lalal" />
+            android:fontFamily="@font/akkuratprobold"
+            android:gravity="left|center_vertical"
+            android:text="ETH"
+            android:textColor="@color/title"
+            android:textSize="@dimen/widget_title_text" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/coin_user_profit_indicator2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/akkuratproregular"
+                android:gravity="left|center_vertical"
+                android:text="ETH"
+                android:layout_gravity="center_vertical"
+                android:textColor="@color/title"
+                android:textSize="@dimen/widget_title_text" />
+
+            <ImageView
+                android:id="@+id/coin_user_profit_indicator_icon2"
+                android:layout_width="@dimen/widget_card_padding"
+                android:layout_height="@dimen/widget_card_padding"
+
+                android:adjustViewBounds="true"
+                android:paddingStart="0dp"
+                android:src="@drawable/ic_arrow_up" />
+        </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/llThirdrow"
         android:layout_column="2"
         android:layout_columnWeight="1"
+        android:layout_margin="@dimen/grid_margin"
         android:layout_row="1"
         android:layout_rowWeight="0.3"
         android:background="@drawable/widget_bottom"
         android:orientation="vertical"
-        android:layout_margin="@dimen/grid_margin"
-
-        >
+        android:padding="@dimen/widget_card_padding">
 
         <TextView
+            android:id="@+id/coin_user_profit3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="oooo" />
+            android:fontFamily="@font/akkuratprobold"
+            android:gravity="left|center_vertical"
+            android:text="ETH"
+            android:textColor="@color/title"
+            android:textSize="@dimen/widget_title_text" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/coin_user_profit_indicator3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/akkuratproregular"
+                android:gravity="left|center_vertical"
+                android:text="ETH"
+                android:layout_gravity="center_vertical"
+                android:textColor="@color/title"
+                android:textSize="@dimen/widget_title_text" />
+
+            <ImageView
+                android:id="@+id/coin_user_profit_indicator_icon3"
+                android:layout_width="@dimen/widget_card_padding"
+                android:layout_height="@dimen/widget_card_padding"
+                android:adjustViewBounds="true"
+                android:paddingStart="0dp"
+                android:src="@drawable/ic_arrow_up" />
+        </LinearLayout>
     </LinearLayout>
 
 
