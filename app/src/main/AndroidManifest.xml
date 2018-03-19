@@ -27,7 +27,9 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui.start.StartActivity" />
         </activity>
-        <activity android:name=".ui.details.CoinDetailsActivity" android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".ui.details.CoinDetailsActivity"
+            android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".ui.settings.SettingsActivity"
             android:label="@string/title_activity_settings"
@@ -36,6 +38,17 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.android.asilvia.cryptoo.ui.start.StartActivity" />
         </activity>
+
+        <receiver android:name=".widget.CryptooWidget">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/cryptoo_widget_info" />
+        </receiver>
+
     </application>
 
 </manifest>

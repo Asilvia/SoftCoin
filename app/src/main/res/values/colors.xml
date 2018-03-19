@@ -4,8 +4,8 @@
     <color name="colorPrimaryDark">#FFFFFFFF</color>
     <color name="colorAccent">#579FFB</color>
     <color name="background">#FFFFFF</color>
-    <color name="widgetBackground">#56009688</color>
-    <color name="widgetCardBackground">#3200bfa5</color>
+    <color name="widgetBackground">#FFF2F2F2</color>
+    <color name="widgetCardBackground">#EEF5FE</color>
     <color name="title">#FF202029</color>
     <color name="cardBackground">#FFF2F2F2</color>
     <color name="green">#FF30C971</color>

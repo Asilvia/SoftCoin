@@ -1,26 +1,27 @@
-package com.android.asilvia.cryptoo;
+package com.android.asilvia.cryptoo.widget;
 
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.Context;
 import android.widget.RemoteViews;
 
+import com.android.asilvia.cryptoo.R;
+
 /**
  * Implementation of App Widget functionality.
- * App Widget Configuration implemented in {@link CryptooWidgetConfigureActivity CryptooWidgetConfigureActivity}
  */
 public class CryptooWidget extends AppWidgetProvider {
 
     static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
                                 int appWidgetId) {
 
-        CharSequence widgetText = CryptooWidgetConfigureActivity.loadTitlePref(context, appWidgetId);
+//        CharSequence widgetText = CryptooWidgetConfigureActivity.loadTitlePref(context, appWidgetId);
         // Construct the RemoteViews object
-        RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.cryptoo_widget);
-        views.setTextViewText(R.id.appwidget_text, widgetText);
+     //   RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.cryptoo_widget);
+     //   views.setTextViewText(R.id.appwidget_text, "lallala");
 
         // Instruct the widget manager to update the widget
-        appWidgetManager.updateAppWidget(appWidgetId, views);
+     //   appWidgetManager.updateAppWidget(appWidgetId, views);
     }
 
     @Override
@@ -34,9 +35,7 @@ public class CryptooWidget extends AppWidgetProvider {
     @Override
     public void onDeleted(Context context, int[] appWidgetIds) {
         // When the user deletes the widget, delete the preference associated with it.
-        for (int appWidgetId : appWidgetIds) {
-            CryptooWidgetConfigureActivity.deleteTitlePref(context, appWidgetId);
-        }
+
     }
 
     @Override
