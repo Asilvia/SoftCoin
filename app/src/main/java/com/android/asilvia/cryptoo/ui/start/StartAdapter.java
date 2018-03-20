@@ -109,12 +109,12 @@ public class StartAdapter extends RecyclerView.Adapter<StartAdapter.ViewHolder>
         if(percentage > 0)
         {
            holder.card_indicator.setBackgroundResource(R.color.green);
-           holder.indicator.setBackgroundResource(R.drawable.ic_arrow_up);
+           holder.indicator.setBackgroundResource(R.drawable.ic_arrow_drop_up);
         }
         else
         {
             holder.card_indicator.setBackgroundResource(R.color.pink);
-            holder.indicator.setBackgroundResource(R.drawable.ic_arrow_down);
+            holder.indicator.setBackgroundResource(R.drawable.ic_arrow_drop_down);
 
         }
     }

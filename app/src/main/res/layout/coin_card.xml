@@ -10,76 +10,81 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        card_view:cardElevation="0dp"
         card_view:cardCornerRadius="4dp"
-        card_view:cardUseCompatPadding="true"
-       >
+        card_view:cardElevation="0dp"
+        card_view:cardUseCompatPadding="true">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal"
-            >
+            android:orientation="horizontal">
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
                 android:layout_weight="0.06"
-                android:padding="16dp"
-                android:background="@color/cards_background">
+                android:background="@color/cards_background"
+                android:orientation="vertical"
+                android:padding="16dp">
 
                 <ImageView
                     android:id="@+id/icon"
                     android:layout_width="@dimen/coin_icon"
                     android:layout_height="@dimen/coin_icon"
-                    android:src="@mipmap/ic_launcher"
-                    android:layout_marginRight="8dp"/>
+                    android:layout_marginRight="8dp"
+                    android:src="@mipmap/ic_launcher" />
+
                 <TextView
                     android:id="@+id/name"
                     android:layout_width="match_parent"
                     android:layout_height="32dp"
-                    android:gravity="left|center_vertical"
+                    android:layout_toRightOf="@id/icon"
                     android:fontFamily="@font/akkuratproregular"
-                    android:textColor="@color/title"
+                    android:gravity="left|center_vertical"
                     android:text="ETH"
-                    android:textSize="@dimen/cards_text"
-                    android:layout_toRightOf="@id/icon"/>
-
-                <TextView
-                    android:id="@+id/value_percentage"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="left"
-                    android:fontFamily="@font/akkuratprobold"
-                    android:text="23.5%"
                     android:textColor="@color/title"
-                    android:textSize="28sp"
-                    android:layout_below="@+id/name"
-                    android:layout_toRightOf="@id/icon"/>
+                    android:textSize="@dimen/cards_text" />
 
-                <ImageView
-                    android:id="@+id/indicator"
+                <LinearLayout
+                    android:id="@+id/indice_container"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_above="@+id/value"
-                    android:layout_below="@id/name"
-                    android:layout_toRightOf="@+id/value_percentage"
-                    android:layout_marginLeft="8dp"
-                    android:adjustViewBounds="true"
-                    android:paddingStart="0dp"
-                    />
+                    android:layout_below="@+id/name"
+                    android:layout_toRightOf="@id/icon"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:id="@+id/value_percentage"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/akkuratprobold"
+                        android:gravity="left"
+                        android:text="23.5%"
+                        android:textColor="@color/title"
+                        android:textSize="28sp" />
+
+                    <ImageView
+                        android:id="@+id/indicator"
+                        android:layout_width="21dp"
+                        android:layout_height="21dp"
+                        android:layout_marginLeft="@dimen/padding_xs"
+                        android:layout_toRightOf="@+id/value_percentage"
+
+
+                        />
+                </LinearLayout>
 
                 <TextView
                     android:id="@+id/value"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_below="@+id/indice_container"
+                    android:layout_toRightOf="@id/icon"
+                    android:fontFamily="@font/akkuratproregular"
                     android:gravity="left"
                     android:text="€ 0.01"
-                    android:fontFamily="@font/akkuratproregular"
                     android:textColor="@color/title"
-                    android:textSize="@dimen/cards_text"
-                    android:layout_below="@+id/value_percentage"
-                    android:layout_toRightOf="@id/icon"/>
+                    android:textSize="@dimen/cards_text" />
 
             </RelativeLayout>
 
@@ -89,11 +94,12 @@
                 android:layout_height="match_parent"
                 android:layout_weight="0.94"
                 android:background="@color/pink">
+
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_dot"
-                    android:layout_centerInParent="true"/>
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/ic_dot" />
 
             </RelativeLayout>
 

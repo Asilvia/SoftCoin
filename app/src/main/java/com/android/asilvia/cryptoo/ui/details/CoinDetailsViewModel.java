@@ -96,11 +96,11 @@ public class CoinDetailsViewModel extends BaseViewModel<CoinDetailsNavigator> {
         double result = Double.valueOf(profit.substring(0, profit.lastIndexOf("%")));
         if(result> 0)
         {
-            view.setBackgroundResource(R.drawable.ic_arrow_up);
+            view.setBackgroundResource(R.drawable.ic_arrow_drop_up);
         }
         else
         {
-            view.setBackgroundResource(R.drawable.ic_arrow_down);
+            view.setBackgroundResource(R.drawable.ic_arrow_drop_down);
         }
 
     }
