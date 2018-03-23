@@ -2,7 +2,7 @@ package com.android.asilvia.cryptoo;
 
 import android.app.Activity;
 import android.app.Application;
-
+import android.app.Service;
 
 
 import com.android.asilvia.cryptoo.di.db.AppDatabase;
@@ -14,16 +14,20 @@ import javax.inject.Inject;
 import dagger.android.AndroidInjector;
 import dagger.android.DispatchingAndroidInjector;
 import dagger.android.HasActivityInjector;
+import dagger.android.HasServiceInjector;
 import timber.log.Timber;
 
 /**
  * Created by asilvia on 26-10-2017.
  */
 
-public class CryptooApp extends Application implements HasActivityInjector {
+public class CryptooApp extends Application implements HasActivityInjector, HasServiceInjector {
 
     @Inject
     DispatchingAndroidInjector<Activity> activityDispatchingAndroidInjector;
+
+    @Inject
+    DispatchingAndroidInjector<Service> serviceDispatchingAndroidInjector;
 
     private AppDatabase mDatabase;
 
@@ -32,6 +36,12 @@ public class CryptooApp extends Application implements HasActivityInjector {
     public AndroidInjector<Activity> activityInjector() {
         return activityDispatchingAndroidInjector;
     }
+
+    @Override
+    public AndroidInjector<Service> serviceInjector() {
+        return serviceDispatchingAndroidInjector;
+    }
+
 
     @Override
     public void onCreate() {

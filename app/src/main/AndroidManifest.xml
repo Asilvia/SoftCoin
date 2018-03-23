@@ -48,7 +48,7 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/cryptoo_widget_info" />
         </receiver>
-
+        <service android:name=".widget.UpdateService" />
     </application>
 
 </manifest>

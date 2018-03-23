@@ -7,6 +7,7 @@ import com.android.asilvia.cryptoo.ui.details.CoinDetailsActivity;
 import com.android.asilvia.cryptoo.ui.details.CoinDetailsActivityModule;
 import com.android.asilvia.cryptoo.ui.start.StartActivity;
 import com.android.asilvia.cryptoo.ui.start.StartActivityModule;
+import com.android.asilvia.cryptoo.widget.UpdateService;
 
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
@@ -25,5 +26,8 @@ public abstract class ActivityBuilder {
 
     @ContributesAndroidInjector(modules = {CoinDetailsActivityModule.class})
     abstract CoinDetailsActivity bindCoinDetailsActivity();
+
+    @ContributesAndroidInjector
+    abstract UpdateService bindUpdateService();
 
 }
