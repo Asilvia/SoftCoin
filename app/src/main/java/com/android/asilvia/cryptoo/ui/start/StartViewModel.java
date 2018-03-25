@@ -44,9 +44,11 @@ public class StartViewModel extends BaseViewModel<StartNavigator> {
 
         ArrayList<LocalCoin> savedCoins = new ArrayList<>();
         savedCoins.addAll(getDataManager().getSavedCoinList());
-        String from = getCoinsName(savedCoins);
+        String from = getDataManager().getCoinsName(savedCoins);
         String to = getDataManager().getMainCoin();
         Timber.d("Refresh -->" + "teste111");
+
+
         mObservableCoinsList =  Transformations.switchMap(getDataManager().getCoinPrices(from, to), coinList ->{
 
             for(LocalCoin coin: savedCoins)
@@ -82,19 +84,6 @@ public class StartViewModel extends BaseViewModel<StartNavigator> {
         completeCoinList =  new MediatorLiveData<>();
     }
 
-    @NonNull
-    private String getCoinsName(List<LocalCoin> localCoins) {
-        String coinsList = "";
-        for (LocalCoin item : localCoins) {
-            Timber.d("--> item: " + item.getKey());
-            coinsList = coinsList + item.getKey() + ",";
-        }
-        if(coinsList.length() != 0) {
-            coinsList = coinsList.substring(0, coinsList.length() - 1);
-            Timber.d("-->" + coinsList);
-        }
-        return coinsList;
-    }
 
 
 }

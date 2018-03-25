@@ -28,6 +28,7 @@ public interface DataManager{
     LocalCoin findCoindById(String id);
     public Completable updatesCoins(List<LocalCoin> coins);
     public Completable deleteCoin(LocalCoin localCoin);
+    public String getCoinsName(List<LocalCoin> list);
 
 
 }

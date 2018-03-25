@@ -77,6 +77,20 @@ public class AppDataManager implements DataManager {
     }
 
     @Override
+    public String getCoinsName(List<LocalCoin> list) {
+        String coinsList = "";
+        for (LocalCoin item : list) {
+            Timber.d("--> item: " + item.getKey());
+            coinsList = coinsList + item.getKey() + ",";
+        }
+        if(coinsList.length() != 0) {
+            coinsList = coinsList.substring(0, coinsList.length() - 1);
+            Timber.d("-->" + coinsList);
+        }
+        return coinsList;
+    }
+
+    @Override
     public String getMainCoin() {
         return mPreferencesHelper.getMainCoin();
 

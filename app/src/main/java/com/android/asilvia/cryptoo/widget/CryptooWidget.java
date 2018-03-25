@@ -16,17 +16,16 @@ import com.android.asilvia.cryptoo.R;
  */
 public class CryptooWidget extends AppWidgetProvider {
     private static PendingIntent pendingIntent;
-
     static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
                                 int appWidgetId) {
-
         final AlarmManager manager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-        final Intent i = new Intent(context, UpdateService.class);
+               final Intent i = new Intent(context, UpdateService.class);
 
-        if (pendingIntent == null) {
-            pendingIntent = PendingIntent.getService(context, 0, i, PendingIntent.FLAG_CANCEL_CURRENT);
-        }
+                       if (pendingIntent == null) {
+                       pendingIntent = PendingIntent.getService(context, 0, i, PendingIntent.FLAG_CANCEL_CURRENT);
+                   }
         manager.setRepeating(AlarmManager.ELAPSED_REALTIME, SystemClock.elapsedRealtime(), 60000, pendingIntent);
+
 
 //        CharSequence widgetText = CryptooWidgetConfigureActivity.loadTitlePref(context, appWidgetId);
         // Construct the RemoteViews object
