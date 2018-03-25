@@ -39,7 +39,8 @@
                 android:value="com.android.asilvia.cryptoo.ui.start.StartActivity" />
         </activity>
 
-        <receiver android:name=".widget.CryptooWidget">
+        <receiver android:name=".widget.CryptooWidget"
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
