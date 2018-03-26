@@ -138,6 +138,23 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/llThirdEmpty"
+        android:layout_column="2"
+        android:layout_columnWeight="1"
+        android:layout_margin="@dimen/grid_margin"
+        android:layout_row="0"
+        android:layout_rowWeight="0.7"
+        android:background="@color/colorPrimary"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="12dp"
+       >
+        <ImageView
+            android:layout_width="58dp"
+            android:layout_height="58dp"
+            android:src="@drawable/fab_with_add"/>
+    </LinearLayout>
+    <LinearLayout
         android:id="@+id/llThird"
         android:layout_column="2"
         android:layout_columnWeight="1"
@@ -146,7 +163,8 @@
         android:layout_rowWeight="0.7"
         android:background="@drawable/widget_top"
         android:orientation="vertical"
-        android:padding="@dimen/widget_card_padding">
+        android:padding="@dimen/widget_card_padding"
+        android:visibility="gone">
 
         <ImageView
             android:id="@+id/coin_icon3"
@@ -296,6 +314,23 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/llThirdrowEmpty"
+        android:layout_column="2"
+        android:layout_columnWeight="1"
+        android:layout_margin="@dimen/grid_margin"
+        android:layout_row="1"
+        android:layout_rowWeight="0.3"
+        android:background="@drawable/widget_top"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="@dimen/widget_card_padding"
+        >
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_logo_cryptoo"/>
+    </LinearLayout>
+    <LinearLayout
         android:id="@+id/llThirdrow"
         android:layout_column="2"
         android:layout_columnWeight="1"
@@ -304,7 +339,8 @@
         android:layout_rowWeight="0.3"
         android:background="@drawable/widget_bottom"
         android:orientation="vertical"
-        android:padding="@dimen/widget_card_padding">
+        android:padding="@dimen/widget_card_padding"
+        android:visibility="gone">
 
         <TextView
             android:id="@+id/coin_user_profit3"
