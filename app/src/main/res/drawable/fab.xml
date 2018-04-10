@@ -9,7 +9,7 @@
             <stroke
                 android:dashGap="5dp"
                 android:dashWidth="5dp"
-                android:width="1dp"
+                android:width="2dp"
                 android:color="#BABABA" />
             <padding
                 android:bottom="5dp"
