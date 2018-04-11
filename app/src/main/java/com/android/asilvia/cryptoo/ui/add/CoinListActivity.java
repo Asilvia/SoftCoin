@@ -25,6 +25,7 @@ import com.android.asilvia.cryptoo.vo.Coins;
 import com.android.asilvia.cryptoo.vo.CoinsDetails;
 
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 import javax.inject.Inject;
 
@@ -41,6 +42,7 @@ public class CoinListActivity extends BaseActivity<ActivityCoinListBinding, Coin
     private CoinListAdapter mAdapter;
 
     ArrayList<CoinsDetails> list;
+    ArrayList<String> savedSearch;
 
     @Inject
     ViewModelProvider.Factory mViewModelFactory;
@@ -63,9 +65,15 @@ public class CoinListActivity extends BaseActivity<ActivityCoinListBinding, Coin
 
         mCoinListViewModel.setIsLoading(true);
         mCoinListViewModel.retrieveCoinList();
+        savedSearch = mCoinListViewModel.getSavedSearch();
+        if(savedSearch.size() > 0)
+            mActivityCoinListBinding.lastsearched.setVisibility(View.VISIBLE);
+        else
+            mActivityCoinListBinding.lastsearched.setVisibility(View.GONE);
+
         list = new ArrayList<> ();
 
-        mAdapter = new CoinListAdapter(this, list);
+        mAdapter = new CoinListAdapter(this, list, savedSearch);
         mActivityCoinListBinding.coinList.setAdapter(mAdapter);
 
         mActivityCoinListBinding.searchLayout.setOnClickListener(new View.OnClickListener() {
@@ -85,6 +93,7 @@ public class CoinListActivity extends BaseActivity<ActivityCoinListBinding, Coin
             }
         });
 
+
         mActivityCoinListBinding.search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
                 @Override
                 public boolean onQueryTextSubmit(String query) {
@@ -93,6 +102,7 @@ public class CoinListActivity extends BaseActivity<ActivityCoinListBinding, Coin
 
                 @Override
                 public boolean onQueryTextChange(String newText) {
+                    mActivityCoinListBinding.lastsearched.setVisibility(View.GONE);
                     mAdapter.getFilter().filter(newText.toString());
                     return true;
                 }
@@ -119,7 +129,9 @@ public class CoinListActivity extends BaseActivity<ActivityCoinListBinding, Coin
                                 mCoinListViewModel.saveItem(item,Double.parseDouble(strPrice),Long.parseLong(strAmount))
                                         .subscribeOn(Schedulers.io())
                                         .subscribe(() -> {
-
+                                        savedSearch.add(item.getId());
+                                        ArrayList<String> filteredSavedSearch = savedSearch.stream().distinct().collect(Collectors.toCollection(ArrayList::new));
+                                        mCoinListViewModel.setSavedSearch(filteredSavedSearch);
                                     Timber.d("localcoin success");
                                     finish();
                                  //   AppNavigation.goToStartActivity(CoinListActivity.this);

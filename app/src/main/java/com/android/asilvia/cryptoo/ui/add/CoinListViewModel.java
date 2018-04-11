@@ -28,7 +28,7 @@ import timber.log.Timber;
 public class CoinListViewModel extends BaseViewModel<CoinListNavigator> {
 
     private LiveData<ApiResponse<Coins>> mObservableCoinsList;
-
+    private ArrayList<Integer> savedSearch;
 
 
     public CoinListViewModel(DataManager dataManager, SchedulerProvider schedulerProvider) {
@@ -95,7 +95,12 @@ public class CoinListViewModel extends BaseViewModel<CoinListNavigator> {
     }
 
 
+    public ArrayList<String> getSavedSearch() {
+        return getDataManager().getSavedSearched();
 
+    }
 
-
+    public void setSavedSearch(ArrayList<String> savedSearch) {
+        getDataManager().setSavedSearched(savedSearch);
+    }
 }

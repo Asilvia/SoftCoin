@@ -91,6 +91,16 @@ public class AppDataManager implements DataManager {
     }
 
     @Override
+    public ArrayList<String> getSavedSearched() {
+        return mPreferencesHelper.getSearchedCoins();
+    }
+
+    @Override
+    public void setSavedSearched(ArrayList<String> list) {
+        mPreferencesHelper.setSearchedCoins(list);
+    }
+
+    @Override
     public String getMainCoin() {
         return mPreferencesHelper.getMainCoin();
 

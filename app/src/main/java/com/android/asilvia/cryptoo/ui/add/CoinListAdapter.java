@@ -31,13 +31,16 @@ public class CoinListAdapter extends ArrayAdapter<CoinsDetails>  implements Filt
     private CoinsFilter mFilter;
     ArrayList<CoinsDetails> originalCoinList;
     ArrayList<CoinsDetails> filteredList = new ArrayList<>();
+    ArrayList<String> lastSearched = new ArrayList<>();
 
 
-    public CoinListAdapter(@NonNull Context context, ArrayList<CoinsDetails> list) {
+    public CoinListAdapter(@NonNull Context context, ArrayList<CoinsDetails> list, ArrayList<String> lastsearch) {
         super(context, 0 , list);
         mContext = context;
         originalCoinList = list;
         filteredList.addAll(list);
+        lastSearched.addAll(lastsearch);
+
     }
 
     @Override
@@ -79,7 +82,25 @@ public class CoinListAdapter extends ArrayAdapter<CoinsDetails>  implements Filt
     public void addList(ArrayList<CoinsDetails> list)
     {
        originalCoinList.addAll(list);
-       filteredList.addAll(list);
+       if(lastSearched.size() > 0)
+       {
+           for (int i=0; i<lastSearched.size(); i++)
+           {
+               for(int j=0; j<originalCoinList.size(); j++)
+               {
+                   if(lastSearched.get(i).equals(originalCoinList.get(j).getId()))
+                   {
+                       filteredList.add(originalCoinList.get(j));
+                       break;
+                   }
+               }
+           }
+       }
+       else
+       {
+           filteredList.addAll(list);
+       }
+
        notifyDataSetChanged();
     }
 
