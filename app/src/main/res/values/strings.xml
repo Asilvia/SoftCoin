@@ -14,7 +14,7 @@
     <string name="initial_price">Initial Price</string>
     <string name="profit_loss">Profit / Loss</string>
     <string name="delete">Delete</string>
-    <string name="title_activity_settings">Settings</string>
+
 
     <!-- Strings related to Settings -->
 
@@ -55,73 +55,6 @@
     <string name="pref_invite">Invite Friends</string>
     <string name="pref_feedback">Send Feedback</string>
 
-
-    <string name="pref_title_social_recommendations">Enable social recommendations</string>
-    <string name="pref_description_social_recommendations">Recommendations for people to contact
-        based on your message history
-    </string>
-
-    <string name="pref_title_display_name">Display name</string>
-    <string name="pref_default_display_name">John Smith</string>
-
-    <string name="pref_title_add_friends_to_messages">Add friends to messages</string>
-    <string-array name="pref_example_list_titles">
-        <item>Always</item>
-        <item>When possible</item>
-        <item>Never</item>
-    </string-array>
-    <string-array name="pref_example_list_values">
-        <item>1</item>
-        <item>0</item>
-        <item>-1</item>
-    </string-array>
-
-    <!-- Example settings for Data & Sync -->
-    <string name="pref_header_data_sync">Data &amp; sync</string>
-
-    <string name="pref_title_sync_frequency">Sync frequency</string>
-    <string-array name="pref_sync_frequency_titles">
-        <item>15 minutes</item>
-        <item>30 minutes</item>
-        <item>1 hour</item>
-        <item>3 hours</item>
-        <item>6 hours</item>
-        <item>Never</item>
-    </string-array>
-    <string-array name="pref_sync_frequency_values">
-        <item>15</item>
-        <item>30</item>
-        <item>60</item>
-        <item>180</item>
-        <item>360</item>
-        <item>-1</item>
-    </string-array>
-
-    <string-array name="list_preference_entries">
-        <item>Entry 1</item>
-        <item>Entry 2</item>
-        <item>Entry 3</item>
-    </string-array>
-
-    <string-array name="list_preference_entry_values">
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-    </string-array>
-
-    <string-array name="multi_select_list_preference_default_value" />
-
-    <string name="pref_title_system_sync_settings">System sync settings</string>
-
-    <!-- Example settings for Notifications -->
-    <string name="pref_header_notifications">Notifications</string>
-
-    <string name="pref_title_new_message_notifications">New message notifications</string>
-
-    <string name="pref_title_ringtone">Ringtone</string>
-    <string name="pref_ringtone_silent">Silent</string>
-
-    <string name="pref_title_vibrate">Vibrate</string>
     <string name="initial_price_piece">Initial price (piece)</string>
     <string name="hint_number">Number</string>
     <string name="appwidget_text">EXAMPLE</string>
@@ -129,4 +62,15 @@
     <string name="add_widget">Add widget</string>
     <string name="frequently_searched">Frequently searched</string>
     <string name="store">Download Cryptoo here : https://play.google.com/store/apps/details?id=</string>
+    <string name="pref_title_settings">Settings</string>
+    <string name="pref_title_privacy">Privacy  &amp; Disclaimer</string>
+    <string name="privacy" formatted="true"><![CDATA[<center><h1>Privacy</h1></center>
+    <p>Cryptoo does NOT share any data that can be used to personally identify you. We do use and share non-personal data to improve our products and services; provide support; send notifications, offers, and promotions; and to make money from our free offerings using non-personal data.</p>
+    <p>Changes to this Privacy Statement The contents of this statement may be altered at any time, at our discretion. If you have any questions regarding our privacy policy then you may contact us.</p>
+    <p>Please note this app is subject to change or withdrawal in the future</p>
+    <center><h1>Disclaimer</h1></center><h3>No Investment Advice</h3>
+    <p>The information provided on this app does not constitute investment advice, financial advice, trading advice, or any other sort of advice and you should not treat any of the apps content as such. Cryptoo does not recommend that any cryptocurrency should be bought, sold, or held by you. Do conduct your own due diligence and consult your financial advisor before making any investment decisions</p>
+    <h3>Accuracy of Information</h3>
+    <p>Cryptoo will strive to ensure accuracy of information listed on this app although it will not hold any responsibility for any missing or wrong information. Cryptoo provides all information as is. You understand that you are using any and all information available here at your own risk.</p>]]>
+    </string>
 </resources>

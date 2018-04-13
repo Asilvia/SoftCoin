@@ -84,7 +84,9 @@
             android:selectable="false"
             android:layout="@layout/pref_line"/>
         <Preference android:title="@string/pref_privacy"
-            android:icon="@drawable/ic_lock_black_24dp"/>
+            android:icon="@drawable/ic_lock_black_24dp"
+            android:key="privacy"
+            android:selectable="true"/>
         <Preference
             android:title="divider"
             android:selectable="false"

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <Preference
+        android:title="divider"
+        android:selectable="false"
+        android:layout="@layout/pref_line"/>
+    <com.android.asilvia.cryptoo.preferences.PrivacyTextViewPreference android:selectable="false"
+        android:key="textView"
+        android:layout="@layout/privacy"/>
+
+    <Preference android:selectable="false"
+        android:layout="@layout/layout_footer"/>
+</PreferenceScreen>

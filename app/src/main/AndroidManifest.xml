@@ -32,7 +32,7 @@
             android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".ui.settings.SettingsActivity"
-            android:label="@string/title_activity_settings"
+            android:label="@string/pref_title_settings"
             android:parentActivityName=".ui.start.StartActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
