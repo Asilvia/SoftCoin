@@ -16,6 +16,7 @@ android {
         buildConfigField "String", "MAINBASEURL", "\"https://min-api.cryptocompare.com/data/\""
         buildConfigField "int", "CACHETIME", "432000" // 5days
         buildConfigField "String", "MAINDEFAULTCOIN", "\"EUR\""
+        buildConfigField "String", "MAINEMAIL", "\"asilvia4business@gmail.com\""
     }
 
     android.applicationVariants.all { variant ->

@@ -99,7 +99,9 @@
             android:selectable="false"
             android:layout="@layout/pref_line"/>
         <Preference android:title="@string/pref_feedback"
-            android:icon="@drawable/ic_email_black_24dp"/>
+            android:icon="@drawable/ic_email_black_24dp"
+            android:key="sendFeedback"
+            android:selectable="true"/>
     </PreferenceCategory>
     <Preference android:selectable="false"
         android:layout="@layout/layout_footer"/>

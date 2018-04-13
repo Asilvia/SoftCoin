@@ -30,6 +30,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 
+import com.android.asilvia.cryptoo.BuildConfig;
 import com.android.asilvia.cryptoo.R;
 
 import java.util.List;
@@ -292,6 +293,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
         SwitchPreference marketPricePreference;
         Preference rate;
         Preference share;
+        Preference sendFeedback;
 
 
 
@@ -307,6 +309,8 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             rate.setOnPreferenceClickListener(this);
             share = findPreference("share");
             share.setOnPreferenceClickListener(this);
+            sendFeedback = findPreference("sendFeedback");
+            sendFeedback.setOnPreferenceClickListener(this);
 
 
 
@@ -388,7 +392,19 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             {
                 share();
             }
+            else if(preference.equals(sendFeedback))
+            {
+                sendFeedback();
+            }
+
+
             return false;
+        }
+
+        private void sendFeedback() {
+            Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
+                    "mailto", BuildConfig.MAINEMAIL, null));
+            startActivity(Intent.createChooser(emailIntent, "Send email..."));
         }
 
         private void share() {
