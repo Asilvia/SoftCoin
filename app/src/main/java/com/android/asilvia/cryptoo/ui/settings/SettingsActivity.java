@@ -3,6 +3,7 @@ package com.android.asilvia.cryptoo.ui.settings;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Fragment;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -20,6 +21,7 @@ import android.support.v7.app.ActionBar;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.preference.RingtonePreference;
+import android.support.v7.widget.ShareActionProvider;
 import android.text.TextUtils;
 import android.view.MenuItem;
 import android.support.v4.app.NavUtils;
@@ -282,12 +284,15 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
     }
 
 
-    public static class SettingsFragment extends PreferenceFragment implements Preference.OnPreferenceChangeListener {
+    public static class SettingsFragment extends PreferenceFragment implements Preference.OnPreferenceChangeListener, Preference.OnPreferenceClickListener {
 
         SwitchPreference profitPercentagePreference;
         SwitchPreference profitAmountPreference;
         SwitchPreference indexPercentagePreference;
         SwitchPreference marketPricePreference;
+        Preference rate;
+        Preference share;
+
 
 
 
@@ -297,15 +302,11 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
        //     PreferenceManager.setDefaultValues(getActivity().getBaseContext(), R.xml.settings, false);
             addPreferencesFromResource(R.xml.settings);
 
-            profitPercentagePreference = (SwitchPreference) findPreference("profit_percentage");
-            profitAmountPreference = (SwitchPreference) findPreference("profit_amount");
-            indexPercentagePreference = (SwitchPreference) findPreference("index");
-            marketPricePreference = (SwitchPreference) findPreference("market");
-
-            profitPercentagePreference.setOnPreferenceChangeListener(this);
-            profitAmountPreference.setOnPreferenceChangeListener(this);
-            indexPercentagePreference.setOnPreferenceChangeListener(this);
-            marketPricePreference.setOnPreferenceChangeListener(this);
+            setSwitchPreferencesValues();
+            rate = findPreference("rate");
+            rate.setOnPreferenceClickListener(this);
+            share = findPreference("share");
+            share.setOnPreferenceClickListener(this);
 
 
 
@@ -322,6 +323,18 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
 
 
 
+        }
+
+        private void setSwitchPreferencesValues() {
+            profitPercentagePreference = (SwitchPreference) findPreference("profit_percentage");
+            profitAmountPreference = (SwitchPreference) findPreference("profit_amount");
+            indexPercentagePreference = (SwitchPreference) findPreference("index");
+            marketPricePreference = (SwitchPreference) findPreference("market");
+
+            profitPercentagePreference.setOnPreferenceChangeListener(this);
+            profitAmountPreference.setOnPreferenceChangeListener(this);
+            indexPercentagePreference.setOnPreferenceChangeListener(this);
+            marketPricePreference.setOnPreferenceChangeListener(this);
         }
 
 
@@ -361,6 +374,41 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                 return true;
             }
             return false;
+        }
+
+        @Override
+        public boolean onPreferenceClick(Preference preference) {
+
+            Timber.d("===========settings on CLick===========" );
+            if(preference.equals(rate))
+            {
+                rate();
+            }
+            else if(preference.equals(share))
+            {
+                share();
+            }
+            return false;
+        }
+
+        private void share() {
+            Intent sendIntent = new Intent();
+            sendIntent.setAction(Intent.ACTION_SEND);
+            sendIntent.putExtra(Intent.EXTRA_TEXT, getActivity().getResources().getString(R.string.store)+getActivity().getPackageName());
+            sendIntent.setType("text/plain");
+            startActivity(sendIntent);
+        }
+
+        private void rate() {
+            try {
+                Uri marketUri = Uri.parse("market://details?id=" + getActivity().getPackageName());
+                Intent marketIntent = new Intent(Intent.ACTION_VIEW, marketUri);
+                startActivity(marketIntent);
+            }catch(ActivityNotFoundException e) {
+                Uri marketUri = Uri.parse("https://play.google.com/store/apps/details?id=" + getActivity().getPackageName());
+                Intent marketIntent = new Intent(Intent.ACTION_VIEW, marketUri);
+                startActivity(marketIntent);
+            }
         }
     }
 }

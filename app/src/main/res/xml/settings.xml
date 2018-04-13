@@ -71,10 +71,14 @@
 
     </PreferenceCategory>
     <PreferenceCategory android:title="@string/pref_header_about"
-        android:key="pref_key_storage_settings_about">
+        android:key="pref_key_storage_settings_about"
+        android:enabled="true">
 
         <Preference android:title="@string/pref_rate"
-            android:icon="@drawable/ic_star_black_24dp"/>
+            android:icon="@drawable/ic_star_black_24dp"
+            android:key="rate"
+            android:selectable="true"
+            />
         <Preference
             android:title="divider"
             android:selectable="false"
@@ -86,7 +90,10 @@
             android:selectable="false"
             android:layout="@layout/pref_line"/>
         <Preference android:title="@string/pref_invite"
-            android:icon="@drawable/ic_share_black_24dp"/>
+            android:icon="@drawable/ic_share_black_24dp"
+            android:key="share"
+            android:selectable="true"
+            />
         <Preference
             android:title="divider"
             android:selectable="false"
