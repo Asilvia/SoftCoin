@@ -15,6 +15,7 @@ import android.os.Bundle;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
+import android.preference.SwitchPreference;
 import android.support.v7.app.ActionBar;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
@@ -54,6 +55,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
         @Override
         public boolean onPreferenceChange(Preference preference, Object value) {
             String stringValue = value.toString();
+
 
             if (preference instanceof ListPreference) {
                 // For list preferences, look up the correct display value in
@@ -280,22 +282,85 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
     }
 
 
-    public static class SettingsFragment extends PreferenceFragment {
+    public static class SettingsFragment extends PreferenceFragment implements Preference.OnPreferenceChangeListener {
+
+        SwitchPreference profitPercentagePreference;
+        SwitchPreference profitAmountPreference;
+        SwitchPreference indexPercentagePreference;
+        SwitchPreference marketPricePreference;
+
+
+
         @Override
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
        //     PreferenceManager.setDefaultValues(getActivity().getBaseContext(), R.xml.settings, false);
             addPreferencesFromResource(R.xml.settings);
 
-            ListPreference dataPref = (ListPreference) findPreference("default_currency");
+            profitPercentagePreference = (SwitchPreference) findPreference("profit_percentage");
+            profitAmountPreference = (SwitchPreference) findPreference("profit_amount");
+            indexPercentagePreference = (SwitchPreference) findPreference("index");
+            marketPricePreference = (SwitchPreference) findPreference("market");
 
-            if(dataPref.getValue() == null){
+            profitPercentagePreference.setOnPreferenceChangeListener(this);
+            profitAmountPreference.setOnPreferenceChangeListener(this);
+            indexPercentagePreference.setOnPreferenceChangeListener(this);
+            marketPricePreference.setOnPreferenceChangeListener(this);
+
+
+
+
+        //    ListPreference dataPref = (ListPreference) findPreference("default_currency");
+
+        /*    if(dataPref.getValue() == null){
                 dataPref.setValueIndex(0); //set to index of your deafult value
             }
 
             String preferencesName = this.getPreferenceManager().getSharedPreferencesName();
 
-            Timber.d("===========settings===========" + preferencesName);
+            Timber.d("===========settings===========" + preferencesName);*/
+
+
+
+        }
+
+
+        @Override
+        public boolean onPreferenceChange(Preference preference, Object value) {
+            Boolean mValue = Boolean.valueOf(value.toString());
+            if(preference.equals(profitPercentagePreference))
+            {
+              if(mValue == true)
+                  indexPercentagePreference.setChecked(false);
+              else
+                  indexPercentagePreference.setChecked(true);
+              return true;
+            }
+            else  if(preference.equals(profitAmountPreference))
+            {
+                if(mValue == true)
+                    marketPricePreference.setChecked(false);
+                else
+                    marketPricePreference.setChecked(true);
+                return true;
+            }
+            else  if(preference.equals(indexPercentagePreference))
+            {
+                if(mValue == true)
+                    profitPercentagePreference.setChecked(false);
+                else
+                    profitPercentagePreference.setChecked(true);
+                return true;
+            }
+            else if(preference.equals(marketPricePreference))
+            {
+                if(mValue == true)
+                    profitAmountPreference.setChecked(false);
+                else
+                    profitAmountPreference.setChecked(true);
+                return true;
+            }
+            return false;
         }
     }
 }
