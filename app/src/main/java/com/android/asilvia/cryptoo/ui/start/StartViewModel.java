@@ -79,6 +79,11 @@ public class StartViewModel extends BaseViewModel<StartNavigator> {
         return getDataManager().getMainCurrencySymbol();
     }
 
+    public boolean isMarket()
+    {
+        return getDataManager().isMarket();
+    }
+
 
     LiveData<List<LocalCoin>> getObservableCoinsList()
     {

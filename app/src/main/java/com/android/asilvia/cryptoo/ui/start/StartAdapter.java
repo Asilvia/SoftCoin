@@ -30,6 +30,7 @@ public class StartAdapter extends RecyclerView.Adapter<StartAdapter.ViewHolder>
     private List<LocalCoin> data;
     private Context context;
     private String symbol;
+    private boolean market;
 
 
 
@@ -55,10 +56,11 @@ public class StartAdapter extends RecyclerView.Adapter<StartAdapter.ViewHolder>
 
     }
 
-    public StartAdapter(Context context, List<LocalCoin> data, String symbol) {
+    public StartAdapter(Context context, List<LocalCoin> data, String symbol, boolean market) {
         this.data = data;
         this.context = context;
         this.symbol = symbol;
+        this.market = market;
     }
 
 
@@ -77,7 +79,6 @@ public class StartAdapter extends RecyclerView.Adapter<StartAdapter.ViewHolder>
         final LocalCoin item = (LocalCoin) getItem(position);
         String tvText = item.getName() + " (" +item.getKey() + ")";
         holder.name.setText(tvText);
-        holder.value.setText(symbol + String.format("%.2f", item.getPrice()));
 
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -92,10 +93,21 @@ public class StartAdapter extends RecyclerView.Adapter<StartAdapter.ViewHolder>
                 .placeholder(R.mipmap.ic_launcher)
                 .into(holder.icon)
         ;
-        double percentage = getPercentage(item);
-        holder.value_percentage.setText(String.format("%.2f",percentage ) + "%");
 
-        setIndicator(holder, percentage);
+        if(market) {
+
+            holder.value_percentage.setText(String.format("%.2f", item.getIndex()) + "%");
+            holder.value.setText(symbol + String.format("%.2f", item.getPrice()));
+            setIndicator(holder, item.getIndex());
+        }
+        else
+        {
+            double percentage = getUserPercentage(item);
+            holder.value_percentage.setText(String.format("%.2f", percentage) + "%");
+            holder.value.setText(symbol + item.getUserProfit());
+            setIndicator(holder, percentage);
+        }
+
 
         //  setBackgroundColor(holder.cardView, item);
 
@@ -130,10 +142,12 @@ public class StartAdapter extends RecyclerView.Adapter<StartAdapter.ViewHolder>
     }
 
 
-    public void setSymbol(String symbol)
+    public void updateSymbolAndMarket(String symbol, boolean isMarket)
     {
         this.symbol = symbol;
+        this.market = isMarket;
     }
+
 
 
 
@@ -145,38 +159,10 @@ public class StartAdapter extends RecyclerView.Adapter<StartAdapter.ViewHolder>
     }
 
 
-    public double getPercentage (LocalCoin localCoin){
+    public double getUserPercentage (LocalCoin localCoin){
         double finalPrice = localCoin.getPrice();
         double userPrice = localCoin.getUserPrice();
         return (finalPrice - userPrice)/finalPrice *100;
     }
 
-    public void setBackgroundColor(CardView card, LocalCoin coin)
-    {/*
-        Double actualPrice = coin.getPrice();
-        Double userPrice = coin.getUserPrice();
-        Long amount = coin.getAmount();
-        if(userPrice != 0 && amount != 0)
-        {
-            double result = amount * (actualPrice - userPrice);
-            if(result > 50)
-            {
-                card.setBackgroundResource(R.drawable.card_view_green);
-            }
-            else if(result < -50)
-            {
-                card.setBackgroundResource(R.drawable.card_view_red);
-            }
-            else
-            {
-                card.setBackgroundResource(R.drawable.card_view_blue);
-            }
-        }
-        else
-        {
-            card.setBackgroundResource(R.drawable.card_view_null);
-        }
-
-*/
-    }
 }

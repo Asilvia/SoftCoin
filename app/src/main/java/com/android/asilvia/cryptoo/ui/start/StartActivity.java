@@ -58,7 +58,7 @@ public class StartActivity extends BaseActivity<ActivityStartBinding, StartViewM
             @Override
             public void onChanged(@Nullable List<LocalCoin> localCoins) {
                 Timber.d("OnChange: " + "localCoins.size: " + localCoins.size());
-                adapter.setSymbol(mStartViewModel.getCoinSymbol());
+                adapter.updateSymbolAndMarket(mStartViewModel.getCoinSymbol(), mStartViewModel.isMarket());
                 adapter.setCoin(localCoins);
                 mStartViewModel.setIsLoading(false);
             }
@@ -100,7 +100,7 @@ public class StartActivity extends BaseActivity<ActivityStartBinding, StartViewM
                 mStartViewModel.getObservableCoinsList().observe(StartActivity.this, new Observer<List<LocalCoin>>() {
                     @Override
                     public void onChanged(@Nullable List<LocalCoin> localCoins) {
-                        adapter.setSymbol(mStartViewModel.getCoinSymbol());
+                        adapter.updateSymbolAndMarket(mStartViewModel.getCoinSymbol(), mStartViewModel.isMarket());
                         adapter.setCoin(localCoins);
                         mActivityStartBinding.swiperefresh.setRefreshing(false);
                     }
@@ -108,7 +108,7 @@ public class StartActivity extends BaseActivity<ActivityStartBinding, StartViewM
             }
         });
 
-        adapter = new StartAdapter(getApplicationContext(), new ArrayList<LocalCoin>(),mStartViewModel.getCoinSymbol());
+        adapter = new StartAdapter(getApplicationContext(), new ArrayList<LocalCoin>(),mStartViewModel.getCoinSymbol(), mStartViewModel.isMarket());
         mActivityStartBinding.coinsList.setAdapter(adapter);
     }
 

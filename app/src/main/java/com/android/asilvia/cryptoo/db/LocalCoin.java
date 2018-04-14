@@ -130,4 +130,10 @@ public class LocalCoin {
      public void setIndex(double index) {
         this.index = index;
      }
+
+     public String getUserProfit()
+     {
+         return String.format("%.2f",(this.price - this.userPrice) * amount);
+     }
+
 }

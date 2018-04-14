@@ -72,10 +72,7 @@ public class CoinDetailsViewModel extends BaseViewModel<CoinDetailsNavigator> {
 
     public String getProfit()
     {
-
-        double finalPrice = mCoin.getPrice();
-        double userPrice = mCoin.getUserPrice();
-        return String.format("%.2f",(finalPrice - userPrice));
+        return getDataManager().getMainCurrencySymbol() + mCoin.getUserProfit();
     }
 
 

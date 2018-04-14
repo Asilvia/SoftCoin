@@ -32,6 +32,7 @@ public interface DataManager{
     ArrayList<String> getSavedSearched();
     void setSavedSearched(ArrayList<String> list);
     String getMainCurrencySymbol();
+    boolean isMarket();
 
 
 

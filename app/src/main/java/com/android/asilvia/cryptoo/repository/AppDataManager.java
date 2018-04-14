@@ -109,6 +109,11 @@ public class AppDataManager implements DataManager {
     }
 
     @Override
+    public boolean isMarket() {
+        return mPreferencesHelper.isMarketPrice();
+    }
+
+    @Override
     public String getMainCoin() {
 
         return mPreferencesHelper.getMainCoin();
