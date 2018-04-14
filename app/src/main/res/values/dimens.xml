@@ -27,6 +27,7 @@ http://developer.android.com/guide/topics/appwidgets/index.html#CreatingLayout
     <dimen name="widget_icon">24dp</dimen>
     <dimen name="grid_margin">1dp</dimen>
     <dimen name="widget_card_padding">12dp</dimen>
+    <dimen name="widget_card_padding_empty">8dp</dimen>
     <dimen name="widget_title_text">12sp</dimen>
     <dimen name="widget_indice_text">18sp</dimen>
 

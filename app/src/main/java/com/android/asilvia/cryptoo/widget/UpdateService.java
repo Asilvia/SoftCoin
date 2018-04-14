@@ -71,86 +71,77 @@ public class UpdateService  extends LifecycleService{
         mDataManager.getCoinPrices(from, to).observe(this, new Observer<ApiResponse<CoinsPrice>>() {
             @Override
             public void onChanged(@Nullable ApiResponse<CoinsPrice> coinsPriceApiResponse) {
-                String price = String.valueOf(coinsPriceApiResponse.body.getRAW().get(savedCoins.get(0).getKey()).get(to).getPRICE());
-                savedCoins.get(0).setPrice(Double.valueOf(price));
-                double index = coinsPriceApiResponse.body.getRAW().get(savedCoins.get(0).getKey()).get(to).getCHANGEPCT24HOUR();
-                savedCoins.get(0).setIndex(index);
-                Timber.d("On changeeeeeee" + price);
-                setFirstColumn(view, savedCoins.get(0));
-                setSecondColumn(view, savedCoins.get(1));
-                if(size >= 3) {
-                    view.setViewVisibility(R.id.llThirdEmpty, View.GONE);
-                    view.setViewVisibility(R.id.llThird, View.VISIBLE);
-                    view.setViewVisibility(R.id.llThirdrow, View.VISIBLE);
-                    view.setViewVisibility(R.id.llThirdrowEmpty, View.GONE);
-                    setThirdColumn(view, savedCoins.get(2));
+
+                if (size <= 0) {
+                    showAllEmptyScreens(view);
+                } else {
+                    updateCoinPrice(coinsPriceApiResponse, size, savedCoins, to);
+                    if (size == 1) {
+                        showFirstElement(view, savedCoins.get(0));
+                    } else if (size == 2) {
+                        showFirstTwoElememts(view, savedCoins.get(0), savedCoins.get(1));
+                    } else {
+                        showAllElements(view, savedCoins.get(0), savedCoins.get(1), savedCoins.get(2));
+                    }
+
+
+                    manager.updateAppWidget(theWidget, view);
+                    mDataManager.updatesCoins(savedCoins).subscribeOn(Schedulers.io()).subscribe(() -> {
+
+                        Timber.d("--> localcoin success");
+
+
+                        //   AppNavigation.goToStartActivity(CoinListActivity.this);
+                    }, throwable -> {
+                        Timber.d("--> localcoin failed" + throwable.getMessage());
+                    });
                 }
-                else
-                {
-                    view.setViewVisibility(R.id.llThirdEmpty, View.VISIBLE);
-                    view.setViewVisibility(R.id.llThird, View.GONE);
-                    view.setViewVisibility(R.id.llThirdrow, View.GONE);
-                    view.setViewVisibility(R.id.llThirdrowEmpty, View.VISIBLE);
-                }
-
-
-
-
-                manager.updateAppWidget(theWidget, view);
-                mDataManager.updatesCoins(savedCoins).subscribeOn(Schedulers.io()).subscribe(() -> {
-
-                    Timber.d("--> localcoin success");
-
-
-                    //   AppNavigation.goToStartActivity(CoinListActivity.this);
-                }, throwable -> {
-                    Timber.d("--> localcoin failed" + throwable.getMessage());
-                });
             }
         });
-
-
-       /* LiveData<List<LocalCoin>> mObservableCoinsList = Transformations.switchMap(mDataManager.getCoinPrices(from, to), coinList -> {
-
-            for (LocalCoin coin : savedCoins) {
-
-                String price = String.valueOf(coinList.body.getRAW().get(coin.getKey()).get(to).getPRICE());
-                coin.setPrice(Double.parseDouble(price));
-                double index = coinList.body.getRAW().get(coin.getKey()).get(to).getCHANGEPCT24HOUR();
-                coin.setIndex(index);
-            }
-
-            if (size == 1) {
-
-                view.setTextViewText(R.id.coin_name1, savedCoins.get(0).getName());
-            } else {
-
-                view.setTextViewText(R.id.coin_name1, "Maria");
-            }
-            mDataManager.updatesCoins(savedCoins).subscribeOn(Schedulers.io()).subscribe(() -> {
-
-                Timber.d("--> localcoin success");
-
-
-                //   AppNavigation.goToStartActivity(CoinListActivity.this);
-            }, throwable -> {
-                Timber.d("--> localcoin failed" + throwable.getMessage());
-            });
-            MediatorLiveData<List<LocalCoin>> completeCoinList = new MediatorLiveData<>();
-            completeCoinList.postValue(savedCoins);
-            return completeCoinList;
-        });
-
-
-
-
-*/
-
 
         return super.onStartCommand(intent, flags, startId);
     }
 
+    private void showAllElements(RemoteViews view, LocalCoin localCoin, LocalCoin localCoin1, LocalCoin localCoin2) {
+        setFirstColumn(view, localCoin);
+        setSecondColumn(view, localCoin1);
+        setThirdColumn(view, localCoin2);
+
+    }
+
+    private void showFirstTwoElememts(RemoteViews view, LocalCoin localCoin, LocalCoin localCoin1) {
+            setFirstColumn(view, localCoin);
+            setSecondColumn(view, localCoin1);
+            showThirdElementEmpty(view);
+
+    }
+
+    private void updateCoinPrice(@Nullable ApiResponse<CoinsPrice> coinsPriceApiResponse, int size, ArrayList<LocalCoin> savedCoins, String to) {
+        for(int i= 0;i<size;i++ )
+        {
+            String price = String.valueOf(coinsPriceApiResponse.body.getRAW().get(savedCoins.get(i).getKey()).get(to).getPRICE());
+            savedCoins.get(i).setPrice(Double.valueOf(price));
+            double index = coinsPriceApiResponse.body.getRAW().get(savedCoins.get(i).getKey()).get(to).getCHANGEPCT24HOUR();
+            savedCoins.get(i).setIndex(index);
+        }
+    }
+
+    private void showFirstElement(RemoteViews view, LocalCoin coin) {
+        setFirstColumn(view, coin);
+        showSecondElementEmpty(view);
+        showThirdElementEmpty(view);
+    }
+
+    private void showAllEmptyScreens(RemoteViews view) {
+
+        showFirstElementEmpty(view);
+        showSecondElementEmpty(view);
+        showThirdElementEmpty(view);
+    }
+
+
     private void setFirstColumn(RemoteViews view, LocalCoin coin) {
+        showFirstElement(view);
         view.setTextViewText(R.id.coin_name1, coin.getKey());
         AppWidgetTarget appWidgetTarget=
         new AppWidgetTarget( getApplicationContext(), view, R.id.coin_icon1, 0 );
@@ -170,6 +161,7 @@ public class UpdateService  extends LifecycleService{
         view.setImageViewResource(R.id.coin_user_profit_indicator_icon1, getIndicator(getProfitIndex(coin)));
     }
     private void setSecondColumn(RemoteViews view, LocalCoin coin) {
+        showSecondElement(view);
         view.setTextViewText(R.id.coin_name2, coin.getKey());
         AppWidgetTarget appWidgetTarget=
                 new AppWidgetTarget( getApplicationContext(), view, R.id.coin_icon2, 0 );
@@ -190,6 +182,8 @@ public class UpdateService  extends LifecycleService{
     }
 
     private void setThirdColumn(RemoteViews view, LocalCoin coin) {
+
+        showThirdElement(view);
         view.setTextViewText(R.id.coin_name3, coin.getKey());
         AppWidgetTarget appWidgetTarget=
                 new AppWidgetTarget( getApplicationContext(), view, R.id.coin_icon3, 0 );
@@ -250,5 +244,43 @@ public class UpdateService  extends LifecycleService{
     @Override
     public Lifecycle getLifecycle() {
         return super.getLifecycle();
+    }
+
+    private void showFirstElementEmpty(RemoteViews view) {
+        view.setViewVisibility(R.id.llFirstEmpty, View.VISIBLE);
+        view.setViewVisibility(R.id.llFirstrowEmpty, View.VISIBLE);
+        view.setViewVisibility(R.id.llFirst, View.GONE);
+        view.setViewVisibility(R.id.llFirstrow, View.GONE);
+    }
+    private void showSecondElementEmpty(RemoteViews view) {
+        view.setViewVisibility(R.id.llSecondEmpty, View.VISIBLE);
+        view.setViewVisibility(R.id.llSecondrowEmpty, View.VISIBLE);
+        view.setViewVisibility(R.id.llSecond, View.GONE);
+        view.setViewVisibility(R.id.llSecondrow, View.GONE);
+    }
+    private void showThirdElementEmpty(RemoteViews view) {
+        view.setViewVisibility(R.id.llThirdEmpty, View.VISIBLE);
+        view.setViewVisibility(R.id.llThirdrowEmpty, View.VISIBLE);
+        view.setViewVisibility(R.id.llThird, View.GONE);
+        view.setViewVisibility(R.id.llThirdrow, View.GONE);
+    }
+
+    private void showFirstElement(RemoteViews view) {
+        view.setViewVisibility(R.id.llFirstEmpty, View.GONE);
+        view.setViewVisibility(R.id.llFirstrowEmpty, View.GONE);
+        view.setViewVisibility(R.id.llFirst, View.VISIBLE);
+        view.setViewVisibility(R.id.llFirstrow, View.VISIBLE);
+    }
+    private void showSecondElement(RemoteViews view) {
+        view.setViewVisibility(R.id.llSecondEmpty, View.GONE);
+        view.setViewVisibility(R.id.llSecondrowEmpty, View.GONE);
+        view.setViewVisibility(R.id.llSecond, View.VISIBLE);
+        view.setViewVisibility(R.id.llSecondrow, View.VISIBLE);
+    }
+    private void showThirdElement(RemoteViews view) {
+        view.setViewVisibility(R.id.llThirdEmpty, View.GONE);
+        view.setViewVisibility(R.id.llThirdrowEmpty, View.GONE);
+        view.setViewVisibility(R.id.llThird, View.VISIBLE);
+        view.setViewVisibility(R.id.llThirdrow, View.VISIBLE);
     }
 }

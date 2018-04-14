@@ -24,7 +24,8 @@ public class CryptooWidget extends AppWidgetProvider {
                        if (pendingIntent == null) {
                        pendingIntent = PendingIntent.getService(context, 0, i, PendingIntent.FLAG_CANCEL_CURRENT);
                    }
-        manager.setRepeating(AlarmManager.ELAPSED_REALTIME, SystemClock.elapsedRealtime(), 60000, pendingIntent);
+                   //Antes 60000
+        manager.setRepeating(AlarmManager.ELAPSED_REALTIME, SystemClock.elapsedRealtime(), 6000, pendingIntent);
 
 
 //        CharSequence widgetText = CryptooWidgetConfigureActivity.loadTitlePref(context, appWidgetId);

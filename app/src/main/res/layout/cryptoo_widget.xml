@@ -271,7 +271,7 @@
             android:layout_width="70dp"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_logo_cryptoo"
-            android:layout_margin="@dimen/widget_card_padding"
+            android:layout_margin="@dimen/widget_card_padding_empty"
             />
     </LinearLayout>
     <LinearLayout
@@ -337,7 +337,7 @@
             android:layout_width="70dp"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_logo_cryptoo"
-            android:layout_margin="@dimen/widget_card_padding"/>
+            android:layout_margin="@dimen/widget_card_padding_empty"/>
 "
 
     </LinearLayout>
@@ -403,7 +403,7 @@
             android:layout_width="70dp"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_logo_cryptoo"
-            android:layout_margin="@dimen/widget_card_padding"/>
+            android:layout_margin="@dimen/widget_card_padding_empty"/>
 />
     </LinearLayout>
     <LinearLayout
