@@ -48,12 +48,12 @@ public class CoinDetailsViewModel extends BaseViewModel<CoinDetailsNavigator> {
 
     public String getTotalAmount()
     {
-        return String.valueOf(mCoin.getAmount() * mCoin.getUserPrice());
+        return getDataManager().getMainCurrencySymbol() + String.valueOf(mCoin.getAmount() * mCoin.getUserPrice());
     }
 
     public String getPrice()
     {
-        return String.valueOf(mCoin.getPrice());
+        return getDataManager().getMainCurrencySymbol() + String.valueOf(mCoin.getPrice());
     }
 
     public String getIndex()
@@ -67,7 +67,7 @@ public class CoinDetailsViewModel extends BaseViewModel<CoinDetailsNavigator> {
 
     public String getInitialPrice()
     {
-        return String.valueOf(mCoin.getUserPrice());
+        return getDataManager().getMainCurrencySymbol() + String.valueOf(mCoin.getUserPrice());
     }
 
     public String getProfit()
