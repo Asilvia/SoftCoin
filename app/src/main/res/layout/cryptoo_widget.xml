@@ -7,6 +7,23 @@
     android:rowCount="2">
 
     <LinearLayout
+        android:id="@+id/llFirstEmpty"
+        android:layout_column="0"
+        android:layout_columnWeight="1"
+        android:layout_margin="@dimen/grid_margin"
+        android:layout_row="0"
+        android:layout_rowWeight="0.7"
+        android:background="@color/colorPrimary"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="12dp"
+        >
+        <ImageView
+            android:layout_width="58dp"
+            android:layout_height="58dp"
+            android:src="@drawable/fab_with_add"/>
+    </LinearLayout>
+    <LinearLayout
         android:id="@+id/llFirst"
         android:layout_column="0"
         android:layout_columnWeight="1"
@@ -15,7 +32,8 @@
         android:layout_rowWeight="0.7"
         android:background="@drawable/widget_top"
         android:orientation="vertical"
-        android:padding="@dimen/widget_card_padding">
+        android:padding="@dimen/widget_card_padding"
+        android:visibility="gone">
 
         <ImageView
             android:id="@+id/coin_icon1"
@@ -73,6 +91,23 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/llSecondEmpty"
+        android:layout_column="1"
+        android:layout_columnWeight="1"
+        android:layout_margin="@dimen/grid_margin"
+        android:layout_row="0"
+        android:layout_rowWeight="0.7"
+        android:background="@color/colorPrimary"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="12dp"
+        >
+        <ImageView
+            android:layout_width="58dp"
+            android:layout_height="58dp"
+            android:src="@drawable/fab_with_add"/>
+    </LinearLayout>
+    <LinearLayout
         android:id="@+id/llSecond"
         android:layout_column="1"
         android:layout_columnWeight="1"
@@ -81,7 +116,8 @@
         android:layout_rowWeight="0.7"
         android:background="@drawable/widget_top"
         android:orientation="vertical"
-        android:padding="@dimen/widget_card_padding">
+        android:padding="@dimen/widget_card_padding"
+        android:visibility="gone">
 
         <ImageView
             android:id="@+id/coin_icon2"
@@ -219,7 +255,25 @@
             android:textColor="@color/title"
             android:textSize="@dimen/widget_title_text" />
     </LinearLayout>
+    <LinearLayout
+        android:id="@+id/llFirstrowEmpty"
+        android:layout_column="0"
+        android:layout_columnWeight="1"
+        android:layout_margin="@dimen/grid_margin"
+        android:layout_row="1"
+        android:layout_rowWeight="0.3"
+        android:background="@drawable/widget_top"
+        android:orientation="vertical"
+        android:gravity="center"
 
+        >
+        <ImageView
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_logo_cryptoo"
+            android:layout_margin="@dimen/widget_card_padding"
+            />
+    </LinearLayout>
     <LinearLayout
         android:id="@+id/llFirstrow"
         android:layout_column="0"
@@ -229,7 +283,8 @@
         android:layout_rowWeight="0.3"
         android:background="@drawable/widget_bottom"
         android:orientation="vertical"
-        android:padding="@dimen/widget_card_padding">
+        android:padding="@dimen/widget_card_padding"
+        android:visibility="gone">
 
         <TextView
             android:id="@+id/coin_user_profit1"
@@ -266,7 +321,26 @@
                 android:src="@drawable/ic_arrow_drop_up" />
         </LinearLayout>
     </LinearLayout>
+    <LinearLayout
+        android:id="@+id/llSecondrowEmpty"
+        android:layout_column="1"
+        android:layout_columnWeight="1"
+        android:layout_margin="@dimen/grid_margin"
+        android:layout_row="1"
+        android:layout_rowWeight="0.3"
+        android:background="@drawable/widget_top"
+        android:orientation="vertical"
+        android:gravity="center"
 
+        >
+        <ImageView
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_logo_cryptoo"
+            android:layout_margin="@dimen/widget_card_padding"/>
+"
+
+    </LinearLayout>
     <LinearLayout
         android:id="@+id/llSecondrow"
         android:layout_column="1"
@@ -276,7 +350,8 @@
         android:layout_rowWeight="0.3"
         android:background="@drawable/widget_bottom"
         android:orientation="vertical"
-        android:padding="@dimen/widget_card_padding">
+        android:padding="@dimen/widget_card_padding"
+        android:visibility="gone">
 
         <TextView
             android:id="@+id/coin_user_profit2"
@@ -323,12 +398,13 @@
         android:background="@drawable/widget_top"
         android:orientation="vertical"
         android:gravity="center"
-        android:padding="@dimen/widget_card_padding"
         >
         <ImageView
-            android:layout_width="wrap_content"
+            android:layout_width="70dp"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_logo_cryptoo"/>
+            android:src="@drawable/ic_logo_cryptoo"
+            android:layout_margin="@dimen/widget_card_padding"/>
+/>
     </LinearLayout>
     <LinearLayout
         android:id="@+id/llThirdrow"

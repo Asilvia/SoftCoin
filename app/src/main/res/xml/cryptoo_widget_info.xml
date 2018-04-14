@@ -5,6 +5,6 @@
     android:minHeight="161dp"
     android:resizeMode="horizontal"
     android:minWidth="320dp"
-    android:previewImage="@drawable/example_appwidget_preview"
+    android:previewImage="@drawable/ic_logo_cryptoo"
     android:updatePeriodMillis="864"
     android:widgetCategory="home_screen|keyguard"></appwidget-provider>
