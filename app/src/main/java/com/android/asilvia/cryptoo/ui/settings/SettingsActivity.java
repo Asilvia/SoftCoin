@@ -191,34 +191,61 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             Boolean mValue = Boolean.valueOf(value.toString());
             if(preference.equals(profitPercentagePreference))
             {
-              if(mValue == true)
+              if(mValue == true) {
                   indexPercentagePreference.setChecked(false);
-              else
+                  profitAmountPreference.setChecked(true);
+                  marketPricePreference.setChecked(false);
+
+              }
+              else {
                   indexPercentagePreference.setChecked(true);
+                  profitAmountPreference.setChecked(false);
+                  marketPricePreference.setChecked(true);
+
+              }
               return true;
             }
             else  if(preference.equals(profitAmountPreference))
             {
-                if(mValue == true)
+                if(mValue == true) {
+                    indexPercentagePreference.setChecked(false);
                     marketPricePreference.setChecked(false);
-                else
+                    profitPercentagePreference.setChecked(true);
+                }
+                else {
+                    indexPercentagePreference.setChecked(true);
                     marketPricePreference.setChecked(true);
+                    profitPercentagePreference.setChecked(false);
+                }
                 return true;
             }
             else  if(preference.equals(indexPercentagePreference))
             {
                 if(mValue == true)
+                {
+                    profitAmountPreference.setChecked(false);
+                    marketPricePreference.setChecked(true);
                     profitPercentagePreference.setChecked(false);
-                else
+                }
+                else {
+                    profitAmountPreference.setChecked(true);
+                    marketPricePreference.setChecked(false);
                     profitPercentagePreference.setChecked(true);
+                }
                 return true;
             }
             else if(preference.equals(marketPricePreference))
             {
-                if(mValue == true)
+                if(mValue == true) {
+                    indexPercentagePreference.setChecked(true);
                     profitAmountPreference.setChecked(false);
-                else
+                    profitPercentagePreference.setChecked(false);
+                }
+                else {
+                    indexPercentagePreference.setChecked(false);
                     profitAmountPreference.setChecked(true);
+                    profitPercentagePreference.setChecked(true);
+                }
                 return true;
             }
             return false;
