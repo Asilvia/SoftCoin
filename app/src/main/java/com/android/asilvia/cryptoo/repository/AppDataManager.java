@@ -101,9 +101,17 @@ public class AppDataManager implements DataManager {
     }
 
     @Override
-    public String getMainCoin() {
-        return mPreferencesHelper.getMainCoin();
+    public String getMainCurrencySymbol() {
+        if(getMainCoin().equals("EUR"))
+            return "€";
+        else
+            return "$";
+    }
 
+    @Override
+    public String getMainCoin() {
+
+        return mPreferencesHelper.getMainCoin();
     }
 
     @Override

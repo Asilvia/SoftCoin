@@ -29,6 +29,7 @@ public class StartAdapter extends RecyclerView.Adapter<StartAdapter.ViewHolder>
 
     private List<LocalCoin> data;
     private Context context;
+    private String symbol;
 
 
 
@@ -54,9 +55,10 @@ public class StartAdapter extends RecyclerView.Adapter<StartAdapter.ViewHolder>
 
     }
 
-    public StartAdapter(Context context, List<LocalCoin> data) {
+    public StartAdapter(Context context, List<LocalCoin> data, String symbol) {
         this.data = data;
         this.context = context;
+        this.symbol = symbol;
     }
 
 
@@ -75,14 +77,8 @@ public class StartAdapter extends RecyclerView.Adapter<StartAdapter.ViewHolder>
         final LocalCoin item = (LocalCoin) getItem(position);
         String tvText = item.getName() + " (" +item.getKey() + ")";
         holder.name.setText(tvText);
+        holder.value.setText(symbol + String.format("%.2f", item.getPrice()));
 
-        if(item.getRealCoinConverter().equals("EUR")) {
-            holder.value.setText("€ " + String.format("%.2f", item.getPrice()));
-        }
-        else
-        {
-            holder.value.setText("$ " + String.format("%.2f", item.getPrice()));
-        }
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -134,6 +130,10 @@ public class StartAdapter extends RecyclerView.Adapter<StartAdapter.ViewHolder>
     }
 
 
+    public void setSymbol(String symbol)
+    {
+        this.symbol = symbol;
+    }
 
 
 

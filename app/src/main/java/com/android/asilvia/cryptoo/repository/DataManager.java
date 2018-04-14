@@ -31,6 +31,7 @@ public interface DataManager{
     String getCoinsName(List<LocalCoin> list);
     ArrayList<String> getSavedSearched();
     void setSavedSearched(ArrayList<String> list);
+    String getMainCurrencySymbol();
 
 
 

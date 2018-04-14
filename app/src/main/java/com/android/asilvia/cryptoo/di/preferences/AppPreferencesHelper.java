@@ -2,11 +2,13 @@ package com.android.asilvia.cryptoo.di.preferences;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 
 import com.android.asilvia.cryptoo.BuildConfig;
 
 import java.util.ArrayList;
 import java.util.StringTokenizer;
+import java.util.prefs.Preferences;
 
 import javax.inject.Inject;
 
@@ -19,18 +21,35 @@ public class AppPreferencesHelper implements PreferencesHelper {
 
     private final SharedPreferences mPrefs;
 
+    private final SharedPreferences appPrefs;
+
 
     @Inject
     public AppPreferencesHelper(Context context,
                                 @PreferencesInfo.PreferenceInfo String prefFileName) {
         mPrefs = context.getSharedPreferences(prefFileName, Context.MODE_PRIVATE);
+        appPrefs = PreferenceManager.getDefaultSharedPreferences(context);
     }
 
 
     @Override
     public String getMainCoin() {
-        return mPrefs.getString("MainCoin", BuildConfig.MAINDEFAULTCOIN);
-
+        return appPrefs.getString("default_currency", BuildConfig.MAINDEFAULTCOIN);
+    }
+    @Override
+    public boolean isMarketPercentage()
+    {
+        return appPrefs.getBoolean("index", false);
+    }
+    @Override
+    public boolean isMarketPrice()
+    {
+        return appPrefs.getBoolean("market", false);
+    }
+    @Override
+    public String getMainPeriod()
+    {
+        return appPrefs.getString("default_percentage", "");
     }
 
     @Override

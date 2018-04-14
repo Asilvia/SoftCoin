@@ -12,6 +12,13 @@ public interface PreferencesHelper {
     ArrayList<String> getSearchedCoins();
     void setSearchedCoins(ArrayList<String> list);
 
+    boolean isMarketPercentage();
+    boolean isMarketPrice();
+    String getMainPeriod();
+
+
+
+
 
 
 }
