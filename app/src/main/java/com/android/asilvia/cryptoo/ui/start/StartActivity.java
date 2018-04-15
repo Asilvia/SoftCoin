@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -39,9 +40,22 @@ public class StartActivity extends BaseActivity<ActivityStartBinding, StartViewM
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Intent i = getIntent();
+        if(i.hasExtra("Action"))
+        {
+            String extra = i.getStringExtra("Action");
+            if(extra.equals("add"))
+            {
+                Timber.d("Go to next activity from widget");
+                AppNavigation.goToCoinListActivity(this);
+            }
+        }
         mActivityStartBinding = getViewDataBinding();
         mStartViewModel.setNavigator(this);
         renderView();
+
+
+
 
     }
 

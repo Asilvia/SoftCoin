@@ -1,5 +1,6 @@
 package com.android.asilvia.cryptoo.widget;
 
+import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.arch.lifecycle.Lifecycle;
 import android.arch.lifecycle.LifecycleService;
@@ -9,6 +10,7 @@ import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.Transformations;
 import android.content.ComponentName;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.view.View;
@@ -18,6 +20,7 @@ import com.android.asilvia.cryptoo.R;
 import com.android.asilvia.cryptoo.api.ApiResponse;
 import com.android.asilvia.cryptoo.db.LocalCoin;
 import com.android.asilvia.cryptoo.repository.DataManager;
+import com.android.asilvia.cryptoo.ui.start.StartActivity;
 import com.android.asilvia.cryptoo.ui.start.StartAdapter;
 import com.android.asilvia.cryptoo.util.AbsentLiveData;
 import com.android.asilvia.cryptoo.vo.CoinsPrice;
@@ -80,8 +83,10 @@ public class UpdateService  extends LifecycleService{
                         showFirstElement(view, savedCoins.get(0));
                     } else if (size == 2) {
                         showFirstTwoElememts(view, savedCoins.get(0), savedCoins.get(1));
+
                     } else {
                         showAllElements(view, savedCoins.get(0), savedCoins.get(1), savedCoins.get(2));
+
                     }
 
 
@@ -100,6 +105,16 @@ public class UpdateService  extends LifecycleService{
         });
 
         return super.onStartCommand(intent, flags, startId);
+    }
+
+    private PendingIntent getPendingIntent(String action)
+    {
+        Intent intent = new Intent(this, StartActivity.class);
+        intent.putExtra("Action", action);
+        intent.setAction(Long.toString(System.currentTimeMillis()));
+        return PendingIntent.getActivity(this, 0,
+                intent,PendingIntent.FLAG_UPDATE_CURRENT);
+
     }
 
     private void showAllElements(RemoteViews view, LocalCoin localCoin, LocalCoin localCoin1, LocalCoin localCoin2) {
@@ -155,8 +170,8 @@ public class UpdateService  extends LifecycleService{
 
         view.setTextViewText(R.id.coin_percentage1, String.format("%.2f",coin.getIndex() ) + "%");
         view.setImageViewResource(R.id.coin_indicator1, getIndicator(coin.getIndex()));
-        view.setTextViewText(R.id.coin_value1, String.format("%.2f",coin.getPrice() ));
-        view.setTextViewText(R.id.coin_user_profit1, getProfit(coin));
+        view.setTextViewText(R.id.coin_value1, mDataManager.getMainCurrencySymbol() + String.format("%.2f",coin.getPrice() ));
+        view.setTextViewText(R.id.coin_user_profit1, mDataManager.getMainCurrencySymbol() + coin.getUserProfit());
         view.setTextViewText(R.id.coin_user_profit_indicator1, getProfitIndexText(coin));
         view.setImageViewResource(R.id.coin_user_profit_indicator_icon1, getIndicator(getProfitIndex(coin)));
     }
@@ -175,8 +190,8 @@ public class UpdateService  extends LifecycleService{
 
         view.setTextViewText(R.id.coin_percentage2, String.format("%.2f",coin.getIndex() ) + "%");
         view.setImageViewResource(R.id.coin_indicator2, getIndicator(coin.getIndex()));
-        view.setTextViewText(R.id.coin_value2, String.format("%.2f",coin.getPrice() ));
-        view.setTextViewText(R.id.coin_user_profit2, getProfit(coin));
+        view.setTextViewText(R.id.coin_value2, mDataManager.getMainCurrencySymbol() +String.format("%.2f",coin.getPrice() ));
+        view.setTextViewText(R.id.coin_user_profit2, mDataManager.getMainCurrencySymbol() + coin.getUserProfit());
         view.setTextViewText(R.id.coin_user_profit_indicator2, getProfitIndexText(coin));
         view.setImageViewResource(R.id.coin_user_profit_indicator_icon2, getIndicator(getProfitIndex(coin)));
     }
@@ -197,8 +212,8 @@ public class UpdateService  extends LifecycleService{
 
         view.setTextViewText(R.id.coin_percentage3, String.format("%.2f",coin.getIndex() ) + "%");
         view.setImageViewResource(R.id.coin_indicator3, getIndicator(coin.getIndex()));
-        view.setTextViewText(R.id.coin_value3, String.format("%.2f",coin.getPrice() ));
-        view.setTextViewText(R.id.coin_user_profit3, getProfit(coin));
+        view.setTextViewText(R.id.coin_value3, mDataManager.getMainCurrencySymbol() +String.format("%.2f",coin.getPrice() ));
+        view.setTextViewText(R.id.coin_user_profit3, mDataManager.getMainCurrencySymbol() + coin.getUserProfit());
         view.setTextViewText(R.id.coin_user_profit_indicator3, getProfitIndexText(coin));
         view.setImageViewResource(R.id.coin_user_profit_indicator_icon3, getIndicator(getProfitIndex(coin)));
     }
@@ -251,18 +266,22 @@ public class UpdateService  extends LifecycleService{
         view.setViewVisibility(R.id.llFirstrowEmpty, View.VISIBLE);
         view.setViewVisibility(R.id.llFirst, View.GONE);
         view.setViewVisibility(R.id.llFirstrow, View.GONE);
+        view.setOnClickPendingIntent(R.id.llFirstEmpty, getPendingIntent("add"));
     }
     private void showSecondElementEmpty(RemoteViews view) {
         view.setViewVisibility(R.id.llSecondEmpty, View.VISIBLE);
         view.setViewVisibility(R.id.llSecondrowEmpty, View.VISIBLE);
         view.setViewVisibility(R.id.llSecond, View.GONE);
         view.setViewVisibility(R.id.llSecondrow, View.GONE);
+        view.setOnClickPendingIntent(R.id.llSecondEmpty, getPendingIntent("add"));
+
     }
     private void showThirdElementEmpty(RemoteViews view) {
         view.setViewVisibility(R.id.llThirdEmpty, View.VISIBLE);
         view.setViewVisibility(R.id.llThirdrowEmpty, View.VISIBLE);
         view.setViewVisibility(R.id.llThird, View.GONE);
         view.setViewVisibility(R.id.llThirdrow, View.GONE);
+        view.setOnClickPendingIntent(R.id.llThirdEmpty, getPendingIntent("add"));
     }
 
     private void showFirstElement(RemoteViews view) {
@@ -270,17 +289,23 @@ public class UpdateService  extends LifecycleService{
         view.setViewVisibility(R.id.llFirstrowEmpty, View.GONE);
         view.setViewVisibility(R.id.llFirst, View.VISIBLE);
         view.setViewVisibility(R.id.llFirstrow, View.VISIBLE);
+        view.setOnClickPendingIntent(R.id.llFirst, getPendingIntent("start"));
+        view.setOnClickPendingIntent(R.id.llFirstrow, getPendingIntent("start"));
     }
     private void showSecondElement(RemoteViews view) {
         view.setViewVisibility(R.id.llSecondEmpty, View.GONE);
         view.setViewVisibility(R.id.llSecondrowEmpty, View.GONE);
         view.setViewVisibility(R.id.llSecond, View.VISIBLE);
         view.setViewVisibility(R.id.llSecondrow, View.VISIBLE);
+        view.setOnClickPendingIntent(R.id.llSecond, getPendingIntent("start"));
+        view.setOnClickPendingIntent(R.id.llSecondrow, getPendingIntent("start"));
     }
     private void showThirdElement(RemoteViews view) {
         view.setViewVisibility(R.id.llThirdEmpty, View.GONE);
         view.setViewVisibility(R.id.llThirdrowEmpty, View.GONE);
         view.setViewVisibility(R.id.llThird, View.VISIBLE);
         view.setViewVisibility(R.id.llThirdrow, View.VISIBLE);
+        view.setOnClickPendingIntent(R.id.llThird, getPendingIntent("start"));
+        view.setOnClickPendingIntent(R.id.llThirdrow, getPendingIntent("start"));
     }
 }

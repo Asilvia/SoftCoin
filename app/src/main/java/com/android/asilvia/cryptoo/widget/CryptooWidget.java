@@ -6,10 +6,12 @@ import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.SystemClock;
 import android.widget.RemoteViews;
 
 import com.android.asilvia.cryptoo.R;
+import com.android.asilvia.cryptoo.ui.start.StartActivity;
 
 /**
  * Implementation of App Widget functionality.
@@ -28,13 +30,7 @@ public class CryptooWidget extends AppWidgetProvider {
         manager.setRepeating(AlarmManager.ELAPSED_REALTIME, SystemClock.elapsedRealtime(), 6000, pendingIntent);
 
 
-//        CharSequence widgetText = CryptooWidgetConfigureActivity.loadTitlePref(context, appWidgetId);
-        // Construct the RemoteViews object
-     //   RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.cryptoo_widget);
-     //   views.setTextViewText(R.id.appwidget_text, "lallala");
 
-        // Instruct the widget manager to update the widget
-     //   appWidgetManager.updateAppWidget(appWidgetId, views);
     }
 
     @Override
