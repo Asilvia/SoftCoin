@@ -12,10 +12,15 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.asilvia.cryptoo.BR;
+import com.android.asilvia.cryptoo.BuildConfig;
 import com.android.asilvia.cryptoo.R;
 import com.android.asilvia.cryptoo.api.ApiResponse;
 import com.android.asilvia.cryptoo.databinding.ActivityCoinListBinding;
@@ -23,8 +28,15 @@ import com.android.asilvia.cryptoo.ui.base.BaseActivity;
 import com.android.asilvia.cryptoo.ui.base.navigation.AppNavigation;
 import com.android.asilvia.cryptoo.vo.Coins;
 import com.android.asilvia.cryptoo.vo.CoinsDetails;
+import com.facebook.ads.Ad;
+import com.facebook.ads.AdChoicesView;
+import com.facebook.ads.AdError;
+import com.facebook.ads.AdListener;
+import com.facebook.ads.MediaView;
+import com.facebook.ads.NativeAd;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Collectors;
 
 import javax.inject.Inject;
@@ -47,12 +59,17 @@ public class CoinListActivity extends BaseActivity<ActivityCoinListBinding, Coin
     @Inject
     ViewModelProvider.Factory mViewModelFactory;
 
+
+    private LinearLayout  nativeAdContainer;
+    private LinearLayout adView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mActivityCoinListBinding = getViewDataBinding();
         mCoinListViewModel.setNavigator(this);
         renderView();
+        showNativeAd();
     }
 
     private void renderView()
@@ -173,6 +190,46 @@ public class CoinListActivity extends BaseActivity<ActivityCoinListBinding, Coin
     @Override
     public int getLayoutId() {
         return R.layout.activity_coin_list;
+    }
+
+    private NativeAd nativeAd;
+
+    private void showNativeAd() {
+
+
+        nativeAd = new NativeAd(this, BuildConfig.FacebookAdUnit);
+        nativeAd.setAdListener(new AdListener() {
+
+            @Override
+            public void onError(Ad ad, AdError error) {
+                Timber.e(" Error receiving ads" + error.getErrorMessage());
+            }
+
+            @Override
+            public void onAdLoaded(Ad ad) {
+                if (nativeAd != null) {
+                    nativeAd.unregisterView();
+                }
+                mAdapter.setNativeAd(nativeAd);
+            }
+
+            @Override
+            public void onAdClicked(Ad ad) {
+
+            }
+
+            @Override
+            public void onLoggingImpression(Ad ad) {
+
+            }
+
+
+
+
+        });
+
+        // Request an ad
+        nativeAd.loadAd();
     }
 
 
