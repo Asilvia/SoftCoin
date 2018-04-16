@@ -28,12 +28,17 @@ import timber.log.Timber;
 public class StartViewModel extends BaseViewModel<StartNavigator> {
 
     private LiveData<List<LocalCoin>> mObservableCoinsList;
-    private MediatorLiveData<List<LocalCoin>> completeCoinList;
+    private MutableLiveData<List<LocalCoin>> completeCoinList;
+
+
+
+    private MutableLiveData<Boolean> hasError ;
 
 
     public StartViewModel(DataManager dataManager, SchedulerProvider schedulerProvider) {
         super(dataManager, schedulerProvider);
         mObservableCoinsList = AbsentLiveData.create();
+        hasError = new MutableLiveData<>();
     }
 
     void getCoinList()
@@ -51,13 +56,27 @@ public class StartViewModel extends BaseViewModel<StartNavigator> {
 
         mObservableCoinsList =  Transformations.switchMap(getDataManager().getCoinPrices(from, to), coinList ->{
 
+            if(!coinList.isSuccessful())
+            {
+                hasError.postValue(true);
+                Timber.e("Error: " + coinList.errorMessage);
+            }
             for(LocalCoin coin: savedCoins)
             {
+                if(coinList.body != null) {
+                    String price = String.valueOf(coinList.body.getRAW().get(coin.getKey()).get(to).getPRICE());
+                    coin.setPrice(Double.parseDouble(price));
+                    double index = coinList.body.getRAW().get(coin.getKey()).get(to).getCHANGEPCT24HOUR();
+                    coin.setIndex(index);
+                }
+                else
+                {
+                    hasError.postValue(true);
+                    hasError.notify();
+                    Timber.e("Error: " + coinList.errorMessage);
+                    break;
+                }
 
-                String price = String.valueOf(coinList.body.getRAW().get(coin.getKey()).get(to).getPRICE());
-                coin.setPrice(Double.parseDouble(price));
-                double index = coinList.body.getRAW().get(coin.getKey()).get(to).getCHANGEPCT24HOUR();
-                coin.setIndex(index);
             }
             getDataManager().updatesCoins(savedCoins).subscribeOn(Schedulers.io()).subscribe(() -> {
 
@@ -94,6 +113,12 @@ public class StartViewModel extends BaseViewModel<StartNavigator> {
         completeCoinList =  new MediatorLiveData<>();
     }
 
+    public MutableLiveData<Boolean> getHasError() {
+        return hasError;
+    }
 
+    public void setHasError(MutableLiveData<Boolean> hasError) {
+        this.hasError = hasError;
+    }
 
 }

@@ -20,6 +20,7 @@ package com.android.asilvia.cryptoo.di.adapter;
 
 
 import android.arch.lifecycle.LiveData;
+import android.support.design.widget.Snackbar;
 
 
 import com.android.asilvia.cryptoo.api.ApiResponse;
@@ -66,6 +67,7 @@ public class LiveDataCallAdapter<R> implements CallAdapter<R, LiveData<ApiRespon
                         public void onFailure(Call<R> call, Throwable throwable) {
                             postValue(new ApiResponse<R>(throwable));
                             Timber.d("===== Error =====" + throwable.getMessage());
+
                         }
                     });
                 }

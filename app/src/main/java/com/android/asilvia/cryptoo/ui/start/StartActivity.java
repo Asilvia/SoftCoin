@@ -1,9 +1,12 @@
 package com.android.asilvia.cryptoo.ui.start;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -87,6 +90,13 @@ public class StartActivity extends BaseActivity<ActivityStartBinding, StartViewM
         mStartViewModel.setIsLoading(true);
       //  mStartViewModel.RetrieveCoinList();
 
+        mStartViewModel.getHasError().observe(this, new Observer<Boolean>() {
+            @Override
+            public void onChanged(@Nullable Boolean aBoolean) {
+                if(aBoolean == true)
+                    buildDialog(StartActivity.this).show();
+            }
+        });
         renderCardList();
 
 
@@ -167,6 +177,24 @@ public class StartActivity extends BaseActivity<ActivityStartBinding, StartViewM
             AppNavigation.goToSettingsActivity(this);
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public AlertDialog.Builder buildDialog(Context c) {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(c);
+        builder.setTitle(R.string.noInternet);
+        builder.setMessage(R.string.noInternet_body);
+
+        builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                finish();
+            }
+        });
+
+        return builder;
     }
 
 

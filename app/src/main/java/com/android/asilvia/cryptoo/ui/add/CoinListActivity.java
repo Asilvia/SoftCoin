@@ -137,7 +137,7 @@ public class CoinListActivity extends BaseActivity<ActivityCoinListBinding, Coin
 
                 builder.setTitle(item.getFullName()).setView(dialogView)
 
-                        .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                        .setPositiveButton(R.string.add, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
 

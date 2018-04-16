@@ -1,7 +1,8 @@
 <resources>
     <string name="app_name">Cryptoo</string>
     <string name="hint_search">Search</string>
-    <string name="ok">ADD</string>
+    <string name="ok">OK</string>
+    <string name="add">ADD</string>
     <string name="cancel">SKIP</string>
     <string name="my_currency">My Currency</string>
     <string name="add_currency">Add Currency</string>
@@ -73,4 +74,6 @@
     <h3>Accuracy of Information</h3>
     <p>Cryptoo will strive to ensure accuracy of information listed on this app although it will not hold any responsibility for any missing or wrong information. Cryptoo provides all information as is. You understand that you are using any and all information available here at your own risk.</p>]]>
     </string>
+    <string name="noInternet">No Internet Connection</string>
+    <string name="noInternet_body">You need to have Mobile Data or wifi to access this. Press ok to Exit</string>
 </resources>
