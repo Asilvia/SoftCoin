@@ -23,6 +23,7 @@ import com.android.asilvia.cryptoo.databinding.ActivityStartBinding;
 import com.android.asilvia.cryptoo.db.LocalCoin;
 import com.android.asilvia.cryptoo.ui.base.BaseActivity;
 import com.android.asilvia.cryptoo.ui.base.navigation.AppNavigation;
+import com.android.asilvia.cryptoo.util.NetworkUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,6 +37,7 @@ public class StartActivity extends BaseActivity<ActivityStartBinding, StartViewM
     ActivityStartBinding mActivityStartBinding;
     private StartViewModel mStartViewModel;
     StartAdapter adapter;
+    boolean isAlertShown = false;
 
     @Inject
     ViewModelProvider.Factory mViewModelFactory;
@@ -44,21 +46,23 @@ public class StartActivity extends BaseActivity<ActivityStartBinding, StartViewM
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Intent i = getIntent();
-        if(i.hasExtra("Action"))
-        {
-            String extra = i.getStringExtra("Action");
-            if(extra.equals("add"))
-            {
-                Timber.d("Go to next activity from widget");
-                AppNavigation.goToCoinListActivity(this);
+        if(NetworkUtils.isNetworkConnected(this)) {
+            if (i.hasExtra("Action")) {
+                String extra = i.getStringExtra("Action");
+                if (extra.equals("add")) {
+                    Timber.d("Go to next activity from widget");
+                    AppNavigation.goToCoinListActivity(this);
+                }
+
             }
+        }
+        else
+        {
+            buildDialog(StartActivity.this).show();
         }
         mActivityStartBinding = getViewDataBinding();
         mStartViewModel.setNavigator(this);
         renderView();
-
-
-
 
     }
 
@@ -93,7 +97,7 @@ public class StartActivity extends BaseActivity<ActivityStartBinding, StartViewM
         mStartViewModel.getHasError().observe(this, new Observer<Boolean>() {
             @Override
             public void onChanged(@Nullable Boolean aBoolean) {
-                if(aBoolean == true)
+                if(aBoolean == true && !isAlertShown)
                     buildDialog(StartActivity.this).show();
             }
         });
@@ -180,19 +184,19 @@ public class StartActivity extends BaseActivity<ActivityStartBinding, StartViewM
     }
 
     public AlertDialog.Builder buildDialog(Context c) {
+            isAlertShown = true;
+            AlertDialog.Builder builder = new AlertDialog.Builder(c);
+            builder.setTitle(R.string.noInternet);
+            builder.setMessage(R.string.noInternet_body);
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(c);
-        builder.setTitle(R.string.noInternet);
-        builder.setMessage(R.string.noInternet_body);
+            builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
 
-        builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
 
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-
-                finish();
-            }
-        });
+                    finish();
+                }
+            });
 
         return builder;
     }

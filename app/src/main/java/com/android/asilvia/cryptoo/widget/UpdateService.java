@@ -132,13 +132,17 @@ public class UpdateService  extends LifecycleService{
     }
 
     private void updateCoinPrice(@Nullable ApiResponse<CoinsPrice> coinsPriceApiResponse, int size, ArrayList<LocalCoin> savedCoins, String to) {
-        for(int i= 0;i<size;i++ )
-        {
-            String price = String.valueOf(coinsPriceApiResponse.body.getRAW().get(savedCoins.get(i).getKey()).get(to).getPRICE());
-            savedCoins.get(i).setPrice(Double.valueOf(price));
-            double index = coinsPriceApiResponse.body.getRAW().get(savedCoins.get(i).getKey()).get(to).getCHANGEPCT24HOUR();
-            savedCoins.get(i).setIndex(index);
-        }
+       if(coinsPriceApiResponse.body != null) {
+           for (int i = 0; i < size; i++) {
+               String price = String.valueOf(coinsPriceApiResponse.body.getRAW().get(savedCoins.get(i).getKey()).get(to).getPRICE());
+               savedCoins.get(i).setPrice(Double.valueOf(price));
+               double index = coinsPriceApiResponse.body.getRAW().get(savedCoins.get(i).getKey()).get(to).getCHANGEPCT24HOUR();
+               savedCoins.get(i).setIndex(index);
+           }
+       }
+       else{
+           Timber.d("Error on the widget");
+       }
     }
 
     private void showFirstElement(RemoteViews view, LocalCoin coin) {
