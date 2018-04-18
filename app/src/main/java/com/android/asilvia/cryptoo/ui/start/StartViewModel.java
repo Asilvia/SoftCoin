@@ -72,7 +72,7 @@ public class StartViewModel extends BaseViewModel<StartNavigator> {
                 else
                 {
                     hasError.postValue(true);
-                    hasError.notify();
+                    //hasError.notify();
                     Timber.e("Error: " + coinList.errorMessage);
                     break;
                 }
