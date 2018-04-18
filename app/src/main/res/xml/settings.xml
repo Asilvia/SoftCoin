@@ -4,9 +4,6 @@
         android:title="divider"
         android:selectable="false"
         android:layout="@layout/pref_line"/>
-    <PreferenceCategory
-        android:title="@string/pref_header_general"
-        android:key="pref_key_storage_settings_general">
         <ListPreference
             android:defaultValue="@string/default_coin"
             android:entries="@array/pref_default_currency_titles"
@@ -29,9 +26,10 @@
             android:positiveButtonText="@null"
             android:title="@string/pref_title_percentage"
             android:summary="%s"/>
-    </PreferenceCategory>
-    <PreferenceCategory android:title="@string/pref_header_home_card"
-        android:key="pref_key_storage_settings_home">
+    <Preference
+        android:title="divider"
+        android:selectable="false"
+        android:layout="@layout/pref_line"/>
         <Preference
             android:layout="@layout/layout_settings_card"
             android:selectable="false"/>
@@ -68,12 +66,10 @@
             android:key="market"
             android:title="@string/pref_title_market"
             android:defaultValue="false" />
-
-    </PreferenceCategory>
-    <PreferenceCategory android:title="@string/pref_header_about"
-        android:key="pref_key_storage_settings_about"
-        android:enabled="true">
-
+        <Preference
+            android:title="divider"
+            android:selectable="false"
+            android:layout="@layout/pref_line"/>
         <Preference android:title="@string/pref_rate"
             android:icon="@drawable/ic_star_black_24dp"
             android:key="rate"
@@ -104,7 +100,6 @@
             android:icon="@drawable/ic_email_black_24dp"
             android:key="sendFeedback"
             android:selectable="true"/>
-    </PreferenceCategory>
     <Preference android:selectable="false"
         android:layout="@layout/layout_footer"/>
 </PreferenceScreen>
