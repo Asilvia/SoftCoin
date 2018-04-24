@@ -15,17 +15,6 @@
             type="com.android.asilvia.cryptoo.ui.details.CoinDetailsViewModel" />
     </data>
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <View
-            android:layout_width="fill_parent"
-            android:layout_height="1dp"
-            android:layout_marginLeft="@dimen/home_horizontal_padding"
-            android:layout_marginRight="@dimen/home_horizontal_padding"
-            android:background="@color/cards_background" />
 
         <ScrollView
             android:layout_width="fill_parent"
@@ -355,5 +344,5 @@
                     android:src="@drawable/ic_logo_cryptoo" />
             </LinearLayout>
         </ScrollView>
-    </LinearLayout>
+
 </layout>
