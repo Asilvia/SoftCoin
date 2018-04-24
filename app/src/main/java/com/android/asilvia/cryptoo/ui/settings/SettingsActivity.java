@@ -17,12 +17,14 @@ import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.SwitchPreference;
+import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.preference.RingtonePreference;
 import android.support.v7.widget.ShareActionProvider;
 import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.support.v4.app.NavUtils;
 import android.view.View;
@@ -170,6 +172,16 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
 
 
 
+        }
+
+        @Override
+        public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+            View view = super.onCreateView(inflater, container, savedInstanceState);
+            if (view != null) {
+                ListView preferencesList = (ListView) view.findViewById(android.R.id.list);
+                preferencesList.setPadding(50, 50, 50, 50);
+            }
+            return view;
         }
 
 

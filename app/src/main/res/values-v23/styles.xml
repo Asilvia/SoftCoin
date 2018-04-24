@@ -11,7 +11,8 @@
         <item name="actionBarStyle">@style/CryptooActionBar</item>
         <item name="actionBarWidgetTheme">@style/CryptooActionBar</item>
         <item name="android:windowBackground">@color/colorPrimary</item>
-        <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
+        <item name="android:preferenceCategoryStyle">@style/CryptooPreferencesCategory</item>
+
 
     </style>
     <style name="CryptooActionBar" parent="@android:style/Widget.Holo.Light.ActionBar.Solid.Inverse">
@@ -21,5 +22,14 @@
         <item name="background">@drawable/actionbar_background</item>
         <item name="contentInsetStartWithNavigation">@dimen/empty</item>
     </style>
+
+    <style name="CryptooPreferencesCategory" parent="@style/Preference.Category.Material">
+        <item name="android:layout">@layout/preferences_category</item>
+
+    </style>
+
+
+
+
 
 </resources>
