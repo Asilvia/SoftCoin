@@ -21,12 +21,6 @@
     android:paddingRight="@dimen/home_horizontal_padding"
     android:paddingLeft="@dimen/home_horizontal_padding"
    >
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="1dp"
-        android:background="@color/cards_background"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"/>
 
     <ProgressBar
         android:id="@+id/loading"
