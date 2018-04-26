@@ -144,8 +144,15 @@ public class CoinListAdapter extends ArrayAdapter<CoinsDetails>  implements Filt
 
     public void addList(ArrayList<CoinsDetails> list)
     {
+        int i=0;
        originalCoinList.addAll(list);
-       if(lastSearched.size() > 0)
+       if(originalCoinList.size() >= 10) {
+           while (filteredList.size() < 5) {
+                filteredList.add(originalCoinList.get(i));
+                i++;
+           }
+       }
+      /* if(lastSearched.size() > 0)
        {
            for (int i=0; i<lastSearched.size(); i++)
            {
@@ -163,7 +170,7 @@ public class CoinListAdapter extends ArrayAdapter<CoinsDetails>  implements Filt
        {
            filteredList.addAll(list);
        }
-
+*/
        notifyDataSetChanged();
     }
 

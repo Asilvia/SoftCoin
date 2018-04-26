@@ -57,6 +57,7 @@ public class CoinListViewModel extends BaseViewModel<CoinListNavigator> {
                     list = new ArrayList<CoinsDetails>(coinsApiResponse.body.getData().values());
                     sortList(list);
                     completeImageUrl(list, coinsApiResponse.body.getBaseImageUrl());
+                    removeLocalcoins(list);
                 }
 
 
@@ -67,6 +68,23 @@ public class CoinListViewModel extends BaseViewModel<CoinListNavigator> {
             Timber.d("Api response is null");
         }
         return list;
+    }
+
+    private void removeLocalcoins(ArrayList<CoinsDetails> list) {
+
+        ArrayList<LocalCoin> savedCoins = new ArrayList<>();
+        savedCoins.addAll(getDataManager().getSavedCoinList());
+        for (int i=0; i<savedCoins.size(); i++)
+        {
+            for(int j=0; j<list.size(); j++)
+            {
+                if(savedCoins.get(i).getName().equals(list.get(j).getCoinName()))
+                {
+                    list.remove(j);
+                    break;
+                }
+            }
+        }
     }
 
     private void sortList(ArrayList<CoinsDetails> list) {

@@ -83,10 +83,9 @@ public class CoinListActivity extends BaseActivity<ActivityCoinListBinding, Coin
         mCoinListViewModel.setIsLoading(true);
         mCoinListViewModel.retrieveCoinList();
         savedSearch = mCoinListViewModel.getSavedSearch();
-        if(savedSearch.size() > 0)
-            mActivityCoinListBinding.lastsearched.setVisibility(View.VISIBLE);
-        else
-            mActivityCoinListBinding.lastsearched.setVisibility(View.GONE);
+
+        mActivityCoinListBinding.lastsearched.setVisibility(View.VISIBLE);
+
 
         list = new ArrayList<> ();
 
