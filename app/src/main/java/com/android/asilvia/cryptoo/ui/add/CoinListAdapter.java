@@ -69,7 +69,15 @@ public class CoinListAdapter extends ArrayAdapter<CoinsDetails>  implements Filt
     @Nullable
     @Override
     public CoinsDetails getItem(int position) {
-        return filteredList.get(position);
+        if(position == 0) {
+            return filteredList.get(position);
+        }
+        else {
+            if (ad != null)
+                return filteredList.get(position - 1);
+            else
+                return filteredList.get(position);
+        }
     }
 
 
