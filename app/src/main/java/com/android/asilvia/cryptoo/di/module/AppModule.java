@@ -9,6 +9,9 @@ import com.android.asilvia.cryptoo.di.db.AppDatabase;
 import com.android.asilvia.cryptoo.di.db.AppDbHelper;
 import com.android.asilvia.cryptoo.di.db.DbHelper;
 import com.android.asilvia.cryptoo.di.db.DbsInfo;
+import com.android.asilvia.cryptoo.di.file.AppFileHelper;
+import com.android.asilvia.cryptoo.di.file.FileHelper;
+import com.android.asilvia.cryptoo.di.file.FilesInfo;
 import com.android.asilvia.cryptoo.di.preferences.AppPreferencesHelper;
 import com.android.asilvia.cryptoo.di.preferences.PreferencesHelper;
 import com.android.asilvia.cryptoo.di.preferences.PreferencesInfo;
@@ -77,6 +80,19 @@ public class AppModule {
     @Singleton
     DbHelper provideDbHelper(AppDbHelper appDbHelper) {
         return appDbHelper;
+    }
+
+
+    @Provides
+    @FilesInfo.FileInfo
+    String provideFileName() {
+        return AppConstants.DIRECTORY_NAME;
+    }
+
+    @Provides
+    @Singleton
+    FileHelper provideFileHelper(AppFileHelper appFileHelper) {
+        return appFileHelper;
     }
 
 

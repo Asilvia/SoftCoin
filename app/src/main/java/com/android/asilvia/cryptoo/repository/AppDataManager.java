@@ -3,12 +3,15 @@ package com.android.asilvia.cryptoo.repository;
 
 import android.arch.lifecycle.LiveData;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.net.Uri;
 
 
 import com.android.asilvia.cryptoo.BuildConfig;
 import com.android.asilvia.cryptoo.api.ApiResponse;
 import com.android.asilvia.cryptoo.api.MainApiHelper;
 import com.android.asilvia.cryptoo.di.db.AppDbHelper;
+import com.android.asilvia.cryptoo.di.file.FileHelper;
 import com.android.asilvia.cryptoo.di.preferences.PreferencesHelper;
 import com.android.asilvia.cryptoo.vo.Coins;
 import com.android.asilvia.cryptoo.db.LocalCoin;
@@ -39,12 +42,15 @@ public class AppDataManager implements DataManager {
 
     private AppDbHelper mAppDbHelper;
 
+    private FileHelper mFileHelper;
+
     @Inject
-    public AppDataManager(Context context, PreferencesHelper preferencesHelper, MainApiHelper mainApiHelper, AppDbHelper appDbHelper) {
+    public AppDataManager(Context context, PreferencesHelper preferencesHelper, MainApiHelper mainApiHelper, AppDbHelper appDbHelper, FileHelper appFileHelper) {
         mContext = context;
         mPreferencesHelper = preferencesHelper;
         mMainApiHelper = mainApiHelper;
         mAppDbHelper = appDbHelper;
+        mFileHelper = appFileHelper;
     }
 
 
@@ -111,6 +117,16 @@ public class AppDataManager implements DataManager {
     @Override
     public boolean isMarket() {
         return mPreferencesHelper.isMarketPrice();
+    }
+
+    @Override
+    public Uri getImageUriFromFile(String name) {
+        return mFileHelper.getFileUri(name);
+    }
+
+    @Override
+    public String saveImageOnFile(Bitmap bitmap, String fileName) {
+        return mFileHelper.writeBmpToFile(bitmap,fileName);
     }
 
     @Override

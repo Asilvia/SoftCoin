@@ -4,6 +4,8 @@ import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.DialogInterface;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
@@ -28,6 +30,7 @@ import com.android.asilvia.cryptoo.ui.base.BaseActivity;
 import com.android.asilvia.cryptoo.ui.base.navigation.AppNavigation;
 import com.android.asilvia.cryptoo.vo.Coins;
 import com.android.asilvia.cryptoo.vo.CoinsDetails;
+import com.bumptech.glide.load.resource.bitmap.GlideBitmapDrawable;
 import com.facebook.ads.Ad;
 import com.facebook.ads.AdChoicesView;
 import com.facebook.ads.AdError;
@@ -128,6 +131,8 @@ public class CoinListActivity extends BaseActivity<ActivityCoinListBinding, Coin
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 final CoinsDetails item = (CoinsDetails) mAdapter.getItem(position);
+                ImageView icon = (ImageView)view.findViewById(R.id.icon);
+                final Bitmap bmp = ((GlideBitmapDrawable)icon.getDrawable().getCurrent()).getBitmap();
 
                 final String[] realCoinsArray = getResources().getStringArray(R.array.realmoney_coins);
                 AlertDialog.Builder builder = new AlertDialog.Builder(CoinListActivity.this);
@@ -142,7 +147,8 @@ public class CoinListActivity extends BaseActivity<ActivityCoinListBinding, Coin
 
                                 String strPrice = ((EditText)((AlertDialog) dialog).findViewById(R.id.much)).getText().toString();
                                 String strAmount = ((EditText)((AlertDialog) dialog).findViewById(R.id.many)).getText().toString();
-                                mCoinListViewModel.saveItem(item,Double.parseDouble(strPrice),Long.parseLong(strAmount))
+
+                                mCoinListViewModel.saveItem(item,Double.parseDouble(strPrice),Long.parseLong(strAmount), bmp, getApplicationContext())
                                         .subscribeOn(Schedulers.io())
                                         .subscribe(() -> {
                                         savedSearch.add(item.getId());

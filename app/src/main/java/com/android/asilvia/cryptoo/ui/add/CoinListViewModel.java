@@ -2,6 +2,9 @@ package com.android.asilvia.cryptoo.ui.add;
 
 
 import android.arch.lifecycle.LiveData;
+import android.content.Context;
+import android.content.ContextWrapper;
+import android.graphics.Bitmap;
 
 import com.android.asilvia.cryptoo.api.ApiResponse;
 import com.android.asilvia.cryptoo.db.LocalCoin;
@@ -12,6 +15,8 @@ import com.android.asilvia.cryptoo.util.rx.SchedulerProvider;
 import com.android.asilvia.cryptoo.vo.Coins;
 import com.android.asilvia.cryptoo.vo.CoinsDetails;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -96,9 +101,9 @@ public class CoinListViewModel extends BaseViewModel<CoinListNavigator> {
         });
     }
 //todo change long to double
-    public Completable saveItem(CoinsDetails coin, Double userprice, long amount)
+    public Completable saveItem(CoinsDetails coin, Double userprice, long amount, Bitmap coinImage, Context context)
     {
-
+        getDataManager().saveImageOnFile(coinImage, coin.getName());
         LocalCoin localCoin = new LocalCoin(coin.getId(), coin.getCoinName(), coin.getName(), coin.getImageUrl(), coin.getUrl(),0d, userprice, getDataManager().getMainCoin(), amount,0);
         return getDataManager().saveCoin(localCoin);
 
@@ -121,4 +126,7 @@ public class CoinListViewModel extends BaseViewModel<CoinListNavigator> {
     public void setSavedSearch(ArrayList<String> savedSearch) {
         getDataManager().setSavedSearched(savedSearch);
     }
+
+
+
 }

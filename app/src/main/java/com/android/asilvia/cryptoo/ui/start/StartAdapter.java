@@ -1,6 +1,8 @@
 package com.android.asilvia.cryptoo.ui.start;
 
 import android.content.Context;
+import android.content.ContextWrapper;
+import android.net.Uri;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -13,8 +15,10 @@ import android.widget.TextView;
 import com.android.asilvia.cryptoo.R;
 import com.android.asilvia.cryptoo.db.LocalCoin;
 import com.android.asilvia.cryptoo.ui.base.navigation.AppNavigation;
+import com.android.asilvia.cryptoo.util.AppConstants;
 import com.bumptech.glide.Glide;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -88,11 +92,14 @@ public class StartAdapter extends RecyclerView.Adapter<StartAdapter.ViewHolder>
                 AppNavigation.goToDetailsActivity(context, item.getId(), tvText);
             }
         });
-        Glide.with(context)
-                .load(item.getImageUrl())
-                .placeholder(R.mipmap.ic_launcher)
-                .into(holder.icon)
-        ;
+        ContextWrapper cw = new ContextWrapper(context);
+        // path to /data/data/yourapp/app_data/imageDir
+
+
+        File directory = cw.getDir(AppConstants.DIRECTORY_NAME, Context.MODE_PRIVATE);
+        String fullName = item.getKey() + ".jpg";
+        Uri photoUri = Uri.fromFile( new File(directory, fullName));
+        Glide.with(context).load( photoUri).into( holder.icon);
 
         if(market) {
 

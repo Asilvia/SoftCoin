@@ -1,6 +1,8 @@
 package com.android.asilvia.cryptoo.repository;
 
 import android.arch.lifecycle.LiveData;
+import android.graphics.Bitmap;
+import android.net.Uri;
 
 import com.android.asilvia.cryptoo.api.ApiResponse;
 import com.android.asilvia.cryptoo.vo.Coins;
@@ -33,6 +35,9 @@ public interface DataManager{
     void setSavedSearched(ArrayList<String> list);
     String getMainCurrencySymbol();
     boolean isMarket();
+    Uri getImageUriFromFile(String name);
+    String saveImageOnFile(Bitmap bitmap, String fileName);
+
 
 
 

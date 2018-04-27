@@ -5,6 +5,7 @@ import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MediatorLiveData;
 import android.arch.lifecycle.Transformations;
 import android.databinding.BindingAdapter;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.widget.ImageView;
 
@@ -41,9 +42,9 @@ public class CoinDetailsViewModel extends BaseViewModel<CoinDetailsNavigator> {
         mCoin = getDataManager().findCoindById(id);
     }
 
-    public String getImageUrl()
+    public String getName()
     {
-        return mCoin.getImageUrl();
+        return mCoin.getKey();
     }
 
     public String getTotalAmount()
@@ -102,14 +103,17 @@ public class CoinDetailsViewModel extends BaseViewModel<CoinDetailsNavigator> {
 
     }
 
+    public  Uri getUriFromImage()
+    {
+        return getDataManager().getImageUriFromFile(mCoin.getKey());
+    }
+
 
     @BindingAdapter({"imageUrl"})
-    public static void loadImage(ImageView view, String imageUrl) {
-        Glide.with(view.getContext())
-                .load(imageUrl)
-                .placeholder(R.mipmap.ic_launcher)
-                .into(view)
-        ;
+    public static void loadImage(ImageView view, Uri imageUri) {
+
+        Glide.with(view.getContext()).load(imageUri).into(view);
+
     }
 
     public Completable deleteCoin() {

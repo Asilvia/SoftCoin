@@ -168,7 +168,7 @@ public class UpdateService  extends LifecycleService{
 
         Glide
                 .with( getApplicationContext() ) // safer!
-                .load(coin.getImageUrl())
+                .load(mDataManager.getImageUriFromFile(coin.getKey()))
                 .asBitmap()
                 .into( appWidgetTarget );
 
@@ -188,7 +188,7 @@ public class UpdateService  extends LifecycleService{
 
         Glide
                 .with( getApplicationContext() ) // safer!
-                .load(coin.getImageUrl())
+                .load(mDataManager.getImageUriFromFile(coin.getKey()))
                 .asBitmap()
                 .into( appWidgetTarget );
 
@@ -210,7 +210,7 @@ public class UpdateService  extends LifecycleService{
 
         Glide
                 .with( getApplicationContext() ) // safer!
-                .load(coin.getImageUrl())
+                .load(mDataManager.getImageUriFromFile(coin.getKey()))
                 .asBitmap()
                 .into( appWidgetTarget );
 
