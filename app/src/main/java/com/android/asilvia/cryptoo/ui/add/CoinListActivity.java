@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.SearchView;
@@ -30,6 +31,7 @@ import com.android.asilvia.cryptoo.ui.base.BaseActivity;
 import com.android.asilvia.cryptoo.ui.base.navigation.AppNavigation;
 import com.android.asilvia.cryptoo.vo.Coins;
 import com.android.asilvia.cryptoo.vo.CoinsDetails;
+import com.android.asilvia.cryptoo.vo.CoinsPrice;
 import com.bumptech.glide.load.resource.bitmap.GlideBitmapDrawable;
 import com.facebook.ads.Ad;
 import com.facebook.ads.AdChoicesView;
@@ -131,54 +133,81 @@ public class CoinListActivity extends BaseActivity<ActivityCoinListBinding, Coin
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 final CoinsDetails item = (CoinsDetails) mAdapter.getItem(position);
-                ImageView icon = (ImageView)view.findViewById(R.id.icon);
-                final Bitmap bmp = ((GlideBitmapDrawable)icon.getDrawable().getCurrent()).getBitmap();
+                storeImage(view, item);
 
-                final String[] realCoinsArray = getResources().getStringArray(R.array.realmoney_coins);
-                AlertDialog.Builder builder = new AlertDialog.Builder(CoinListActivity.this);
-                LayoutInflater inflater = getLayoutInflater();
-                View dialogView = inflater.inflate(R.layout.add_coin_dialog, null);
+                mCoinListViewModel.getCoinPrice(item.getName()).observe(CoinListActivity.this, new Observer<ApiResponse<CoinsPrice>>() {
+                    @Override
+                    public void onChanged(@Nullable ApiResponse<CoinsPrice> coinsPriceApiResponse) {
 
-                builder.setTitle(item.getFullName()).setView(dialogView)
+                        if(coinsPriceApiResponse.body != null && !coinsPriceApiResponse.body.getRAW().isEmpty()) {
+                            Double price = coinsPriceApiResponse.body.getRAW().get(item.getName()).get(mCoinListViewModel.getDataManager().getMainCoin()).getPRICE();
+                            showDialog(price, item);
+                        }
+                    }
+                });
 
-                        .setPositiveButton(R.string.add, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-
-                                String strPrice = ((EditText)((AlertDialog) dialog).findViewById(R.id.much)).getText().toString();
-                                String strAmount = ((EditText)((AlertDialog) dialog).findViewById(R.id.many)).getText().toString();
-
-                                mCoinListViewModel.saveItem(item,Double.parseDouble(strPrice),Long.parseLong(strAmount), bmp, getApplicationContext())
-                                        .subscribeOn(Schedulers.io())
-                                        .subscribe(() -> {
-                                        savedSearch.add(item.getId());
-                                        ArrayList<String> filteredSavedSearch = savedSearch.stream().distinct().collect(Collectors.toCollection(ArrayList::new));
-                                        mCoinListViewModel.setSavedSearch(filteredSavedSearch);
-                                    Timber.d("localcoin success");
-                                    finish();
-                                 //   AppNavigation.goToStartActivity(CoinListActivity.this);
-                                }, throwable -> {
-                                    Timber.d("localcoin failed" + throwable.getMessage());
-                                });
-
-
-                            }
-                        })
-                        .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                Toast.makeText(CoinListActivity.this,"Cancel", Toast.LENGTH_LONG);
-                            }
-                        })
-                        .create()
-                        .show();
 
             }
         });
 
-      //  mCoinListViewModel.getmObservableSave().observe(this, new Observer)
+
     }
 
+    private void showDialog(Double price, CoinsDetails item) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(CoinListActivity.this);
+        View dialogView = getView(price);
+        builder.setTitle(item.getFullName()).setView(dialogView)
+
+                .setPositiveButton(R.string.add, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        String strPrice = ((EditText) ((AlertDialog) dialog).findViewById(R.id.much)).getText().toString();
+                        String strAmount = ((EditText) ((AlertDialog) dialog).findViewById(R.id.many)).getText().toString();
+                        saveCoin(strPrice, strAmount, item);
+
+                    }
+                })
+                .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(CoinListActivity.this, "Cancel", Toast.LENGTH_LONG);
+                    }
+                })
+                .create()
+                .show();
+    }
+
+    @NonNull
+    private View getView(Double price) {
+        LayoutInflater inflater = getLayoutInflater();
+        View dialogView = inflater.inflate(R.layout.add_coin_dialog, null);
+        String coinSymbol = mCoinListViewModel.getSymbol();
+        ((EditText) dialogView.findViewById(R.id.much)).setText(coinSymbol + String.valueOf(price));
+        return dialogView;
+    }
+
+    private void saveCoin(String strPrice, String strAmount, CoinsDetails item) {
+
+        Double price = Double.parseDouble(strPrice.replace(mCoinListViewModel.getSymbol(),""));
+
+        mCoinListViewModel.saveItem(item, price, Long.parseLong(strAmount))
+                .subscribeOn(Schedulers.io())
+                .subscribe(() -> {
+                    ArrayList<String> filteredSavedSearch = savedSearch.stream().distinct().collect(Collectors.toCollection(ArrayList::new));
+                    mCoinListViewModel.setSavedSearch(filteredSavedSearch);
+                    finish();
+                    //   AppNavigation.goToStartActivity(CoinListActivity.this);
+                }, throwable -> {
+                    Timber.d("localcoin failed" + throwable.getMessage());
+                });
+    }
+
+    private void storeImage(View view, CoinsDetails item) {
+        ImageView icon = (ImageView)view.findViewById(R.id.icon);
+        final Bitmap bmp = ((GlideBitmapDrawable)icon.getDrawable().getCurrent()).getBitmap();
+        mCoinListViewModel.saveImage(bmp,item.getName());
+    }
 
 
     @Override

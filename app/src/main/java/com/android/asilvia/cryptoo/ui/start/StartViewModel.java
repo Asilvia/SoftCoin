@@ -43,7 +43,7 @@ public class StartViewModel extends BaseViewModel<StartNavigator> {
 
     void getCoinList()
     {
-        Timber.d("Refresh -->" + "teste");
+        Timber.d("Refresh -->" + "test");
         mObservableCoinsList = AbsentLiveData.create();
         setCompleteCoinList();
 
@@ -51,7 +51,7 @@ public class StartViewModel extends BaseViewModel<StartNavigator> {
         savedCoins.addAll(getDataManager().getSavedCoinList());
         String from = getDataManager().getCoinsName(savedCoins);
         String to = getDataManager().getMainCoin();
-        Timber.d("Refresh -->" + "teste111");
+
 
 
         mObservableCoinsList =  Transformations.switchMap(getDataManager().getCoinPrices(from, to), coinList ->{

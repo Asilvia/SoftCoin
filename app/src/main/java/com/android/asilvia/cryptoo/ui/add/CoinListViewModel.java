@@ -3,7 +3,6 @@ package com.android.asilvia.cryptoo.ui.add;
 
 import android.arch.lifecycle.LiveData;
 import android.content.Context;
-import android.content.ContextWrapper;
 import android.graphics.Bitmap;
 
 import com.android.asilvia.cryptoo.api.ApiResponse;
@@ -14,9 +13,8 @@ import com.android.asilvia.cryptoo.util.AbsentLiveData;
 import com.android.asilvia.cryptoo.util.rx.SchedulerProvider;
 import com.android.asilvia.cryptoo.vo.Coins;
 import com.android.asilvia.cryptoo.vo.CoinsDetails;
+import com.android.asilvia.cryptoo.vo.CoinsPrice;
 
-import java.io.File;
-import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -33,7 +31,6 @@ import timber.log.Timber;
 public class CoinListViewModel extends BaseViewModel<CoinListNavigator> {
 
     private LiveData<ApiResponse<Coins>> mObservableCoinsList;
-    private ArrayList<Integer> savedSearch;
 
 
     public CoinListViewModel(DataManager dataManager, SchedulerProvider schedulerProvider) {
@@ -101,12 +98,17 @@ public class CoinListViewModel extends BaseViewModel<CoinListNavigator> {
         });
     }
 //todo change long to double
-    public Completable saveItem(CoinsDetails coin, Double userprice, long amount, Bitmap coinImage, Context context)
+    public Completable saveItem(CoinsDetails coin, Double userprice, long amount)
     {
-        getDataManager().saveImageOnFile(coinImage, coin.getName());
+
         LocalCoin localCoin = new LocalCoin(coin.getId(), coin.getCoinName(), coin.getName(), coin.getImageUrl(), coin.getUrl(),0d, userprice, getDataManager().getMainCoin(), amount,0);
         return getDataManager().saveCoin(localCoin);
 
+    }
+
+    public void saveImage(Bitmap bitmap, String name)
+    {
+        getDataManager().saveImageOnFile(bitmap, name);
     }
 
 
@@ -125,6 +127,16 @@ public class CoinListViewModel extends BaseViewModel<CoinListNavigator> {
 
     public void setSavedSearch(ArrayList<String> savedSearch) {
         getDataManager().setSavedSearched(savedSearch);
+    }
+
+    public LiveData<ApiResponse<CoinsPrice>> getCoinPrice(String from)
+    {
+        return getDataManager().getCoinPrices(from, getDataManager().getMainCoin());
+    }
+
+    public String getSymbol()
+    {
+        return getDataManager().getMainCurrencySymbol();
     }
 
 
