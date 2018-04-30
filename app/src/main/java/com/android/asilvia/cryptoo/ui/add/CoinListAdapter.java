@@ -101,8 +101,9 @@ public class CoinListAdapter extends ArrayAdapter<CoinsDetails>  implements Filt
 
             ImageView image = (ImageView) listItem.findViewById(R.id.icon);
             Timber.d("img: " + currentCoin.getImageUrl());
-            Glide.with(mContext)
+                Glide.with(mContext)
                     .load(currentCoin.getImageUrl())
+                    .asBitmap()
                     .placeholder(R.mipmap.ic_launcher)
                     .into(image);
 

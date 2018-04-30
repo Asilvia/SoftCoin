@@ -138,11 +138,11 @@ public class CoinListActivity extends BaseActivity<ActivityCoinListBinding, Coin
                 mCoinListViewModel.getCoinPrice(item.getName()).observe(CoinListActivity.this, new Observer<ApiResponse<CoinsPrice>>() {
                     @Override
                     public void onChanged(@Nullable ApiResponse<CoinsPrice> coinsPriceApiResponse) {
-
-                        if(coinsPriceApiResponse.body != null && !coinsPriceApiResponse.body.getRAW().isEmpty()) {
-                            Double price = coinsPriceApiResponse.body.getRAW().get(item.getName()).get(mCoinListViewModel.getDataManager().getMainCoin()).getPRICE();
-                            showDialog(price, item);
+                        Double price = -1d;
+                        if(coinsPriceApiResponse.body != null && coinsPriceApiResponse.body.getRAW()!= null && !coinsPriceApiResponse.body.getRAW().isEmpty()) {
+                            price = coinsPriceApiResponse.body.getRAW().get(item.getName()).get(mCoinListViewModel.getDataManager().getMainCoin()).getPRICE();
                         }
+                        showDialog(price, item);
                     }
                 });
 
@@ -182,8 +182,10 @@ public class CoinListActivity extends BaseActivity<ActivityCoinListBinding, Coin
     private View getView(Double price) {
         LayoutInflater inflater = getLayoutInflater();
         View dialogView = inflater.inflate(R.layout.add_coin_dialog, null);
-        String coinSymbol = mCoinListViewModel.getSymbol();
-        ((EditText) dialogView.findViewById(R.id.much)).setText(coinSymbol + String.valueOf(price));
+        if(price >0) {
+            String coinSymbol = mCoinListViewModel.getSymbol();
+            ((EditText) dialogView.findViewById(R.id.much)).setText(coinSymbol + String.valueOf(price));
+        }
         return dialogView;
     }
 
@@ -205,7 +207,8 @@ public class CoinListActivity extends BaseActivity<ActivityCoinListBinding, Coin
 
     private void storeImage(View view, CoinsDetails item) {
         ImageView icon = (ImageView)view.findViewById(R.id.icon);
-        final Bitmap bmp = ((GlideBitmapDrawable)icon.getDrawable().getCurrent()).getBitmap();
+        final Bitmap bmp = ((BitmapDrawable)icon.getDrawable().getCurrent()).getBitmap();
+       // final Bitmap bmp = ((GlideBitmapDrawable)icon.getDrawable()).getBitmap();
         mCoinListViewModel.saveImage(bmp,item.getName());
     }
 
