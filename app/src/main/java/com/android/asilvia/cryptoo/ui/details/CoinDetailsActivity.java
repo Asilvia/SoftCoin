@@ -55,6 +55,7 @@ public class CoinDetailsActivity extends BaseActivity<ActivityCoinDetailsBinding
         getSupportActionBar().setDisplayShowTitleEnabled(true);
 
 
+
         mActivityCoinDetailsBinding.btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
