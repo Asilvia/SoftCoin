@@ -8,11 +8,15 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -30,14 +34,16 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import rx.schedulers.Schedulers;
 import timber.log.Timber;
 
-public class StartActivity extends BaseActivity<ActivityStartBinding, StartViewModel> implements StartNavigator{
+public class StartActivity extends BaseActivity<ActivityStartBinding, StartViewModel> implements StartNavigator, StartItemTouchHelper.StartItemTouchHelperListener {
 
     ActivityStartBinding mActivityStartBinding;
     private StartViewModel mStartViewModel;
     StartAdapter adapter;
     boolean isAlertShown = false;
+    boolean isUndone = false;
 
     @Inject
     ViewModelProvider.Factory mViewModelFactory;
@@ -138,6 +144,9 @@ public class StartActivity extends BaseActivity<ActivityStartBinding, StartViewM
 
         adapter = new StartAdapter(getApplicationContext(), new ArrayList<LocalCoin>(),mStartViewModel.getCoinSymbol(), mStartViewModel.isMarket());
         mActivityStartBinding.coinsList.setAdapter(adapter);
+
+        ItemTouchHelper.SimpleCallback itemTouchHelperCallback = new StartItemTouchHelper(0, ItemTouchHelper.LEFT, this);
+        new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(mActivityStartBinding.coinsList);
     }
 
     private void renderActionBar() {
@@ -202,4 +211,44 @@ public class StartActivity extends BaseActivity<ActivityStartBinding, StartViewM
     }
 
 
+    @Override
+    public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction, int position) {
+        if (viewHolder instanceof StartAdapter.ViewHolder) {
+
+            // backup of removed item for undo purpose
+            final LocalCoin deletedItem = (LocalCoin) adapter.getItem(viewHolder.getAdapterPosition());
+            final int deletedIndex = viewHolder.getAdapterPosition();
+
+            // remove the item from recycler view
+            adapter.removeItem(viewHolder.getAdapterPosition());
+
+            // showing snack bar with Undo option
+            Snackbar snackbar = Snackbar.make(mActivityStartBinding.mainContent, deletedItem.getName() + " removed from cart!", Snackbar.LENGTH_LONG);
+            snackbar.setAction("UNDO", new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    isUndone = true;
+                    // undo is selected, restore the deleted item
+                    adapter.restoreItem(deletedItem, deletedIndex);
+                }
+            });
+            snackbar.addCallback(new Snackbar.Callback() {
+
+                @Override
+                public void onDismissed(Snackbar snackbar, int event) {
+                    if(!isUndone) {
+                        mStartViewModel.deleteCoin(deletedItem).subscribeOn(Schedulers.io()).subscribe(() -> {
+
+                            Timber.d("localcoin delete success");
+                        }, throwable -> {
+                            Timber.d("localcoin failed" + throwable.getMessage());
+                        });
+                    }
+
+                }
+
+            });
+            snackbar.show();
+        }
+    }
 }

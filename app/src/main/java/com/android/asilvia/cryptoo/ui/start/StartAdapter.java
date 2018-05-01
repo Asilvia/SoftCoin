@@ -46,6 +46,7 @@ public class StartAdapter extends RecyclerView.Adapter<StartAdapter.ViewHolder>
     TextView value_percentage;
     ImageView indicator;
     RelativeLayout card_indicator;
+    CardView card_view;
 
     public ViewHolder(View view) {
         super(view);
@@ -55,6 +56,7 @@ public class StartAdapter extends RecyclerView.Adapter<StartAdapter.ViewHolder>
         value_percentage = (TextView)view.findViewById(R.id.value_percentage);
         indicator=(ImageView)view.findViewById(R.id.indicator);
         card_indicator = (RelativeLayout)view.findViewById(R.id.card_indicator);
+        card_view = (CardView)view.findViewById(R.id.card_view);
     }
 
 
@@ -170,6 +172,20 @@ public class StartAdapter extends RecyclerView.Adapter<StartAdapter.ViewHolder>
         double finalPrice = localCoin.getPrice();
         double userPrice = localCoin.getUserPrice();
         return (finalPrice - userPrice)/finalPrice *100;
+    }
+
+    public void removeItem(int position) {
+        data.remove(position);
+        // notify the item removed by position
+        // to perform recycler view delete animations
+        // NOTE: don't call notifyDataSetChanged()
+        notifyItemRemoved(position);
+    }
+
+    public void restoreItem(LocalCoin item, int position) {
+        data.add(position, item);
+        // notify item added by position
+        notifyItemInserted(position);
     }
 
 }

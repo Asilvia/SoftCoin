@@ -12,10 +12,12 @@ import com.android.asilvia.cryptoo.repository.DataManager;
 import com.android.asilvia.cryptoo.ui.base.BaseViewModel;
 import com.android.asilvia.cryptoo.util.AbsentLiveData;
 import com.android.asilvia.cryptoo.util.rx.SchedulerProvider;
+import com.android.asilvia.cryptoo.vo.CoinsDetails;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import rx.Completable;
 import rx.schedulers.Schedulers;
 import timber.log.Timber;
 
@@ -120,5 +122,9 @@ public class StartViewModel extends BaseViewModel<StartNavigator> {
     public void setHasError(MutableLiveData<Boolean> hasError) {
         this.hasError = hasError;
     }
+    public Completable deleteCoin(LocalCoin coin) {
+        return getDataManager().deleteCoin(coin);
+    }
+    public Completable saveItem(LocalCoin localCoin) {return getDataManager().saveCoin(localCoin);}
 
 }
