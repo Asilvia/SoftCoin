@@ -133,7 +133,7 @@ public class CoinListActivity extends BaseActivity<ActivityCoinListBinding, Coin
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 final CoinsDetails item = (CoinsDetails) mAdapter.getItem(position);
-                storeImage(view, item);
+
 
                 mCoinListViewModel.getCoinPrice(item.getName()).observe(CoinListActivity.this, new Observer<ApiResponse<CoinsPrice>>() {
                     @Override
@@ -142,7 +142,7 @@ public class CoinListActivity extends BaseActivity<ActivityCoinListBinding, Coin
                         if(coinsPriceApiResponse.body != null && coinsPriceApiResponse.body.getRAW()!= null && !coinsPriceApiResponse.body.getRAW().isEmpty()) {
                             price = coinsPriceApiResponse.body.getRAW().get(item.getName()).get(mCoinListViewModel.getDataManager().getMainCoin()).getPRICE();
                         }
-                        showDialog(price, item);
+                        showDialog(view,price, item);
                     }
                 });
 
@@ -153,7 +153,7 @@ public class CoinListActivity extends BaseActivity<ActivityCoinListBinding, Coin
 
     }
 
-    private void showDialog(Double price, CoinsDetails item) {
+    private void showDialog(View view, Double price, CoinsDetails item) {
         AlertDialog.Builder builder = new AlertDialog.Builder(CoinListActivity.this);
         View dialogView = getView(price);
         builder.setTitle(item.getFullName()).setView(dialogView)
@@ -165,6 +165,7 @@ public class CoinListActivity extends BaseActivity<ActivityCoinListBinding, Coin
                         String strPrice = ((EditText) ((AlertDialog) dialog).findViewById(R.id.much)).getText().toString();
                         String strAmount = ((EditText) ((AlertDialog) dialog).findViewById(R.id.many)).getText().toString();
                         saveCoin(strPrice, strAmount, item);
+                        storeImage(view, item);
 
                     }
                 })
