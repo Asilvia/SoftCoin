@@ -4,11 +4,11 @@ android {
     compileSdkVersion 26
     buildToolsVersion "26.0.2"
     defaultConfig {
-        applicationId "com.android.asilvia.cryptoo"
+        applicationId "com.asilvia.cryptoo"
         minSdkVersion 24
         targetSdkVersion 26
         versionCode 1
-        versionName "1.0"
+        versionName "1.0.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
 
@@ -16,7 +16,7 @@ android {
         buildConfigField "String", "MAINBASEURL", "\"https://min-api.cryptocompare.com/data/\""
         buildConfigField "int", "CACHETIME", "432000" // 5days
         buildConfigField "String", "MAINDEFAULTCOIN", "\"EUR\""
-        buildConfigField "String", "MAINEMAIL", "\"asilvia4business@gmail.com\""
+        buildConfigField "String", "MAINEMAIL", "\"cryptooapp@gmail.com\""
         buildConfigField "String", "FacebookAdUnit","\"200401717404965_200403644071439\""
     }
 
@@ -34,6 +34,7 @@ android {
     buildTypes {
         release {
             minifyEnabled false
+            multiDexEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }

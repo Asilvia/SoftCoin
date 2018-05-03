@@ -2,7 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ui.add.CoinListActivity">
+    tools:context="com.asilvia.cryptoo.ui.add.CoinListActivity">
 
 <data>
 
@@ -10,7 +10,7 @@
 
     <variable
         name="viewModel"
-        type="com.android.asilvia.cryptoo.ui.add.CoinListViewModel" />
+        type="com.asilvia.cryptoo.ui.add.CoinListViewModel" />
 
 </data>
 

@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ui.details.CoinDetailsActivity">
+    tools:context="com.asilvia.cryptoo.ui.details.CoinDetailsActivity">
 
     <data>
 
@@ -12,7 +12,7 @@
 
         <variable
             name="viewModel"
-            type="com.android.asilvia.cryptoo.ui.details.CoinDetailsViewModel" />
+            type="com.asilvia.cryptoo.ui.details.CoinDetailsViewModel" />
     </data>
 
 

@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.android.asilvia.cryptoo">
+    package="com.asilvia.cryptoo">
 
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
-        android:name=".CryptooApp"
+        android:name="com.asilvia.cryptoo.CryptooApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.start.StartActivity">
+        <activity android:name="com.asilvia.cryptoo.ui.start.StartActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -21,25 +21,25 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.add.CoinListActivity"
+            android:name="com.asilvia.cryptoo.ui.add.CoinListActivity"
             android:label="@string/add_currency">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.start.StartActivity" />
+                android:value="com.asilvia.cryptoo.ui.start.StartActivity" />
         </activity>
         <activity
-            android:name=".ui.details.CoinDetailsActivity"
+            android:name="com.asilvia.cryptoo.ui.details.CoinDetailsActivity"
             android:windowSoftInputMode="stateHidden" />
         <activity
-            android:name=".ui.settings.SettingsActivity"
+            android:name="com.asilvia.cryptoo.ui.settings.SettingsActivity"
             android:label="@string/pref_title_settings"
-            android:parentActivityName=".ui.start.StartActivity">
+            android:parentActivityName="com.asilvia.cryptoo.ui.start.StartActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.android.asilvia.cryptoo.ui.start.StartActivity" />
+                android:value="com.asilvia.cryptoo.com.asilvia.cryptoo.ui.start.StartActivity" />
         </activity>
 
-        <receiver android:name=".widget.CryptooWidget"
+        <receiver android:name="com.asilvia.cryptoo.widget.CryptooWidget"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
@@ -49,7 +49,7 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/cryptoo_widget_info" />
         </receiver>
-        <service android:name=".widget.UpdateService" />
+        <service android:name="com.asilvia.cryptoo.widget.UpdateService" />
     </application>
 
 </manifest>
