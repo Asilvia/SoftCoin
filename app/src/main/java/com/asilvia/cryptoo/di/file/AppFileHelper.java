@@ -52,4 +52,12 @@ public class AppFileHelper implements FileHelper {
         String fullName = name + ".jpg";
         return Uri.fromFile( new File(directory, fullName));
     }
+
+    @Override
+    public void deleteFile(String name) {
+        String fullName = name + ".jpg";
+        File file = new File(directory, fullName);
+        boolean deleted = file.delete();
+
+    }
 }

@@ -77,6 +77,7 @@ public class AppDataManager implements DataManager {
 
     @Override
     public Completable deleteCoin(LocalCoin localCoin) {
+        mFileHelper.deleteFile(localCoin.getKey());
         return Completable.fromAction(()-> mAppDbHelper.deleteCoin(localCoin));
     }
 

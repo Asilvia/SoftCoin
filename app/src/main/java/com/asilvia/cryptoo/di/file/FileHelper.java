@@ -11,4 +11,5 @@ import android.net.Uri;
 public interface FileHelper {
     public String writeBmpToFile(Bitmap bitmap, String name);
     public Uri getFileUri(String name);
+    public void deleteFile(String name);
 }
