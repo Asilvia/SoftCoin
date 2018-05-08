@@ -39,7 +39,7 @@
         <SwitchPreference
             android:key="profit_percentage"
             android:title="@string/pref_title_profit_percentage"
-            android:defaultValue="true"
+            android:defaultValue="false"
             />
         <Preference
             android:title="divider"
@@ -48,7 +48,7 @@
         <SwitchPreference
             android:key="profit_amount"
             android:title="@string/pref_title_profit_amount"
-            android:defaultValue="true" />
+            android:defaultValue="false" />
         <Preference
             android:title="divider"
             android:selectable="false"
@@ -56,7 +56,7 @@
         <SwitchPreference
             android:key="index"
             android:title="@string/pref_title_index"
-            android:defaultValue="false" />
+            android:defaultValue="true" />
         <Preference
             android:title="divider"
             android:selectable="false"
@@ -64,7 +64,7 @@
         <SwitchPreference
             android:key="market"
             android:title="@string/pref_title_market"
-            android:defaultValue="false" />
+            android:defaultValue="true" />
 
     </PreferenceCategory>
     <Preference

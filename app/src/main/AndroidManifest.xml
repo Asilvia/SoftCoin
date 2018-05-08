@@ -36,7 +36,7 @@
             android:parentActivityName="com.asilvia.cryptoo.ui.start.StartActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.asilvia.cryptoo.com.asilvia.cryptoo.ui.start.StartActivity" />
+                android:value="com.asilvia.cryptoo.ui.start.StartActivity" />
         </activity>
 
         <receiver android:name="com.asilvia.cryptoo.widget.CryptooWidget"
