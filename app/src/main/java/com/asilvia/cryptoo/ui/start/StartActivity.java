@@ -79,6 +79,9 @@ public class StartActivity extends BaseActivity<ActivityStartBinding, StartViewM
 
     private void getCoins() {
         mStartViewModel.getCoinList();
+        String last_update = getString(R.string.last_update) + " "+ mStartViewModel.getLastUpdate();
+       mActivityStartBinding.updateTime.setText( last_update);
+       mActivityStartBinding.notifyChange();
         mStartViewModel.getObservableCoinsList().observe(this, new Observer<List<LocalCoin>>() {
             @Override
             public void onChanged(@Nullable List<LocalCoin> localCoins) {
@@ -89,6 +92,8 @@ public class StartActivity extends BaseActivity<ActivityStartBinding, StartViewM
             }
         });
     }
+
+
 
 
     private void renderView() {
@@ -132,9 +137,11 @@ public class StartActivity extends BaseActivity<ActivityStartBinding, StartViewM
                 mStartViewModel.getObservableCoinsList().observe(StartActivity.this, new Observer<List<LocalCoin>>() {
                     @Override
                     public void onChanged(@Nullable List<LocalCoin> localCoins) {
+                        String last_update = getString(R.string.last_update) + " "+ mStartViewModel.getLastUpdate();
                         adapter.updateSymbolAndMarket(mStartViewModel.getCoinSymbol(), mStartViewModel.isMarket());
                         adapter.setCoin(localCoins);
                         mActivityStartBinding.swiperefresh.setRefreshing(false);
+                        mActivityStartBinding.updateTime.setText(last_update);
                     }
                 });
             }

@@ -12,7 +12,9 @@ import com.asilvia.cryptoo.ui.base.BaseViewModel;
 import com.asilvia.cryptoo.util.AbsentLiveData;
 import com.asilvia.cryptoo.util.rx.SchedulerProvider;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import rx.Completable;
@@ -61,6 +63,7 @@ public class StartViewModel extends BaseViewModel<StartNavigator> {
                 hasError.postValue(true);
                 Timber.e("Error: " + coinList.errorMessage);
             }
+
             for(LocalCoin coin: savedCoins)
             {
                 if(coinList.body != null) {
@@ -124,5 +127,12 @@ public class StartViewModel extends BaseViewModel<StartNavigator> {
         return getDataManager().deleteCoin(coin);
     }
     public Completable saveItem(LocalCoin localCoin) {return getDataManager().saveCoin(localCoin);}
+
+    public String getLastUpdate()
+    {
+        Calendar c = Calendar.getInstance();
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+        return  sdf.format(c.getTime());
+    }
 
 }

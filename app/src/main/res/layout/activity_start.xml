@@ -14,74 +14,94 @@
 
     </data>
 
-
-    <android.support.design.widget.CoordinatorLayout
-        android:id="@+id/main_content"
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swiperefresh"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/background"
-        android:clipChildren="false"
-        android:clipToPadding="false"
-        android:paddingLeft="@dimen/home_horizontal_padding"
-        android:paddingRight="@dimen/home_horizontal_padding">
+        android:layout_height="match_parent">
 
 
-        <ProgressBar
-            android:id="@+id/loading"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="@{viewModel.isLoading ? View.VISIBLE : View.GONE}" />
-
-        <TextView
-            android:id="@+id/title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/akkuratproregular"
-            android:paddingBottom="@dimen/home_horizontal_padding"
-            android:paddingTop="@dimen/home_horizontal_padding"
-            android:text="@string/my_currency"
-            android:textColor="@color/title"
-            android:textSize="@dimen/title" />
-
-        <android.support.v4.widget.SwipeRefreshLayout
-            android:id="@+id/swiperefresh"
+        <android.support.design.widget.CoordinatorLayout
+            android:id="@+id/main_content"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_gravity="bottom|end"
-            android:layout_marginTop="70dp"
             android:background="@color/background"
-            app:layout_anchor="@id/title"
-            app:layout_anchorGravity="bottom|end">
+            android:clipChildren="false"
+            android:clipToPadding="false">
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/coins_list"
+            <android.support.v4.widget.NestedScrollView
+                android:id="@+id/scrollView"
                 android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fillViewport="true"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="@dimen/home_horizontal_padding">
+
+                    <ProgressBar
+                        android:id="@+id/loading"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:visibility="@{viewModel.isLoading ? View.VISIBLE : View.GONE}" />
+
+                    <TextView
+                        android:id="@+id/title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginBottom="@dimen/home_horizontal_padding"
+                        android:layout_marginLeft="@dimen/padding_s"
+                        android:fontFamily="@font/akkuratproregular"
+                        android:text="@string/my_currency"
+                        android:textColor="@color/title"
+                        android:textSize="@dimen/title" />
+
+                    <TextView
+                        android:id="@+id/update_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/title"
+                        android:paddingLeft="@dimen/padding_s"
+                         />
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/coins_list"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/update_time"
+                        android:background="@color/background"
+                        android:nestedScrollingEnabled="false" />
+
+
+                </RelativeLayout>
+            </android.support.v4.widget.NestedScrollView>
+
+            <ImageView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@color/background"
-                android:scrollbars="vertical" />
-        </android.support.v4.widget.SwipeRefreshLayout>
+                android:src="@drawable/fab"
+                app:layout_anchor="@id/add_new"
+                app:layout_anchorGravity="center" />
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/fab"
-            app:layout_anchor="@id/add_new"
-            app:layout_anchorGravity="center" />
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/add_new"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
 
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/add_new"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/home_horizontal_padding"
-            android:src="@drawable/ic_add"
-            app:backgroundTint="@android:color/transparent"
-            app:borderWidth="@dimen/empty"
-            app:elevation="0dp"
-            app:fabSize="normal"
-            app:layout_anchor="@id/coins_list"
-            app:layout_anchorGravity="bottom|right|end" />
+                android:layout_marginBottom="@dimen/home_horizontal_padding"
+                android:src="@drawable/ic_add"
+                app:backgroundTint="@android:color/transparent"
+                app:borderWidth="@dimen/empty"
+                app:elevation="0dp"
+                app:fabSize="normal"
+                app:layout_anchor="@id/scrollView"
+                app:layout_anchorGravity="bottom|right|end" />
 
 
-    </android.support.design.widget.CoordinatorLayout>
+        </android.support.design.widget.CoordinatorLayout>
 
+    </android.support.v4.widget.SwipeRefreshLayout>
 </layout>
