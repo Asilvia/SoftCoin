@@ -35,7 +35,7 @@ import javax.inject.Inject;
 import rx.schedulers.Schedulers;
 import timber.log.Timber;
 
-public class StartActivity extends BaseActivity<ActivityStartBinding, StartViewModel> implements StartNavigator, StartItemTouchHelper.StartItemTouchHelperListener {
+public class StartActivity extends BaseActivity<ActivityStartBinding, StartViewModel> implements StartNavigator{
 
     ActivityStartBinding mActivityStartBinding;
     private StartViewModel mStartViewModel;
@@ -150,8 +150,7 @@ public class StartActivity extends BaseActivity<ActivityStartBinding, StartViewM
         adapter = new StartAdapter(getApplicationContext(), new ArrayList<LocalCoin>(),mStartViewModel.getCoinSymbol(), mStartViewModel.isMarket());
         mActivityStartBinding.coinsList.setAdapter(adapter);
 
-        ItemTouchHelper.SimpleCallback itemTouchHelperCallback = new StartItemTouchHelper(0, ItemTouchHelper.LEFT, this);
-        new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(mActivityStartBinding.coinsList);
+
     }
 
     private void renderActionBar() {
@@ -215,45 +214,4 @@ public class StartActivity extends BaseActivity<ActivityStartBinding, StartViewM
         return builder;
     }
 
-
-    @Override
-    public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction, int position) {
-        if (viewHolder instanceof StartAdapter.ViewHolder) {
-
-            // backup of removed item for undo purpose
-            final LocalCoin deletedItem = (LocalCoin) adapter.getItem(viewHolder.getAdapterPosition());
-            final int deletedIndex = viewHolder.getAdapterPosition();
-
-            // remove the item from recycler view
-            adapter.removeItem(viewHolder.getAdapterPosition());
-
-            // showing snack bar with Undo option
-            Snackbar snackbar = Snackbar.make(mActivityStartBinding.mainContent, deletedItem.getName() + " removed from cart!", Snackbar.LENGTH_LONG);
-            snackbar.setAction("UNDO", new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    isUndone = true;
-                    // undo is selected, restore the deleted item
-                    adapter.restoreItem(deletedItem, deletedIndex);
-                }
-            });
-            snackbar.addCallback(new Snackbar.Callback() {
-
-                @Override
-                public void onDismissed(Snackbar snackbar, int event) {
-                    if(!isUndone) {
-                        mStartViewModel.deleteCoin(deletedItem).subscribeOn(Schedulers.io()).subscribe(() -> {
-
-                            Timber.d("localcoin delete success");
-                        }, throwable -> {
-                            Timber.d("localcoin failed" + throwable.getMessage());
-                        });
-                    }
-
-                }
-
-            });
-            snackbar.show();
-        }
-    }
 }
