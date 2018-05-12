@@ -18,6 +18,7 @@ import android.widget.TextView;
 import com.asilvia.cryptoo.R;
 import com.asilvia.cryptoo.vo.CoinsDetails;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.facebook.ads.AdChoicesView;
 import com.facebook.ads.NativeAd;
 
@@ -101,8 +102,10 @@ public class CoinListAdapter extends ArrayAdapter<CoinsDetails>  implements Filt
             Timber.d("img: " + currentCoin.getImageUrl());
                 Glide.with(mContext)
                     .load(currentCoin.getImageUrl())
-                    .asBitmap()
-                    .placeholder(R.mipmap.ic_launcher)
+                        .apply(new RequestOptions()
+                                .placeholder(R.mipmap.ic_launcher))
+
+
                     .into(image);
 
 

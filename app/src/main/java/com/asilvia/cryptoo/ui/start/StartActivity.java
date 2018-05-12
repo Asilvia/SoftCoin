@@ -26,6 +26,8 @@ import com.asilvia.cryptoo.db.LocalCoin;
 import com.asilvia.cryptoo.ui.base.BaseActivity;
 import com.asilvia.cryptoo.ui.base.navigation.AppNavigation;
 import com.asilvia.cryptoo.util.NetworkUtils;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -99,6 +101,15 @@ public class StartActivity extends BaseActivity<ActivityStartBinding, StartViewM
     private void renderView() {
         renderActionBar();
 
+        //Empty screen
+        Glide
+                .with(this)
+                .load("https://media.giphy.com/media/GwRBmXyEOvFtK/giphy.gif")
+                .apply(new RequestOptions().circleCrop())
+
+
+                .into(mActivityStartBinding.empty.pushButton)
+        ;
 
         mStartViewModel.setIsLoading(true);
       //  mStartViewModel.RetrieveCoinList();

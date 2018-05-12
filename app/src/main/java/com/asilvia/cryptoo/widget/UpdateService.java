@@ -154,16 +154,17 @@ public class UpdateService  extends LifecycleService{
     private void setFirstColumn(RemoteViews view, LocalCoin coin) {
         showFirstElement(view);
         view.setTextViewText(R.id.coin_name1, coin.getKey());
-        AppWidgetTarget appWidgetTarget=
+      /*  AppWidgetTarget appWidgetTarget=
+    Problem with version of glide
         new AppWidgetTarget( getApplicationContext(), view, R.id.coin_icon1, 0 );
+
 
 
         Glide
                 .with( getApplicationContext() ) // safer!
                 .load(mDataManager.getImageUriFromFile(coin.getKey()))
-                .asBitmap()
                 .into( appWidgetTarget );
-
+ */
         view.setTextViewText(R.id.coin_percentage1, String.format("%.2f",coin.getIndex() ) + "%");
         view.setImageViewResource(R.id.coin_indicator1, getIndicator(coin.getIndex()));
         view.setTextViewText(R.id.coin_value1, mDataManager.getMainCurrencySymbol() + String.format("%.2f",coin.getPrice() ));
@@ -174,7 +175,7 @@ public class UpdateService  extends LifecycleService{
     private void setSecondColumn(RemoteViews view, LocalCoin coin) {
         showSecondElement(view);
         view.setTextViewText(R.id.coin_name2, coin.getKey());
-        AppWidgetTarget appWidgetTarget=
+       /* AppWidgetTarget appWidgetTarget=
                 new AppWidgetTarget( getApplicationContext(), view, R.id.coin_icon2, 0 );
 
 
@@ -183,7 +184,7 @@ public class UpdateService  extends LifecycleService{
                 .load(mDataManager.getImageUriFromFile(coin.getKey()))
                 .asBitmap()
                 .into( appWidgetTarget );
-
+*/
         view.setTextViewText(R.id.coin_percentage2, String.format("%.2f",coin.getIndex() ) + "%");
         view.setImageViewResource(R.id.coin_indicator2, getIndicator(coin.getIndex()));
         view.setTextViewText(R.id.coin_value2, mDataManager.getMainCurrencySymbol() +String.format("%.2f",coin.getPrice() ));
@@ -196,7 +197,7 @@ public class UpdateService  extends LifecycleService{
 
         showThirdElement(view);
         view.setTextViewText(R.id.coin_name3, coin.getKey());
-        AppWidgetTarget appWidgetTarget=
+      /*  AppWidgetTarget appWidgetTarget=
                 new AppWidgetTarget( getApplicationContext(), view, R.id.coin_icon3, 0 );
 
 
@@ -205,7 +206,7 @@ public class UpdateService  extends LifecycleService{
                 .load(mDataManager.getImageUriFromFile(coin.getKey()))
                 .asBitmap()
                 .into( appWidgetTarget );
-
+*/
         view.setTextViewText(R.id.coin_percentage3, String.format("%.2f",coin.getIndex() ) + "%");
         view.setImageViewResource(R.id.coin_indicator3, getIndicator(coin.getIndex()));
         view.setTextViewText(R.id.coin_value3, mDataManager.getMainCurrencySymbol() +String.format("%.2f",coin.getPrice() ));

@@ -5,6 +5,7 @@ import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MediatorLiveData;
 import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.Transformations;
+import android.databinding.ObservableBoolean;
 
 import com.asilvia.cryptoo.db.LocalCoin;
 import com.asilvia.cryptoo.repository.DataManager;
@@ -31,6 +32,7 @@ public class StartViewModel extends BaseViewModel<StartNavigator> {
 
     private LiveData<List<LocalCoin>> mObservableCoinsList;
     private MutableLiveData<List<LocalCoin>> completeCoinList;
+    private final ObservableBoolean isEmpty = new ObservableBoolean(false);
 
 
 
@@ -51,6 +53,12 @@ public class StartViewModel extends BaseViewModel<StartNavigator> {
 
         ArrayList<LocalCoin> savedCoins = new ArrayList<>();
         savedCoins.addAll(getDataManager().getSavedCoinList());
+        if(savedCoins.size() != 0)
+            setIsEmpty(false);
+        else
+            setIsEmpty(true);
+
+
         String from = getDataManager().getCoinsName(savedCoins);
         String to = getDataManager().getMainCoin();
 
@@ -133,6 +141,14 @@ public class StartViewModel extends BaseViewModel<StartNavigator> {
         Calendar c = Calendar.getInstance();
         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
         return  sdf.format(c.getTime());
+    }
+
+    public ObservableBoolean getIsEmpty() {
+        return isEmpty;
+    }
+
+    public void setIsEmpty(boolean isEmptyValue) {
+        isEmpty.set(isEmptyValue);
     }
 
 }

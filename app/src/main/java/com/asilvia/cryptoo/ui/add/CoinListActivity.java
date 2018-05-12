@@ -6,6 +6,7 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -29,9 +30,9 @@ import com.asilvia.cryptoo.vo.Coins;
 import com.asilvia.cryptoo.vo.CoinsDetails;
 import com.asilvia.cryptoo.vo.CoinsPrice;
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.target.Target;
+import com.bumptech.glide.request.transition.Transition;
 import com.facebook.ads.Ad;
 import com.facebook.ads.AdError;
 import com.facebook.ads.AdListener;
@@ -206,11 +207,11 @@ public class CoinListActivity extends BaseActivity<ActivityCoinListBinding, Coin
 
         Glide.with(this)
                 .load(item.getImageUrl())
-                .asBitmap()
-                .into(new SimpleTarget<Bitmap>(Target.SIZE_ORIGINAL,Target.SIZE_ORIGINAL) {
+                .into(new SimpleTarget<Drawable>(Target.SIZE_ORIGINAL,Target.SIZE_ORIGINAL) {
                     @Override
-                    public void onResourceReady(Bitmap resource, GlideAnimation glideAnimation)  {
-                        mCoinListViewModel.saveImage(resource,item.getName());
+                    public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
+                        Bitmap bitmap = ((BitmapDrawable)resource).getBitmap();
+                        mCoinListViewModel.saveImage(bitmap,item.getName());
                     }
                 });
     }

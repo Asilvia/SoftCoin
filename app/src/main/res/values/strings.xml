@@ -5,6 +5,13 @@
     <string name="add">ADD</string>
     <string name="cancel">SKIP</string>
     <string name="my_currency">My Currency</string>
+    <!-- Empty screen -->
+    <string name="welcome">Welcome</string>
+    <string name="empty_title">C\'mon do it..</string>
+    <string name="empty_body">Push de + button below to add crypto to track</string>
+
+
+
     <string name="add_currency">Add Currency</string>
     <string name="add_coin_alert_first">How much did you buy it for?</string>
     <string name="alert_text_second">How many did you purchase?</string>
