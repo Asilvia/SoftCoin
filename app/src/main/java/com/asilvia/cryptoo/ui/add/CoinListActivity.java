@@ -166,12 +166,6 @@ public class CoinListActivity extends BaseActivity<ActivityCoinListBinding, Coin
 
                     }
                 })
-                .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Toast.makeText(CoinListActivity.this, "Cancel", Toast.LENGTH_LONG);
-                    }
-                })
                 .create()
                 .show();
     }
