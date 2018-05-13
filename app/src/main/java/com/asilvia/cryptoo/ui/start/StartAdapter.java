@@ -106,14 +106,14 @@ public class StartAdapter extends RecyclerView.Adapter<StartAdapter.ViewHolder>
         if(market) {
 
             holder.value_percentage.setText(String.format("%.2f", item.getIndex()) + "%");
-            holder.value.setText(symbol + String.format("%.2f", item.getPrice()));
+            holder.value.setText(symbol + "" +String.format("%.2f", item.getPrice()));
             setIndicator(holder, item.getIndex());
         }
         else
         {
             double percentage = getUserPercentage(item);
             holder.value_percentage.setText(String.format("%.2f", percentage) + "%");
-            holder.value.setText(symbol + item.getUserProfit());
+            holder.value.setText(symbol +" "+ item.getUserProfit());
             setIndicator(holder, percentage);
         }
 
