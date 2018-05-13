@@ -346,7 +346,8 @@
                     android:stateListAnimator="@null"
                     android:text="@string/delete"
                     android:textColor="@color/colorPrimary"
-                    android:textSize="@dimen/action_button" />
+                    android:textSize="@dimen/action_button"
+                    android:textAllCaps="false"/>
 
                 <ImageView
                     android:layout_width="109dp"
