@@ -20,6 +20,7 @@
         android:textColor="@color/alert_input"
         android:textSize="@dimen/cards_text"
         android:layout_marginBottom="@dimen/padding_medium"
+        android:theme="@style/EditTextTheme"
         />
     <TextView
         android:layout_width="match_parent"
@@ -36,6 +37,7 @@
         android:textColor="@color/alert_input"
         android:inputType="numberDecimal"
         android:textSize="@dimen/cards_text"
+        android:theme="@style/EditTextTheme"
         />
 
 </LinearLayout>

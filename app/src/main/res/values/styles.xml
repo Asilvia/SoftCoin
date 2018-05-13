@@ -22,6 +22,11 @@
         <item name="android:paddingRight">@dimen/actionbar_right_padding</item>
         <item name="background">@drawable/actionbar_background</item>
     </style>
+    <style name="EditTextTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorControlNormal">@color/light_grey</item>
+        <item name="colorControlActivated">@color/blue</item>
+        <item name="colorControlHighlight">@color/blue</item>
+    </style>
 
 
 
