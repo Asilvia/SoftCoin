@@ -12,6 +12,9 @@ import com.asilvia.cryptoo.ui.base.BaseViewModel;
 import com.asilvia.cryptoo.util.rx.SchedulerProvider;
 import com.bumptech.glide.Glide;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 import rx.Completable;
 
 
@@ -40,12 +43,13 @@ public class CoinDetailsViewModel extends BaseViewModel<CoinDetailsNavigator> {
 
     public String getTotalAmount()
     {
-        return getDataManager().getMainCurrencySymbol() + String.valueOf(mCoin.getAmount() * mCoin.getUserPrice());
+
+        return getDataManager().getMainCurrencySymbol() +" " + formatNumber(mCoin.getAmount() * mCoin.getUserPrice());
     }
 
     public String getPrice()
     {
-        return getDataManager().getMainCurrencySymbol() + String.valueOf(mCoin.getPrice());
+        return getDataManager().getMainCurrencySymbol() + " " + formatNumber(mCoin.getPrice());
     }
 
     public String getIndex()
@@ -59,12 +63,13 @@ public class CoinDetailsViewModel extends BaseViewModel<CoinDetailsNavigator> {
 
     public String getInitialPrice()
     {
-        return getDataManager().getMainCurrencySymbol() + String.valueOf(mCoin.getUserPrice());
+
+        return getDataManager().getMainCurrencySymbol() +  formatNumber(mCoin.getUserPrice());
     }
 
     public String getProfit()
     {
-        return getDataManager().getMainCurrencySymbol() + mCoin.getUserProfit();
+        return  getDataManager().getMainCurrencySymbol() + " " +  formatNumber(Double.valueOf(mCoin.getUserProfit()));
     }
 
 
@@ -109,6 +114,13 @@ public class CoinDetailsViewModel extends BaseViewModel<CoinDetailsNavigator> {
 
     public Completable deleteCoin() {
         return getDataManager().deleteCoin(mCoin);
+    }
+
+
+    public String formatNumber(double value)
+    {
+        BigDecimal number = new BigDecimal(value).setScale(6, BigDecimal.ROUND_HALF_EVEN);
+        return number.stripTrailingZeros().toPlainString();
     }
 
 
