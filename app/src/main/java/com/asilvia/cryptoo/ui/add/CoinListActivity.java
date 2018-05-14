@@ -3,8 +3,10 @@ package com.asilvia.cryptoo.ui.add;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
+import android.arch.persistence.room.util.StringUtil;
 import android.content.DialogInterface;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -151,25 +153,56 @@ public class CoinListActivity extends BaseActivity<ActivityCoinListBinding, Coin
     }
 
     private void showDialog(View view, Double price, CoinsDetails item) {
+
         AlertDialog.Builder builder = new AlertDialog.Builder(CoinListActivity.this);
         View dialogView = getView(price);
         builder.setTitle(item.getFullName()).setView(dialogView)
 
-                .setPositiveButton(R.string.add, new DialogInterface.OnClickListener() {
+                .setPositiveButton(R.string.add, null);
+                AlertDialog alertDialog = builder.create();
+
+        alertDialog.setOnShowListener(new DialogInterface.OnShowListener() {
+            @Override
+            public void onShow(DialogInterface dialogInterface) {
+                final EditText editTextMuch = alertDialog.findViewById(R.id.much);
+                final EditText editTextMany = alertDialog.findViewById(R.id.many);
+                alertDialog
+                        .getButton(DialogInterface.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialog, int which) {
+                    public void onClick(View view) {
+                        String strPrice = editTextMuch.getText().toString();
+                        String strAmount = editTextMany.getText().toString();
+                        if(isInteger(strAmount)) {
+                            saveCoin(strPrice, strAmount, item);
+                            storeImage(view, item);
+                            alertDialog.dismiss();
+                        }
+                        else
+                        {
+                            editTextMany.setHint("Please add a number");
 
-                        String strPrice = ((EditText) ((AlertDialog) dialog).findViewById(R.id.much)).getText().toString();
-                        String strAmount = ((EditText) ((AlertDialog) dialog).findViewById(R.id.many)).getText().toString();
-                        saveCoin(strPrice, strAmount, item);
-                        storeImage(view, item);
-
+                        }
                     }
-                })
-                .create()
-                .show();
+                });
+            }
+        });
+
+
+               alertDialog.show();
+
+
+        ;
     }
 
+
+    public boolean isInteger( String input ) {
+        try {
+            Integer.parseInt(input);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
     @NonNull
     private View getView(Double price) {
         LayoutInflater inflater = getLayoutInflater();
