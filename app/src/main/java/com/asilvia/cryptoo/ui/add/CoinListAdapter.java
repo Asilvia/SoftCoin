@@ -13,6 +13,7 @@ import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.asilvia.cryptoo.R;
@@ -88,9 +89,19 @@ public class CoinListAdapter extends ArrayAdapter<CoinsDetails>  implements Filt
         if (position == AD_INDEX && ad != null){
             listItem = setAdsView(parent);
         }else {
-
-
                 listItem = LayoutInflater.from(mContext).inflate(R.layout.coin_list_item, parent, false);
+
+                //backgrounds
+            RelativeLayout cardview = (RelativeLayout) listItem.findViewById(R.id.card_view);
+            if(position == 0) {
+
+                cardview.setBackgroundResource(R.drawable.card_round_top_corners);
+            }
+            else if(position == filteredList.size())
+            {
+                cardview.setBackgroundResource(R.drawable.card_round_bottom_corners);
+            }
+
 
             if(position != 0 && ad !=null)
             {
@@ -157,7 +168,7 @@ public class CoinListAdapter extends ArrayAdapter<CoinsDetails>  implements Filt
         int i=0;
        originalCoinList.addAll(list);
        if(originalCoinList.size() >= 10) {
-           while (filteredList.size() < 5) {
+           while (filteredList.size() < 3) {
                 filteredList.add(originalCoinList.get(i));
                 i++;
            }

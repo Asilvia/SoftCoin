@@ -82,15 +82,23 @@
     <ListView
         android:id="@+id/coinList"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentBottom="true"
+        android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:divider="@null"
-        android:dividerHeight="0dp"
+        android:dividerHeight="2dp"
         android:layout_below="@+id/lastsearched"
         android:layout_marginTop="11dp"
+        android:scrollbars="none"
        />
 
-
+    <ImageView
+        android:layout_width="109dp"
+        android:layout_height="23dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_below="@+id/coinList"
+        android:layout_marginBottom="@dimen/padding_xxl"
+        android:src="@drawable/ic_logo_cryptoo"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"/>
 </RelativeLayout>
 </layout>

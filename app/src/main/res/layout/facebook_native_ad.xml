@@ -8,7 +8,6 @@
     android:layout_height="wrap_content"
     card_view:cardElevation="0dp"
     card_view:cardCornerRadius="2dp"
-    card_view:cardUseCompatPadding="true"
     card_view:contentPaddingTop="-100dp"
 
     >
