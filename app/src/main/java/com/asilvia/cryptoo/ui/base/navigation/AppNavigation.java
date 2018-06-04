@@ -5,7 +5,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 
-import com.asilvia.cryptoo.ui.add.CoinListActivity;
+import com.asilvia.cryptoo.ui.add.AddCoinActivity;
 import com.asilvia.cryptoo.ui.details.CoinDetailsActivity;
 import com.asilvia.cryptoo.ui.settings.SettingsActivity;
 import com.asilvia.cryptoo.ui.start.StartActivity;
@@ -18,8 +18,8 @@ import com.asilvia.cryptoo.ui.start.StartActivity;
 public class AppNavigation {
 
 
-    public static void goToCoinListActivity(Activity activity) {
-        Intent intent = new Intent(activity, CoinListActivity.class);
+    public static void goToAddCoinActivity(Activity activity) {
+        Intent intent = new Intent(activity, AddCoinActivity.class);
         activity.startActivity(intent);
     }
 
@@ -41,8 +41,6 @@ public class AppNavigation {
         Intent intent = new Intent(activity, SettingsActivity.class);
         activity.startActivity(intent);
     }
-
-
 
 
 }

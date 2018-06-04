@@ -56,7 +56,7 @@ public class ApiResponse<T> {
     public ApiResponse(Response<T> response) {
         code = response.code();
         if(response.isSuccessful()) {
-            Timber.d("response is success");
+            Timber.d("response is success " + response);
             body = response.body();
             errorMessage = null;
         } else {

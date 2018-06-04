@@ -9,11 +9,5 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_card_new_option"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Max. 2 due to card size"
-        android:layout_marginTop="@dimen/padding_small"
-        android:paddingLeft="@dimen/home_horizontal_padding"/>
 
 </LinearLayout>

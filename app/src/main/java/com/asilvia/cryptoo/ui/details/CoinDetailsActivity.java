@@ -26,13 +26,23 @@ import timber.log.Timber;
 
 public class CoinDetailsActivity extends BaseActivity<ActivityCoinDetailsBinding, CoinDetailsViewModel> implements CoinDetailsNavigator {
 
-    public static final String TAG = "CoinDetailsActivity";
+    public static final String TAG = "InformationActivity";
     private CoinDetailsViewModel mCoinDetailsViewModel;
     ActivityCoinDetailsBinding mActivityCoinDetailsBinding;
     @Inject
     ViewModelProvider.Factory mViewModelFactory;
     String id;
     String title;
+    boolean isDeleted = false;
+
+    @Override
+    public void onBackPressed() {
+
+        if(isDeleted)
+
+            finish();
+        super.onBackPressed();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,7 +82,7 @@ public class CoinDetailsActivity extends BaseActivity<ActivityCoinDetailsBinding
 
             @Override
             public void onClick(DialogInterface dialog, int which) {
-
+                isDeleted = true;
                 Dialog dialogAnimation=new Dialog(CoinDetailsActivity.this,android.R.style.Theme_Black_NoTitleBar_Fullscreen);
                 dialogAnimation.setContentView(R.layout.remove_coin_dialog);
                 ImageView dialogImage = dialogAnimation.findViewById(R.id.removeButton);

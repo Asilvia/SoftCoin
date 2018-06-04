@@ -2,7 +2,9 @@ package com.asilvia.cryptoo;
 
 import android.app.Activity;
 import android.app.Application;
+
 import android.app.Service;
+import android.support.v4.app.Fragment;
 
 
 import com.asilvia.cryptoo.BuildConfig;
@@ -15,14 +17,16 @@ import javax.inject.Inject;
 import dagger.android.AndroidInjector;
 import dagger.android.DispatchingAndroidInjector;
 import dagger.android.HasActivityInjector;
+
 import dagger.android.HasServiceInjector;
+import dagger.android.support.HasSupportFragmentInjector;
 import timber.log.Timber;
 
 /**
  * Created by asilvia on 26-10-2017.
  */
 
-public class CryptooApp extends Application implements HasActivityInjector, HasServiceInjector {
+public class CryptooApp extends Application implements HasActivityInjector, HasServiceInjector, HasSupportFragmentInjector {
 
     @Inject
     DispatchingAndroidInjector<Activity> activityDispatchingAndroidInjector;
@@ -30,7 +34,9 @@ public class CryptooApp extends Application implements HasActivityInjector, HasS
     @Inject
     DispatchingAndroidInjector<Service> serviceDispatchingAndroidInjector;
 
-    private AppDatabase mDatabase;
+    @Inject
+    DispatchingAndroidInjector<Fragment> fragmentDispatchingAndroidInjector;
+
 
 
     @Override
@@ -55,5 +61,10 @@ public class CryptooApp extends Application implements HasActivityInjector, HasS
             Timber.plant(new Timber.DebugTree());
         }
 
+    }
+
+    @Override
+    public AndroidInjector<Fragment> supportFragmentInjector() {
+        return fragmentDispatchingAndroidInjector;
     }
 }

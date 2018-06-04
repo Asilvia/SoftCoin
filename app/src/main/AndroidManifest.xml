@@ -21,7 +21,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.asilvia.cryptoo.ui.add.CoinListActivity"
+            android:name="com.asilvia.cryptoo.ui.add.AddCoinActivity"
             android:label="@string/add_currency">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -29,6 +29,9 @@
         </activity>
         <activity
             android:name="com.asilvia.cryptoo.ui.details.CoinDetailsActivity"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name="com.asilvia.cryptoo.ui.information.InformationActivity"
             android:windowSoftInputMode="stateHidden" />
         <activity
             android:name="com.asilvia.cryptoo.ui.settings.SettingsActivity"

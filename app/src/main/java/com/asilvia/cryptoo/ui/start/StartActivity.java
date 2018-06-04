@@ -57,7 +57,7 @@ public class StartActivity extends BaseActivity<ActivityStartBinding, StartViewM
                 String extra = i.getStringExtra("Action");
                 if (extra.equals("add")) {
                     Timber.d("Go to next activity from widget");
-                    AppNavigation.goToCoinListActivity(this);
+                    AppNavigation.goToAddCoinActivity(this);
                 }
 
             }
@@ -128,7 +128,7 @@ public class StartActivity extends BaseActivity<ActivityStartBinding, StartViewM
             @Override
             public void onClick(View v) {
                 Timber.d("Go to next activity");
-                AppNavigation.goToCoinListActivity((Activity)v.getContext());
+                AppNavigation.goToAddCoinActivity((Activity)v.getContext());
 
 
             }

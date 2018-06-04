@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <com.asilvia.cryptoo.preferences.AboutTextViewPreference
+        android:selectable="false"
+        android:key="textView"
+        android:layout="@layout/about"/>
+
+    <Preference android:selectable="false"
+        android:layout="@layout/layout_footer"/>
+</PreferenceScreen>

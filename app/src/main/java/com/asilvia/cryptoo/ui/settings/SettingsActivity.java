@@ -5,6 +5,7 @@ import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -37,7 +38,8 @@ import com.asilvia.cryptoo.R;
  */
 public class SettingsActivity extends AppCompatPreferenceActivity {
 
-    public boolean isPrivacy = false;
+    public boolean isSecond = false;
+
 
 
 
@@ -84,7 +86,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
     public boolean onMenuItemSelected(int featureId, MenuItem item) {
         int id = item.getItemId();
         if (id == android.R.id.home) {
-            if(isPrivacy)
+            if(isSecond)
             {
                 onBackPressed();
                 return true;
@@ -126,10 +128,9 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
 
     public static class SettingsFragment extends PreferenceFragment implements Preference.OnPreferenceChangeListener, Preference.OnPreferenceClickListener {
 
-        SwitchPreference profitPercentagePreference;
-        SwitchPreference profitAmountPreference;
-        SwitchPreference indexPercentagePreference;
-        SwitchPreference marketPricePreference;
+        SwitchPreference market;
+        SwitchPreference profit;
+        Preference about;
         Preference rate;
         Preference share;
         Preference sendFeedback;
@@ -145,15 +146,21 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             ((SettingsActivity) getActivity()).setupActionBar(R.string.pref_title_settings);
             addPreferencesFromResource(R.xml.settings);
 
-            setSwitchPreferencesValues();
+            profit = (SwitchPreference) findPreference("profit");
+            market = (SwitchPreference) findPreference("market");
             rate = findPreference("rate");
-            rate.setOnPreferenceClickListener(this);
             share = findPreference("share");
-            share.setOnPreferenceClickListener(this);
             sendFeedback = findPreference("sendFeedback");
-            sendFeedback.setOnPreferenceClickListener(this);
             privacy = findPreference("privacy");
+            about = findPreference("about");
+
+            share.setOnPreferenceClickListener(this);
             privacy.setOnPreferenceClickListener(this);
+            profit.setOnPreferenceChangeListener(this);
+            market.setOnPreferenceChangeListener(this);
+            sendFeedback.setOnPreferenceClickListener(this);
+            rate.setOnPreferenceClickListener(this);
+            about.setOnPreferenceClickListener(this);
 
 
 
@@ -164,84 +171,40 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             View view = super.onCreateView(inflater, container, savedInstanceState);
             if (view != null) {
                 ListView preferencesList = (ListView) view.findViewById(android.R.id.list);
-                preferencesList.setPadding(50, 50, 50, 50);
+                float scale = getResources().getDisplayMetrics().density;
+                int dpAsPixels = (int) (24 *scale + 0.5f);
+                preferencesList.setPadding(dpAsPixels, 0, dpAsPixels, 0);
+                ColorDrawable divider = new ColorDrawable(this.getResources().getColor(R.color.cards_background));
+                preferencesList.setDivider(divider);
+                preferencesList.setDividerHeight(1);
             }
             return view;
         }
 
 
-        private void setSwitchPreferencesValues() {
-            profitPercentagePreference = (SwitchPreference) findPreference("profit_percentage");
-            profitAmountPreference = (SwitchPreference) findPreference("profit_amount");
-            indexPercentagePreference = (SwitchPreference) findPreference("index");
-            marketPricePreference = (SwitchPreference) findPreference("market");
 
-            profitPercentagePreference.setOnPreferenceChangeListener(this);
-            profitAmountPreference.setOnPreferenceChangeListener(this);
-            indexPercentagePreference.setOnPreferenceChangeListener(this);
-            marketPricePreference.setOnPreferenceChangeListener(this);
-        }
 
 
         @Override
         public boolean onPreferenceChange(Preference preference, Object value) {
             Boolean mValue = Boolean.valueOf(value.toString());
-            if(preference.equals(profitPercentagePreference))
+            if(preference.equals(market))
             {
               if(mValue == true) {
-                  indexPercentagePreference.setChecked(false);
-                  profitAmountPreference.setChecked(true);
-                  marketPricePreference.setChecked(false);
-
+                  profit.setChecked(false);
               }
               else {
-                  indexPercentagePreference.setChecked(true);
-                  profitAmountPreference.setChecked(false);
-                  marketPricePreference.setChecked(true);
-
+                  profit.setChecked(true);
               }
               return true;
             }
-            else  if(preference.equals(profitAmountPreference))
+            else  if(preference.equals(profit))
             {
                 if(mValue == true) {
-                    indexPercentagePreference.setChecked(false);
-                    marketPricePreference.setChecked(false);
-                    profitPercentagePreference.setChecked(true);
+                    market.setChecked(false);
                 }
                 else {
-                    indexPercentagePreference.setChecked(true);
-                    marketPricePreference.setChecked(true);
-                    profitPercentagePreference.setChecked(false);
-                }
-                return true;
-            }
-            else  if(preference.equals(indexPercentagePreference))
-            {
-                if(mValue == true)
-                {
-                    profitAmountPreference.setChecked(false);
-                    marketPricePreference.setChecked(true);
-                    profitPercentagePreference.setChecked(false);
-                }
-                else {
-                    profitAmountPreference.setChecked(true);
-                    marketPricePreference.setChecked(false);
-                    profitPercentagePreference.setChecked(true);
-                }
-                return true;
-            }
-            else if(preference.equals(marketPricePreference))
-            {
-                if(mValue == true) {
-                    indexPercentagePreference.setChecked(true);
-                    profitAmountPreference.setChecked(false);
-                    profitPercentagePreference.setChecked(false);
-                }
-                else {
-                    indexPercentagePreference.setChecked(false);
-                    profitAmountPreference.setChecked(true);
-                    profitPercentagePreference.setChecked(true);
+                    market.setChecked(true);
                 }
                 return true;
             }
@@ -267,15 +230,28 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
 
                 openPrivacy();
             }
+            else if(preference.equals(about))
+            {
+
+                openAbout();
+            }
 
 
             return false;
         }
 
         private void openPrivacy() {
-            ((SettingsActivity)getActivity()).isPrivacy = true;
+            ((SettingsActivity)getActivity()).isSecond = true;
             getFragmentManager().beginTransaction()
                     .replace(android.R.id.content, new PrivacyFragment())
+                    .addToBackStack(null)
+                    .commit();
+        }
+
+        private void openAbout() {
+            ((SettingsActivity)getActivity()).isSecond = true;
+            getFragmentManager().beginTransaction()
+                    .replace(android.R.id.content, new AboutFragment())
                     .addToBackStack(null)
                     .commit();
         }
@@ -323,7 +299,28 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
         public void onDetach() {
             super.onDetach();
             ((SettingsActivity) getActivity()).setupActionBar(R.string.pref_title_settings);
-            ((SettingsActivity) getActivity()).isPrivacy = false;
+            ((SettingsActivity) getActivity()).isSecond = false;
+
+        }
+    }
+
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+    public static class AboutFragment extends PreferenceFragment {
+        @Override
+        public void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            addPreferencesFromResource(R.xml.about);
+            setHasOptionsMenu(true);
+            ((SettingsActivity) getActivity()).setupActionBar(R.string.pref_title_about);
+
+
+        }
+
+        @Override
+        public void onDetach() {
+            super.onDetach();
+            ((SettingsActivity) getActivity()).setupActionBar(R.string.pref_title_settings);
+            ((SettingsActivity) getActivity()).isSecond = false;
 
         }
     }

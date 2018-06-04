@@ -1,8 +1,8 @@
 package com.asilvia.cryptoo.di.builder;
 
 
-import com.asilvia.cryptoo.ui.add.CoinListActivity;
-import com.asilvia.cryptoo.ui.add.CoinListActivityModule;
+import com.asilvia.cryptoo.ui.add.AddCoinActivity;
+import com.asilvia.cryptoo.ui.add.AddCoinActivityModule;
 import com.asilvia.cryptoo.ui.details.CoinDetailsActivity;
 import com.asilvia.cryptoo.ui.details.CoinDetailsActivityModule;
 import com.asilvia.cryptoo.ui.start.StartActivity;
@@ -21,8 +21,8 @@ public abstract class ActivityBuilder {
     @ContributesAndroidInjector(modules = {StartActivityModule.class})
     abstract StartActivity bindStartActivity();
 
-    @ContributesAndroidInjector(modules = {CoinListActivityModule.class})
-    abstract CoinListActivity bindCoinListActivity();
+    @ContributesAndroidInjector(modules = {AddCoinActivityModule.class})
+    abstract AddCoinActivity bindCoinListActivity();
 
     @ContributesAndroidInjector(modules = {CoinDetailsActivityModule.class})
     abstract CoinDetailsActivity bindCoinDetailsActivity();

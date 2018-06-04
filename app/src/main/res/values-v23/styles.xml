@@ -12,6 +12,9 @@
         <item name="actionBarWidgetTheme">@style/CryptooActionBar</item>
         <item name="android:windowBackground">@color/colorPrimary</item>
         <item name="android:preferenceCategoryStyle">@style/CryptooPreferencesCategory</item>
+        <item name="preferenceTheme">
+            @style/PreferenceThemeOverlay.v14.Material
+        </item>
 
 
     </style>
@@ -25,6 +28,7 @@
 
     <style name="CryptooPreferencesCategory" parent="@style/Preference.Category.Material">
         <item name="android:layout">@layout/preferences_category</item>
+
 
     </style>
 

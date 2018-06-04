@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.asilvia.cryptoo.ui.coinList.CoinListActivity">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.asilvia.cryptoo.ui.add.AddCoinViewModel" />
+
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background"
+        android:paddingLeft="@dimen/home_horizontal_padding"
+        android:paddingRight="@dimen/home_horizontal_padding">
+
+        <ProgressBar
+            android:id="@+id/loading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:visibility="@{viewModel.isLoading ? View.VISIBLE : View.GONE}" />
+
+        <android.support.v4.widget.NestedScrollView
+            android:id="@+id/scrollView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/search_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginBottom="11dp"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginRight="2dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/colorPrimary"
+                    android:elevation="2dp">
+
+                    <android.support.v7.widget.SearchView
+                        android:id="@+id/search"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:elevation="2dp"
+                        app:defaultQueryHint="@string/hint_search"
+                        app:queryHint="@string/hint_search" />
+
+                </android.support.v7.widget.CardView>
+
+                <TextView
+                    android:id="@+id/lastsearched"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/search_layout"
+                    android:layout_marginLeft="11dp"
+                    android:fontFamily="@font/akkuratproregular"
+                    android:text="@string/frequently_searched"
+                    android:textColor="@color/light_grey"
+                    android:textSize="@dimen/action_button" />
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/coinList"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@+id/footer"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@+id/lastsearched"
+                    android:layout_marginTop="11dp"
+                    android:divider="@null"
+                    android:dividerHeight="2dp"
+                    android:scrollbars="none" />
+
+                <ImageView
+                    android:id="@+id/footer"
+                    android:layout_width="109dp"
+                    android:layout_height="23dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/padding_medium"
+                    android:layout_marginBottom="@dimen/home_horizontal_padding"
+                    android:src="@drawable/ic_logo_cryptoo" />
+            </RelativeLayout>
+        </android.support.v4.widget.NestedScrollView>
+    </RelativeLayout>
+</layout>

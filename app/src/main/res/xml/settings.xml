@@ -2,8 +2,8 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
     <PreferenceCategory
-        android:title="@string/pref_header_general"
-        android:key="pref_key_storage_settings_general">
+        android:key="pref_key_storage_settings_general"
+        android:title="@string/pref_header_general">
         <ListPreference
             android:defaultValue="@string/default_coin"
             android:entries="@array/pref_default_currency_titles"
@@ -11,101 +11,87 @@
             android:key="default_currency"
             android:negativeButtonText="@null"
             android:positiveButtonText="@null"
-            android:title="@string/pref_title_default_currency"
-            android:summary="%s"/>
+            android:summary="%s"
+            android:title="@string/pref_title_default_currency" />
         <Preference
-            android:title="divider"
+            android:layout="@layout/pref_line"
             android:selectable="false"
-            android:layout="@layout/pref_line"/>
-        <ListPreference
-            android:defaultValue="24"
-            android:entries="@array/pref_percentage_titles"
-            android:entryValues="@array/pref_percentage_values"
-            android:key="default_percentage"
-            android:negativeButtonText="@null"
-            android:positiveButtonText="@null"
-            android:title="@string/pref_title_percentage"
-            android:summary="%s"/>
+            android:title="divider" />
     </PreferenceCategory>
-    <PreferenceCategory android:title="@string/pref_header_home_card"
-        android:key="pref_key_storage_settings_home">
+    <PreferenceCategory
+        android:key="pref_key_storage_settings_home"
+        android:title="@string/pref_header_home_card">
         <Preference
             android:layout="@layout/layout_settings_card"
-            android:selectable="false"/>
-        <Preference
-            android:title="divider"
-            android:selectable="false"
-            android:layout="@layout/pref_line"/>
+            android:selectable="false" />
+
         <SwitchPreference
-            android:key="profit_percentage"
-            android:title="@string/pref_title_profit_percentage"
             android:defaultValue="false"
-            />
+            android:key="@string/settings_profit_title"
+            android:summary="@string/settings_profit_summary"
+            android:title="Personal" />
         <Preference
-            android:title="divider"
+            android:layout="@layout/pref_line"
             android:selectable="false"
-            android:layout="@layout/pref_line"/>
+            android:title="divider" />
         <SwitchPreference
-            android:key="profit_amount"
-            android:title="@string/pref_title_profit_amount"
-            android:defaultValue="false" />
-        <Preference
-            android:title="divider"
-            android:selectable="false"
-            android:layout="@layout/pref_line"/>
-        <SwitchPreference
-            android:key="index"
-            android:title="@string/pref_title_index"
-            android:defaultValue="true" />
-        <Preference
-            android:title="divider"
-            android:selectable="false"
-            android:layout="@layout/pref_line"/>
-        <SwitchPreference
+            android:defaultValue="true"
             android:key="market"
-            android:title="@string/pref_title_market"
-            android:defaultValue="true" />
-
+            android:summary="@string/settings_market_summary"
+            android:title="@string/settings_market_title" />
+        <Preference
+            android:layout="@layout/pref_line"
+            android:selectable="false"
+            android:title="divider" />
     </PreferenceCategory>
-    <Preference
-        android:title="divider"
-        android:selectable="false"
-        android:layout="@layout/pref_line"/>
-    <PreferenceCategory android:title="@string/pref_header_about"
-        android:key="pref_key_storage_settings_about"
-        android:enabled="true">
 
-        <Preference android:title="@string/pref_rate"
+    <PreferenceCategory
+        android:enabled="true"
+        android:key="pref_key_storage_settings_about"
+        android:title="@string/pref_header_about">
+        <Preference
+            android:icon="@drawable/ic_lock_black_24dp"
+            android:key="about"
+            android:selectable="true"
+            android:title="@string/settings_about" />
+        <Preference
+            android:layout="@layout/pref_line"
+            android:selectable="false"
+            android:title="divider" />
+        <Preference
             android:icon="@drawable/ic_star_black_24dp"
             android:key="rate"
             android:selectable="true"
-            />
+            android:title="@string/pref_rate" />
         <Preference
-            android:title="divider"
+            android:layout="@layout/pref_line"
             android:selectable="false"
-            android:layout="@layout/pref_line"/>
-        <Preference android:title="@string/pref_privacy"
+            android:title="divider" />
+        <Preference
             android:icon="@drawable/ic_lock_black_24dp"
             android:key="privacy"
-            android:selectable="true"/>
+            android:selectable="true"
+            android:title="@string/pref_privacy" />
         <Preference
-            android:title="divider"
+            android:layout="@layout/pref_line"
             android:selectable="false"
-            android:layout="@layout/pref_line"/>
-        <Preference android:title="@string/pref_invite"
+            android:title="divider" />
+        <Preference
             android:icon="@drawable/ic_share_black_24dp"
             android:key="share"
             android:selectable="true"
-            />
+            android:title="@string/pref_invite" />
         <Preference
-            android:title="divider"
+            android:layout="@layout/pref_line"
             android:selectable="false"
-            android:layout="@layout/pref_line"/>
-        <Preference android:title="@string/pref_feedback"
+            android:title="divider" />
+        <Preference
             android:icon="@drawable/ic_email_black_24dp"
             android:key="sendFeedback"
-            android:selectable="true"/>
+            android:selectable="true"
+            android:title="@string/pref_feedback" />
     </PreferenceCategory>
-    <Preference android:selectable="false"
-        android:layout="@layout/layout_footer"/>
+    <Preference
+        android:layout="@layout/layout_footer"
+        android:selectable="false" />
 </PreferenceScreen>

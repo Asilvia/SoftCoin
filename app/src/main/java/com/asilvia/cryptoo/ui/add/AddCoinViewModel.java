@@ -2,6 +2,8 @@ package com.asilvia.cryptoo.ui.add;
 
 
 import android.arch.lifecycle.LiveData;
+import android.arch.lifecycle.MutableLiveData;
+import android.arch.lifecycle.Transformations;
 import android.graphics.Bitmap;
 
 import com.asilvia.cryptoo.api.ApiResponse;
@@ -22,43 +24,52 @@ import rx.Completable;
 import timber.log.Timber;
 
 
-
 /**
  * Created by asilvia on 26-10-2017.
  */
 
-public class CoinListViewModel extends BaseViewModel<CoinListNavigator> {
+public class AddCoinViewModel extends BaseViewModel<AddCoinNavigator> {
 
     private LiveData<ApiResponse<Coins>> mObservableCoinsList;
+    public CoinsDetails selected;
+    private LiveData<LocalCoin> localCoin;
+    private LocalCoin tempCoin;
 
 
-    public CoinListViewModel(DataManager dataManager, SchedulerProvider schedulerProvider) {
+    public AddCoinViewModel(DataManager dataManager, SchedulerProvider schedulerProvider) {
         super(dataManager, schedulerProvider);
         mObservableCoinsList = AbsentLiveData.create();
+        selected = new CoinsDetails();
     }
 
-    void retrieveCoinList()
+    public void retrieveCoinList()
     {
         mObservableCoinsList = getDataManager().getCoinList();
     }
 
-    LiveData<ApiResponse<Coins>> getObservableCoinsList()
+    public LiveData<ApiResponse<Coins>> getObservableCoinsList()
     {
         return mObservableCoinsList;
     }
 
-    ArrayList<CoinsDetails> getParseDataResponse(ApiResponse<Coins> coinsApiResponse)
+    public ArrayList<CoinsDetails> getParseDataResponse(ApiResponse<Coins> coinsApiResponse)
     {
         ArrayList<CoinsDetails> list = new ArrayList<>();
         if (coinsApiResponse != null) {
             if (coinsApiResponse.isSuccessful()) {
+
+                //TODO improve this  time
                 Timber.d("isSuccessful" + coinsApiResponse.body.getMessage());
                 if(coinsApiResponse.body.getData() != null) {
-
                     list = new ArrayList<CoinsDetails>(coinsApiResponse.body.getData().values());
                     sortList(list);
+
+                    long startTime = System.currentTimeMillis();
                     completeImageUrl(list, coinsApiResponse.body.getBaseImageUrl());
                     removeLocalcoins(list);
+                    long stopTime = System.currentTimeMillis();
+                    long elapsedTime = stopTime - startTime;
+                    Timber.d("=====Time: " + elapsedTime);
                 }
 
 
@@ -97,17 +108,15 @@ public class CoinListViewModel extends BaseViewModel<CoinListNavigator> {
         });
     }
 //todo change long to double
-    public Completable saveItem(CoinsDetails coin, Double userprice, long amount)
+    public Completable saveItem(Double userprice, long amount)
     {
-
-        LocalCoin localCoin = new LocalCoin(coin.getId(), coin.getCoinName(), coin.getName(), coin.getImageUrl(), coin.getUrl(),0d, userprice, getDataManager().getMainCoin(), amount,0);
+        LocalCoin localCoin = new LocalCoin(selected.getId(), selected.getCoinName(), selected.getName(), selected.getImageUrl(), selected.getUrl(),0d, userprice, getDataManager().getMainCoin(), amount,0);
         return getDataManager().saveCoin(localCoin);
-
     }
 
-    public void saveImage(Bitmap bitmap, String name)
+    public void saveImage(Bitmap bitmap)
     {
-        getDataManager().saveImageOnFile(bitmap, name);
+        getDataManager().saveImageOnFile(bitmap, selected.getName());
     }
 
 
@@ -119,23 +128,40 @@ public class CoinListViewModel extends BaseViewModel<CoinListNavigator> {
     }
 
 
-    public ArrayList<String> getSavedSearch() {
-        return getDataManager().getSavedSearched();
+    public LiveData<LocalCoin> getCoinPrice(CoinsDetails coinsDetails) {
+        tempCoin = new LocalCoin(coinsDetails.getId(), coinsDetails.getCoinName(), coinsDetails.getName(), coinsDetails.getImageUrl(), coinsDetails.getUrl(), 0d, 0d, getDataManager().getMainCoin(), 0, 0);
+
+        localCoin = Transformations.switchMap(getDataManager().getCoinPrices(coinsDetails.getName(), getDataManager().getMainCoin()), response -> {
+            MutableLiveData<LocalCoin> mCoin = new MutableLiveData<>();
+            if (response.isSuccessful()) {
+                if (response.body != null && response.body.getRAW()!= null) {
+                    String price = String.valueOf(response.body.getRAW().get(tempCoin.getKey()).get(getDataManager().getMainCoin()).getPRICE());
+                    tempCoin.setPrice(Double.parseDouble(price));
+                    double index = response.body.getRAW().get(tempCoin.getKey()).get(getDataManager().getMainCoin()).getCHANGEPCT24HOUR();
+                    tempCoin.setIndex(index);
+                }
+            }
+            mCoin.postValue(tempCoin);
+            return mCoin;
+        });
+        return localCoin;
 
     }
 
-    public void setSavedSearch(ArrayList<String> savedSearch) {
-        getDataManager().setSavedSearched(savedSearch);
-    }
-
-    public LiveData<ApiResponse<CoinsPrice>> getCoinPrice(String from)
-    {
-        return getDataManager().getCoinPrices(from, getDataManager().getMainCoin());
-    }
 
     public String getSymbol()
     {
         return getDataManager().getMainCurrencySymbol();
+    }
+
+    public CoinsDetails getSelected() {
+        Timber.d(" ====== getSelected ======" + selected.getCoinName());
+        return selected;
+    }
+    public void select(CoinsDetails item) {
+        Timber.d(" ====== select ======" + item.getCoinName());
+        selected = item;
+
     }
 
 

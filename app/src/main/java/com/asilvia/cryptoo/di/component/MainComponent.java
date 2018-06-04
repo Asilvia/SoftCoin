@@ -6,6 +6,7 @@ import android.app.Application;
 import com.asilvia.cryptoo.CryptooApp;
 
 import com.asilvia.cryptoo.di.builder.ActivityBuilder;
+import com.asilvia.cryptoo.di.builder.FragmentBuilder;
 import com.asilvia.cryptoo.di.module.AppModule;
 import com.asilvia.cryptoo.di.module.NetModule;
 
@@ -19,7 +20,7 @@ import dagger.android.AndroidInjectionModule;
  * Created by asilvia on 26-10-2017.
  */
 @Singleton
-@Component (modules = {AndroidInjectionModule.class,  NetModule.class, AppModule.class, ActivityBuilder.class})
+@Component (modules = {AndroidInjectionModule.class,  NetModule.class, AppModule.class, ActivityBuilder.class, FragmentBuilder.class})
 public interface MainComponent
 {
     @Component.Builder

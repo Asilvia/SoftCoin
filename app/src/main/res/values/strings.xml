@@ -3,6 +3,7 @@
     <string name="hint_search">Search</string>
     <string name="ok">OK</string>
     <string name="add">ADD</string>
+    <string name="add_button">Add</string>
     <string name="cancel">SKIP</string>
     <string name="my_currency">My Currency</string>
     <!-- Empty screen -->
@@ -53,10 +54,7 @@
     </string-array>
 
     <string name="pref_header_home_card">Home - Card Layout</string>
-    <string name="pref_title_profit_percentage">Profit/Loss(%)</string>
-    <string name="pref_title_profit_amount">Profit/Loss(amount)</string>
-    <string name="pref_title_index">Index(%)</string>
-    <string name="pref_title_market">Market Price(amount)</string>
+
     <string name="pref_header_about">About Us</string>
     <string name="pref_rate">Rate Us</string>
     <string name="pref_privacy">Privacy &amp; Disclaimer</string>
@@ -72,6 +70,7 @@
     <string name="store">Download Cryptoo here : https://play.google.com/store/apps/details?id=</string>
     <string name="pref_title_settings">Settings</string>
     <string name="pref_title_privacy">Privacy  &amp; Disclaimer</string>
+    <string name="pref_title_about">Cryptoo</string>
     <string name="privacy" formatted="true"><![CDATA[<center><h1> <font color="#202029">Privacy</font></h1></center>
     <p><font color="#202029">Cryptoo does NOT share any data that can be used to personally identify you. We do use and share non-personal data to improve our products and services; provide support; send notifications, offers, and promotions; and to make money from our free offerings using non-personal data.</font></p>
     <p><font color="#202029">Changes to this Privacy Statement The contents of this statement may be altered at any time, at our discretion. If you have any questions regarding our privacy policy then you may contact us.</font></p>
@@ -90,4 +89,16 @@
     <string name="dialog_delete_skip">NO</string>
     <string name="dialog_remove_title">Bye, bye</string>
     <string name="dialog_remove_body">You successfully removed that coin from your list</string>
+    <string name="settings_about">Cryptoo</string>
+    <string name="settings_market_summary">Display market data including index and market price</string>
+    <string name="settings_market_title">Market</string>
+    <string name="settings_profit_title">profit</string>
+    <string name="settings_profit_summary">Display your personal profit or loss both in percentage and amount</string>
+    <string name="about_description">Cryptoo is a cooperative efford of cryptocurrency enthousiast and developer Ana Medeira and a designer Christian Gravemaker.</string>
+    <string name="about_get_in_touch">Want to get in touch directly?</string>
+    <string name="about_credits">Credits</string>
+    <string name="about_ghipy_api">GHIPY API</string>
+    <string name="about_giphy_link">https://developers.giphy.com/docs/</string>
+    <string name="about_data_api">Cryptoo data api</string>
+    <string name="about_data_api_link">https://www.cryptocompare.com/api/</string>
 </resources>
