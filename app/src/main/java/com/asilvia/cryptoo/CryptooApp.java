@@ -2,22 +2,16 @@ package com.asilvia.cryptoo;
 
 import android.app.Activity;
 import android.app.Application;
-
 import android.app.Service;
 import android.support.v4.app.Fragment;
 
-
-import com.asilvia.cryptoo.BuildConfig;
-import com.asilvia.cryptoo.di.db.AppDatabase;
 import com.asilvia.cryptoo.di.component.DaggerMainComponent;
-
 
 import javax.inject.Inject;
 
 import dagger.android.AndroidInjector;
 import dagger.android.DispatchingAndroidInjector;
 import dagger.android.HasActivityInjector;
-
 import dagger.android.HasServiceInjector;
 import dagger.android.support.HasSupportFragmentInjector;
 import timber.log.Timber;
@@ -56,6 +50,7 @@ public class CryptooApp extends Application implements HasActivityInjector, HasS
 
 
         DaggerMainComponent.builder().application(this).build().inject(this);
+
 
         if (BuildConfig.DEBUG) {
             Timber.plant(new Timber.DebugTree());

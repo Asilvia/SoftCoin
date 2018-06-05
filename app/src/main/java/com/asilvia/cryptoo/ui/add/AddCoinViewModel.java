@@ -123,7 +123,9 @@ public class AddCoinViewModel extends BaseViewModel<AddCoinNavigator> {
     private void completeImageUrl(ArrayList<CoinsDetails> list, String baseImageUrl) {
         for(CoinsDetails coin: list)
         {
-            coin.setImageUrl(baseImageUrl + coin.getImageUrl());
+            if(coin.getImageUrl() != null) {
+                coin.setImageUrl(baseImageUrl + coin.getImageUrl());
+            }
         }
     }
 

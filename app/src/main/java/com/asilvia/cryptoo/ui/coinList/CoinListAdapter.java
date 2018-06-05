@@ -18,6 +18,7 @@ import com.asilvia.cryptoo.R;
 import com.asilvia.cryptoo.ui.add.AddCoinActivity;
 import com.asilvia.cryptoo.vo.CoinsDetails;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.facebook.ads.NativeAd;
 import com.facebook.ads.NativeAdsManager;
@@ -116,7 +117,12 @@ public class CoinListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             });
 
             Timber.d("img: " + currentCoin.getImageUrl());
-            Glide.with(mContext).load(currentCoin.getImageUrl()).apply(new RequestOptions().placeholder(R.mipmap.ic_launcher)).into(postHolder.image);
+            if(currentCoin.getImageUrl() != null) {
+                Glide.with(mContext)
+                        .load(currentCoin.getImageUrl())
+                        .apply(new RequestOptions().placeholder(R.mipmap.ic_launcher).diskCacheStrategy(DiskCacheStrategy.RESOURCE).error(R.mipmap.ic_launcher))
+                        .into(postHolder.image);
+            }
         }
     }
 
@@ -229,29 +235,44 @@ public class CoinListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     public class CoinsFilter extends Filter {
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
-            String filterString = constraint.toString().toLowerCase();
             FilterResults results = new FilterResults();
-            final ArrayList<CoinsDetails>  mList = originalCoinList;
-            int count = originalCoinList.size();
-            final ArrayList<CoinsDetails> nlist = new ArrayList<CoinsDetails>(count);
 
-
-            for (int i = 0; i < count; i++) {
-                if (mList.get(i).getFullName().toLowerCase().startsWith(filterString)) {
-                    CoinsDetails newItem = mList.get(i);
-                    nlist.add(newItem);
+            if(constraint.length() == 0) {
+                int i=0;
+                if(originalCoinList.size() >= 10) {
+                    while (filteredList.size() < 4) {
+                        filteredList.add(originalCoinList.get(i));
+                        i++;
+                    }
                 }
+                results.values = originalCoinList;
+                results.count = originalCoinList.size();
             }
+            else {
+                String filterString = constraint.toString().toLowerCase();
 
-            results.values = nlist;
-            results.count = nlist.size();
+                final ArrayList<CoinsDetails> mList = originalCoinList;
+                int count = originalCoinList.size();
+                final ArrayList<CoinsDetails> nlist = new ArrayList<CoinsDetails>(count);
 
+
+                for (int i = 0; i < count; i++) {
+                    if (mList.get(i).getFullName().toLowerCase().startsWith(filterString)) {
+                        CoinsDetails newItem = mList.get(i);
+                        nlist.add(newItem);
+                    }
+                }
+
+                results.values = nlist;
+                results.count = nlist.size();
+            }
             return results;
         }
 
         @Override
         protected void publishResults(CharSequence constraint, FilterResults results) {
-            filteredList = (ArrayList<CoinsDetails>) results.values;
+            filteredList.clear();
+            filteredList.addAll((ArrayList<CoinsDetails>) results.values);
             notifyDataSetChanged();
         }
     }

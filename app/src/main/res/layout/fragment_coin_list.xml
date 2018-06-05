@@ -28,14 +28,9 @@
             android:layout_centerInParent="true"
             android:visibility="@{viewModel.isLoading ? View.VISIBLE : View.GONE}" />
 
-        <android.support.v4.widget.NestedScrollView
-            android:id="@+id/scrollView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fillViewport="true"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-            <RelativeLayout
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
@@ -73,29 +68,43 @@
                     android:text="@string/frequently_searched"
                     android:textColor="@color/light_grey"
                     android:textSize="@dimen/action_button" />
+
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/coinList"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_above="@+id/footer"
                     android:layout_alignParentStart="true"
                     android:layout_below="@+id/lastsearched"
                     android:layout_marginTop="11dp"
+                    android:layout_marginBottom="11dp"
                     android:divider="@null"
                     android:dividerHeight="2dp"
+                    android:nestedScrollingEnabled="false"
                     android:scrollbars="none" />
 
-                <ImageView
-                    android:id="@+id/footer"
-                    android:layout_width="109dp"
-                    android:layout_height="23dp"
-                    android:layout_alignParentBottom="true"
-                    android:layout_centerHorizontal="true"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="@dimen/padding_medium"
-                    android:layout_marginBottom="@dimen/home_horizontal_padding"
-                    android:src="@drawable/ic_logo_cryptoo" />
-            </RelativeLayout>
-        </android.support.v4.widget.NestedScrollView>
+                <android.support.v4.widget.Space
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:minHeight="1dp" />
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/footer"
+                        android:layout_width="109dp"
+                        android:layout_height="23dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginBottom="@dimen/home_horizontal_padding"
+                        android:layout_marginTop="@dimen/padding_medium"
+                        android:src="@drawable/ic_logo_cryptoo" />
+                </FrameLayout>
+            </LinearLayout>
+
+
     </RelativeLayout>
 </layout>
