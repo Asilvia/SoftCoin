@@ -139,7 +139,7 @@ public class StartViewModel extends BaseViewModel<StartNavigator> {
     public String getLastUpdate()
     {
         Calendar c = Calendar.getInstance();
-        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+        SimpleDateFormat sdf = new SimpleDateFormat(" dd/MM/YYYY HH:mm");
         return  sdf.format(c.getTime());
     }
 

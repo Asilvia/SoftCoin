@@ -82,7 +82,7 @@
     </string>
     <string name="noInternet">No Internet Connection</string>
     <string name="noInternet_body">You need to have Mobile Data or wifi to access this. Press ok to Exit</string>
-    <string name="last_update">Last update: </string>
+    <string name="last_update">Last updated\n </string>
     <string name="dialog_delete_body">Are you sure you want to delete</string>
     <string name="dialog_delete_title">Alert!!</string>
     <string name="dialog_delete_confirm">YES</string>

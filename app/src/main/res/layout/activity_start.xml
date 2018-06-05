@@ -71,21 +71,25 @@
                             android:textColor="@color/title"
                             android:textSize="@dimen/title" />
 
-                        <TextView
-                            android:id="@+id/update_time"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:layout_below="@+id/title"
-                            android:paddingLeft="@dimen/padding_s" />
 
                         <android.support.v7.widget.RecyclerView
                             android:id="@+id/coins_list"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_below="@+id/update_time"
+                            android:layout_below="@+id/title"
                             android:background="@color/background"
                             android:nestedScrollingEnabled="false" />
+                        <TextView
+                            android:id="@+id/update_time"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:fontFamily="@font/akkuratproregular"
+                            android:layout_below="@+id/coins_list"
+                            android:textSize="@dimen/widget_title_text"
+                            android:textColor="@color/light_grey"
+                            android:paddingLeft="@dimen/padding_s"
+                            android:paddingTop="@dimen/padding_medium"/>
 
 
                     </RelativeLayout>
