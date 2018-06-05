@@ -4,4 +4,13 @@
         <item>EUR</item>
         <item>USD</item>
     </string-array>
+
+    <string-array name="deletecoin_images">
+        <item>https://media.giphy.com/media/l0HFkA6omUyjVYqw8/giphy.gif</item>
+        <item>https://media.giphy.com/media/kHU8W94VS329y/giphy-downsized-large.gif</item>
+        <item>https://media.giphy.com/media/fs5OZXx0XJKhy/giphy-downsized-large.gif</item>
+        <item>https://media.giphy.com/media/cqNE5cvGlwIDe/giphy.gif</item>
+        <item>https://media.giphy.com/media/hdGELFptGctlm/giphy.gif</item>
+        <item>https://media.giphy.com/media/26FPn4rR1damB0MQo/giphy.gif</item>
+    </string-array>
 </resources>

@@ -19,6 +19,9 @@ import com.asilvia.cryptoo.ui.base.BaseActivity;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 
+import java.util.ArrayList;
+import java.util.Random;
+
 import javax.inject.Inject;
 
 import rx.schedulers.Schedulers;
@@ -82,13 +85,19 @@ public class CoinDetailsActivity extends BaseActivity<ActivityCoinDetailsBinding
 
             @Override
             public void onClick(DialogInterface dialog, int which) {
+
+
+                String imgUrl = getUrlImage();
+
                 isDeleted = true;
                 Dialog dialogAnimation=new Dialog(CoinDetailsActivity.this,android.R.style.Theme_Black_NoTitleBar_Fullscreen);
                 dialogAnimation.setContentView(R.layout.remove_coin_dialog);
                 ImageView dialogImage = dialogAnimation.findViewById(R.id.removeButton);
                 Glide
                         .with(CoinDetailsActivity.this)
-                        .load("https://media.giphy.com/media/l0HFkA6omUyjVYqw8/giphy.gif")
+                        .load(imgUrl)
+
+                       // .load("https://media.giphy.com/media/l0HFkA6omUyjVYqw8/giphy.gif")
                         .apply(new RequestOptions().circleCrop())
                         .into(dialogImage);
 
@@ -126,6 +135,15 @@ public class CoinDetailsActivity extends BaseActivity<ActivityCoinDetailsBinding
 
         alert.show();
     }
+
+    private String getUrlImage() {
+        String[] images = getResources().getStringArray(R.array.deletecoin_images);
+        Random r = new Random();
+        int indice = r.nextInt( images.length- 0);
+        Timber.d("images: " + indice + " === "+images[indice]);
+        return images[indice];
+    }
+
     private void getParameters() {
         Intent intent = getIntent();
         if(intent!= null)
