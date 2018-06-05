@@ -18,6 +18,8 @@ import com.asilvia.cryptoo.ui.base.navigation.AppNavigation;
 import com.asilvia.cryptoo.util.AppConstants;
 import com.bumptech.glide.Glide;
 
+import org.w3c.dom.Text;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -47,6 +49,8 @@ public class StartAdapter extends RecyclerView.Adapter<StartAdapter.ViewHolder>
     ImageView indicator;
     RelativeLayout card_indicator;
     CardView card_view;
+    TextView profit_index;
+    TextView profit_amount;
 
     public ViewHolder(View view) {
         super(view);
@@ -57,6 +61,8 @@ public class StartAdapter extends RecyclerView.Adapter<StartAdapter.ViewHolder>
         indicator=(ImageView)view.findViewById(R.id.indicator);
         card_indicator = (RelativeLayout)view.findViewById(R.id.card_indicator);
         card_view = (CardView)view.findViewById(R.id.card_view);
+        profit_index = (TextView)view.findViewById(R.id.profit_index_label);
+        profit_amount = (TextView)view.findViewById(R.id.profit_amount_label);
     }
 
 
@@ -104,7 +110,8 @@ public class StartAdapter extends RecyclerView.Adapter<StartAdapter.ViewHolder>
         Glide.with(context).load( photoUri).into( holder.icon);
 
         if(market) {
-
+            holder.profit_amount.setText(context.getString(R.string.market_profit_amount_label));
+            holder.profit_index.setText(context.getString(R.string.market_profit_index_label));
             holder.value_percentage.setText(String.format("%.2f", item.getIndex()) + "%");
             holder.value.setText(symbol + "" +String.format("%.2f", item.getPrice()));
             setIndicator(holder, item.getIndex());
@@ -112,6 +119,8 @@ public class StartAdapter extends RecyclerView.Adapter<StartAdapter.ViewHolder>
         else
         {
             double percentage = getUserPercentage(item);
+            holder.profit_amount.setText(context.getString(R.string.personal_profit_amount_label));
+            holder.profit_index.setText(context.getString(R.string.personal_profit_index_label));
             holder.value_percentage.setText(String.format("%.2f", percentage) + "%");
             holder.value.setText(symbol +" "+ item.getUserProfit());
             setIndicator(holder, percentage);

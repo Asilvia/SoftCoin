@@ -34,58 +34,76 @@
                     android:layout_marginRight="8dp"
                     android:src="@mipmap/ic_launcher" />
 
-                <TextView
-                    android:id="@+id/name"
-                    android:layout_width="match_parent"
-                    android:layout_height="32dp"
-                    android:layout_toRightOf="@id/icon"
-                    android:fontFamily="@font/akkuratproregular"
-                    android:gravity="left|center_vertical"
-                    android:text="ETH"
-                    android:textColor="@color/title"
-                    android:textSize="@dimen/cards_text" />
-
                 <LinearLayout
-                    android:id="@+id/indice_container"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/name"
                     android:layout_toRightOf="@id/icon"
-                    android:gravity="center_vertical">
+                    android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/value_percentage"
+                        android:id="@+id/name"
+                        android:layout_width="match_parent"
+                        android:layout_height="32dp"
+                        android:fontFamily="@font/akkuratproregular"
+                        android:gravity="left|center_vertical"
+                        android:text="ETH"
+                        android:textColor="@color/title"
+                        android:textSize="@dimen/cards_text" />
+
+                    <TextView
+                        android:id="@+id/profit_index_label"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/akkuratproregular"
+                        android:gravity="left"
+                        android:text="vmed'nvn"
+                        android:textColor="@color/light_grey"
+                        android:textAllCaps="true"
+                        android:textSize="@dimen/widget_title_text" />
+
+                    <LinearLayout
+                        android:id="@+id/indice_container"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/akkuratprobold"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:id="@+id/value_percentage"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/akkuratprobold"
+                            android:gravity="left"
+                            android:text="23.5%"
+                            android:textColor="@color/title"
+                            android:textSize="28sp" />
+
+                        <ImageView
+                            android:id="@+id/indicator"
+                            android:layout_width="21dp"
+                            android:layout_height="21dp"
+                            />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/profit_amount_label"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/akkuratproregular"
                         android:gravity="left"
-                        android:text="23.5%"
+                        android:text="vmed'nvn"
+                        android:textColor="@color/light_grey"
+                        android:textAllCaps="true"
+                        android:textSize="@dimen/widget_title_text" />
+                    <TextView
+                        android:id="@+id/value"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/akkuratproregular"
+                        android:gravity="left"
+                        android:text="€ 0.01"
                         android:textColor="@color/title"
-                        android:textSize="28sp" />
-
-                    <ImageView
-                        android:id="@+id/indicator"
-                        android:layout_width="21dp"
-                        android:layout_height="21dp"
-                        android:layout_marginLeft="@dimen/padding_xs"
-                        android:layout_toRightOf="@+id/value_percentage"
-
-
-                        />
+                        android:textSize="@dimen/cards_text" />
                 </LinearLayout>
-
-                <TextView
-                    android:id="@+id/value"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/indice_container"
-                    android:layout_toRightOf="@id/icon"
-                    android:fontFamily="@font/akkuratproregular"
-                    android:gravity="left"
-                    android:text="€ 0.01"
-                    android:textColor="@color/title"
-                    android:textSize="@dimen/cards_text" />
-
             </RelativeLayout>
 
             <RelativeLayout

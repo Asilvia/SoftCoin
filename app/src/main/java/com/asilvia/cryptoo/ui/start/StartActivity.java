@@ -167,9 +167,12 @@ public class StartActivity extends BaseActivity<ActivityStartBinding, StartViewM
     private void renderActionBar() {
         getSupportActionBar().setElevation(0);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setLogo(R.drawable.ic_logo_cryptoo);
+       // getSupportActionBar().setLogo(R.drawable.ic_logo_cryptoo);
         getSupportActionBar().setDisplayUseLogoEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
+        getSupportActionBar().setDisplayShowCustomEnabled(true);
+        View cView = getLayoutInflater().inflate(R.layout.start_action_bar, null);
+        getSupportActionBar().setCustomView(cView);
     }
 
 

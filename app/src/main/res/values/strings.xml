@@ -101,4 +101,8 @@
     <string name="about_giphy_link">https://developers.giphy.com/docs/</string>
     <string name="about_data_api">Cryptoo data api</string>
     <string name="about_data_api_link">https://www.cryptocompare.com/api/</string>
+    <string name="personal_profit_amount_label">profit/loss</string>
+    <string name="personal_profit_index_label">percentage</string>
+    <string name="market_profit_amount_label">market price</string>
+    <string name="market_profit_index_label">market index</string>
 </resources>
