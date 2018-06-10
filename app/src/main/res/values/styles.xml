@@ -13,13 +13,13 @@
         <item name="actionBarStyle">@style/CryptooActionBar</item>
         <item name="android:windowBackground">@color/colorPrimary</item>
         <item name="android:preferenceCategoryStyle">@style/CryptooPreferencesCategory</item>
+        <item name="android:actionButtonStyle">@style/ActionButton</item>
 
     </style>
 
     <style name="CryptooActionBar" parent="@android:style/Widget.Holo.Light.ActionBar.Solid.Inverse">
         <item name="contentInsetStart">@dimen/home_horizontal_padding</item>
         <item name="contentInsetEnd">@dimen/home_horizontal_padding</item>
-        <item name="android:paddingRight">@dimen/actionbar_right_padding</item>
         <item name="background">@drawable/actionbar_background</item>
     </style>
     <style name="EditTextTheme" parent="Theme.AppCompat.Light.DarkActionBar">
@@ -28,7 +28,9 @@
         <item name="colorControlHighlight">@color/blue</item>
     </style>
 
-
+    <style name="ActionButton" parent="@android:style/Widget.ActionButton">
+        <item name="android:drawablePadding">@dimen/actionbar_right_padding</item>
+    </style>
 
 
 
