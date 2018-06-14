@@ -59,7 +59,7 @@
                         android:text="vmed'nvn"
                         android:textColor="@color/light_grey"
                         android:textAllCaps="true"
-                        android:textSize="@dimen/widget_title_text" />
+                        android:textSize="@dimen/update_text" />
 
                     <LinearLayout
                         android:id="@+id/indice_container"
@@ -93,7 +93,7 @@
                         android:text="vmed'nvn"
                         android:textColor="@color/light_grey"
                         android:textAllCaps="true"
-                        android:textSize="@dimen/widget_title_text" />
+                        android:textSize="@dimen/update_text" />
                     <TextView
                         android:id="@+id/value"
                         android:layout_width="match_parent"

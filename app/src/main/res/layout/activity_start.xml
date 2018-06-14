@@ -86,7 +86,7 @@
                             android:gravity="center"
                             android:fontFamily="@font/akkuratproregular"
                             android:layout_below="@+id/coins_list"
-                            android:textSize="@dimen/widget_title_text"
+                            android:textSize="@dimen/update_text"
                             android:textColor="@color/light_grey"
                             android:paddingLeft="@dimen/padding_s"
                             android:paddingTop="@dimen/padding_medium"/>

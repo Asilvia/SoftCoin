@@ -7,7 +7,7 @@ android {
         applicationId "com.asilvia.cryptoo"
         minSdkVersion 24
         targetSdkVersion 26
-        versionCode 3
+        versionCode 6
         multiDexEnabled true
         versionName "1.0.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -93,7 +93,7 @@ dependencies {
 
     //RxJava
     implementation "io.reactivex:rxandroid:$rxJava_version"
-    implementation 'com.facebook.android:audience-network-sdk:4.+'
+    implementation 'com.facebook.android:audience-network-sdk:4.28.2'
 
     //annotations
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
