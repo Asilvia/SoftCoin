@@ -83,8 +83,8 @@
     <string name="noInternet">No Internet Connection</string>
     <string name="noInternet_body">You need to have Mobile Data or wifi to access this. Press ok to Exit</string>
     <string name="last_update">Last updated\n </string>
-    <string name="dialog_delete_body">Are you sure you want to delete</string>
-    <string name="dialog_delete_title">Alert!!</string>
+    <string name="dialog_delete_body">Are you sure you want to delete %1$s from your portfolio?</string>
+    <string name="dialog_delete_title">Delete coin</string>
     <string name="dialog_delete_confirm">YES</string>
     <string name="dialog_delete_skip">NO</string>
     <string name="dialog_remove_title">Bye, bye</string>

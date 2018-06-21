@@ -7,6 +7,7 @@ import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
@@ -79,8 +80,10 @@ public class CoinDetailsActivity extends BaseActivity<ActivityCoinDetailsBinding
     private void showConfirmationDialog() {
         AlertDialog.Builder alert = new AlertDialog.Builder(
                 this);
+        Resources res = getResources();
+        String body = String.format(res.getString(R.string.dialog_delete_body), title);
         alert.setTitle(R.string.dialog_delete_title);
-        alert.setMessage(R.string.dialog_delete_body);
+        alert.setMessage(body);
         alert.setPositiveButton(R.string.dialog_delete_confirm, new DialogInterface.OnClickListener() {
 
             @Override
