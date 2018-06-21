@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/padding_xxl"
-    android:paddingTop="@dimen/padding_xxl"
-   android:orientation="vertical"
-    >
+    android:orientation="vertical"
+    android:layout_gravity="center">
 
     <ImageView
-        android:layout_width="109dp"
-        android:layout_height="23dp"
-        android:src="@drawable/ic_logo_cryptoo"
+        android:layout_width="107dp"
+        android:layout_height="21dp"
         android:layout_gravity="center"
+        android:layout_margin="@dimen/padding_xxl"
+        android:src="@drawable/ic_logo_cryptoo"
+        android:layout_centerInParent="true"
 
         />
 
-</LinearLayout>
+</RelativeLayout>
